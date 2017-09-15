@@ -1,0 +1,20 @@
+body {
+	background-color: #FFFFFF;
+	letter-spacing: .1em;
+	color: #005500;
+	font-family: helvetica,sansserif;
+}
+h1 {
+	font-size: 5em;
+	text-align: center;
+	margin: 0px;
+}
+img {
+	margin: auto;
+	display: block;
+}
+a {
+	font-style: italic;
+	text-decoration: none;
+	color: #00AA00;
+}
