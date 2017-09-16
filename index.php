@@ -4,7 +4,7 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
+      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -56,7 +56,7 @@
 <div class="navbar navbar-default navbar-fixed-bottom">
 <table>
 		<tr>
-			<td><img src="AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>
+			<td><img src="img/AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>
 			<td>
 				<b>AlgoBreizh</b> - SARL au capital de 100 000 euros<br/>
 				18, rue de Molene, 29810 LAMPAUL-PLOUARZEL<br/>
