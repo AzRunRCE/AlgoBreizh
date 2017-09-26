@@ -46,7 +46,7 @@ if (isset($_POST['login'])){
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> S'authentifier</a></li>
-		<li><a href="register.php"><span class="glyphicon glyphicon-log-in"></span> S'inscrire (demander un mot de passe)</a></li>
+		<li><a href="register.php"><span class="glyphicon glyphicon-log-in"></span> S'inscrire</a></li>
       </ul>
     </div>
   </div>

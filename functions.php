@@ -14,7 +14,7 @@ function checkPassword($clientCode,$password){
     global $db;
     $sth = $db->prepare('SELECT id FROM tclients WHERE code=:clientCode AND password=:password');
     $sth->bindParam(':clientCode',$clientCode);
-    $sth->bindParam(':password', $password);
+    $sth->bindParam(':password', $sha1($password));
     $sth->execute();
     if($sth->rowCount() == 1) {
         return $sth->fetch(PDO::FETCH_ASSOC)['id'];
@@ -45,7 +45,7 @@ function register($email,$clientCode){
 		$id =$sth->fetch(PDO::FETCH_ASSOC)['id'];
 		$upd = $db->prepare('UPDATE tclients set password=:password,email=:email, active=1 WHERE id=:id');
 		$upd->bindParam(':password',$password);
-		$upd->bindParam(':email',$email);
+		$upd->bindParam(':email',$sha1($email));
 		$upd->bindParam(':id',$id);	
 		$upd->execute();
 		$subject = 'AlgoBreizh - Inscription';

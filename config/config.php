@@ -1,8 +1,8 @@
 <?php
 $user = "root";
 $pass = "";
-ini_set('SMTP','smtp.free.fr');
-ini_set('sendmail_from', 'frank@free.fr');
+ini_set('SMTP','smtp.sfr.fr');
+ini_set('sendmail_from', 'frank@sfr.fr');
 
 global $db;
 try {
