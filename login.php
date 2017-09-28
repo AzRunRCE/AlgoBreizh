@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("config/config.php");
-require_once("functions.php");
+require_once("includes/functions.php");
 //Redirection de l'utilisateur si la session user est déja définie
 if(isset($_SESSION["user"])){
   header('Location: index.php');
@@ -9,11 +9,12 @@ if(isset($_SESSION["user"])){
 
 if (isset($_POST['login'])){
 	if (isset($_POST['clientCode']) && isset($_POST['password'])){
+    $code = $_POST['clientCode'];
+    $password = $_POST['password'];
     // Vérification du mot de passe et redirection vers index.php si checkPassword != NULL
-	$userId = checkPassword($_POST['clientCode'],$_POST['password']);
-	if ($userId != NULL){
-		$_SESSION["user"] = $userId;
-		header('Location: index.php');
+		if (checkPassword($code,$password) != NULL){
+      $_SESSION["user"] = $code;
+			header('Location: index.php');
 		}
 	}
 }

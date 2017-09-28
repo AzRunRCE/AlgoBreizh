@@ -1,10 +1,8 @@
 <?php
 session_start();
 require_once("config/config.php");
-require_once("functions.php");
-if(isset($_SESSION["user"])){
-  header('Location: index.php');
-}
+require_once("includes/functions.php");
+
 if (isset($_POST['register'])){
 	if (isset($_POST['email']) && isset($_POST['clientCode'])){
 		if (register($_POST['email'],$_POST['clientCode']));
@@ -34,7 +32,9 @@ if (isset($_POST['register'])){
   </style>
 </head>
 <body>
-<?php showHeader(); ?>
+<?php 
+showHeader();
+?>
 <div class="container">
 	<div class="row">
 <div class="col-md-12">
@@ -63,7 +63,7 @@ if (isset($_POST['register'])){
 </div>
 	</div>
 </div>
-<div class="navbar navbar-default navbar-fixed-bottom">
+<div class="navbar navbar-default navbar-bottom">
 <table>
 		<tr>
 			<td><img src="img/AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>

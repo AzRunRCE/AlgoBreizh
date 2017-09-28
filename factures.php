@@ -1,3 +1,15 @@
+<?php
+session_start();
+include('includes/functions.php');
+//Déconnexion
+if(isset($_GET["action"]) && $_GET['action'] == "logout"){
+    if(session_destroy() == true){
+        header('Location: login.php');
+    }else{
+        throw new Exception('BreizhError: User not logged');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +31,8 @@
 </head>
 <body>
 <?php
-  session_start();
-  include("includes/functions.php");
-  showHeader();
+if(verifyUserIsLogged())
+    showHeader();
 ?>
 <h1>AlgoBreizh - Factures</h1>
 <div class="container">

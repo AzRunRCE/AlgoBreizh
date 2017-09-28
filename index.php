@@ -1,9 +1,15 @@
 <?php
 session_start();
-include("functions.php");
-if(!isset($_SESSION["user"])){
-  header('Location: login.php');
+include("includes/functions.php");
+
+if(isset($_GET["action"]) && $_GET['action'] == "logout"){
+    if(session_destroy() == true){
+        header('Location: login.php');
+    }else{
+        throw new Exception('BreizhError: User not logged');
+    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +31,10 @@ if(!isset($_SESSION["user"])){
   </style>
 </head>
 <body>
-<?php showHeader();?>
+<?php 
+if(verifyUserIsLogged())
+    showHeader();
+?>
 <h1>AlgoBreizh</h1>
 <div class="container">
   <div class="row">
@@ -40,7 +49,33 @@ if(!isset($_SESSION["user"])){
 	<p/>
 	</div>
 </div>
-<div class="navbar navbar-default navbar-fixed-bottom">
+<div class="container">
+  <div class="row">
+  <h3>Projets AlgoBreizh</h3>
+  <p><a color="00AA00" href="~an.my">My AN NGOC</a>
+  <p><a href="~d.samson">Denis SAMSON</a>
+  <p><a href="~j.cadieu">Jonas CADIEU</a>
+  <p><a href="~s.gamarde">Sebastien GAMARDE</a>
+  <p><a href="~s.plaisier">Sylvain PLAISIER</a>
+  <p><a href="~y.bouchard">Yoann BOUCHARD</a>
+  <h4><A HREF="Certificats.zip">Certificats</A></h4>
+  <p/>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+  <h3>Projets AlgoBreizh</h3>
+  <p><a color="00AA00" href="~an.my">My AN NGOC</a>
+  <p><a href="~d.samson">Denis SAMSON</a>
+  <p><a href="~j.cadieu">Jonas CADIEU</a>
+  <p><a href="~s.gamarde">Sebastien GAMARDE</a>
+  <p><a href="~s.plaisier">Sylvain PLAISIER</a>
+  <p><a href="~y.bouchard">Yoann BOUCHARD</a>
+  <h4><A HREF="Certificats.zip">Certificats</A></h4>
+  <p/>
+  </div>
+</div>
+<div class="navbar navbar-default navbar-bottom">
 <table>
 		<tr>
 			<td><img src="img/AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>
