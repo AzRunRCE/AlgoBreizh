@@ -40,7 +40,7 @@ CREATE TABLE `tclients` (
 
 LOCK TABLES `tclients` WRITE;
 /*!40000 ALTER TABLE `tclients` DISABLE KEYS */;
-INSERT INTO `tclients` VALUES (1,'Quentin','Martinez','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','qmz@algobreizh.fr',1,'qmz'),(2,'Paul','Besret','','bst@algobreizh.fr',0,'pbt'),(3,'Dorian','Pilorge','','dpe@algobreizh.fr',0,'dpe');
+INSERT INTO `tclients` VALUES (1,'Quentin','Martinez','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','qmz@algobreizh.fr',1,'qmz'),(2,'Paul','Besret','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','bst@algobreizh.fr',1,'bst'),(3,'Dorian','Pilorge','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8','dpe@algobreizh.fr',0,'dpe');
 /*!40000 ALTER TABLE `tclients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,10 +113,11 @@ CREATE TABLE `tproducts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` float NOT NULL,
   `reference` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `reference` (`reference`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +126,7 @@ CREATE TABLE `tproducts` (
 
 LOCK TABLES `tproducts` WRITE;
 /*!40000 ALTER TABLE `tproducts` DISABLE KEYS */;
-INSERT INTO `tproducts` VALUES (1,'chrondus crispus','chrondus-crispus',10,'P001');
+INSERT INTO `tproducts` VALUES (1,'chrondus-crispus','chrondus-crispus',10,'P001'),(2,'conserves','conserves',8,'P002'),(3,'court-bouillon','court-bouillon',12,'P003'),(4,'emiette-de-thon-wakame','emiette-de-thon-wakame',10,'P004'),(5,'epices-marines','epices-marines',9,'P005'),(6,'haricot-de-mer-en-saumure-500-g','haricot-de-mer-en-saumure-500-g',9,'P006'),(8,'haricot-de-mer-en-saumure-500-g','haricot-de-mer-en-saumure-500-g',19,'P007'),(9,'haricots-marins','haricots-marins',12.5,'P008'),(10,'laitue-de-mer-feuilles','laitue-de-mer-feuilles',11.9,'P010'),(11,'laitue-de-mer-paillete','laitue-de-mer-paillete',18.5,'P011'),(12,'moutarde-salicorne','moutarde-salicorne',15.5,'P012'),(13,'nori-en-feuilles','nori-en-feuilles',15.1,'P013'),(14,'nori-paillette','nori-paillette',7.5,'P014'),(15,'nori-saupoudreur-aromate-10g','nori-saupoudreur-aromate-10g',5,'P015'),(16,'pates-aux-algues','pates-aux-algues',8,'P016'),(18,'salicornes_au_naturel','salicornes_au_naturel',9.5,'P018'),(19,'salicornes_au_vinaigre','salicornes_au_vinaigre',13.8,'P019'),(20,'sels-aux-algues','sels-aux-algues',17,'P020'),(21,'tisane-aux-algues','tisane-aux-algues',7,'P021'),(22,'wakame_feuille','wakame_feuille',5,'P022'),(23,'wakame-paillette','wakame-paillette',8,'P023');
 /*!40000 ALTER TABLE `tproducts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -138,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-28  9:23:29
+-- Dump completed on 2017-09-28 16:17:31
