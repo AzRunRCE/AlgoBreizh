@@ -1,3 +1,7 @@
+<?php
+require_once("config/config.php");
+require_once("functions.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +11,14 @@
   <link rel="stylesheet" href="style/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
   <style>
     h1, h2, h3, h4, h5, h6 {
 		font-family: 'Trebuchet MS';
@@ -43,15 +55,18 @@
 <h1>AlgoBreizh</h1>
 <div class="container">
   <div class="row">
-	<h3>Projets AlgoBreizh</h3>
-	<p><a color="00AA00" href="~an.my">My AN NGOC</a>
-	<p><a href="~d.samson">Denis SAMSON</a>
-	<p><a href="~j.cadieu">Jonas CADIEU</a>
-	<p><a href="~s.gamarde">Sebastien GAMARDE</a>
-	<p><a href="~s.plaisier">Sylvain PLAISIER</a>
-	<p><a href="~y.bouchard">Yoann BOUCHARD</a>
-	<h4><A HREF="Certificats.zip">Certificats</A></h4>
-	<p/>
+	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Date</th>    
+                <th>Justificatif</th>
+                <th>status</th>
+            </tr>
+        </thead>
+        <tbody>
+           <?php echo getOrderForClient(1);?>
+        </tbody>
+    </table>
 	</div>
 </div>
 <div class="navbar navbar-default navbar-fixed-bottom">
