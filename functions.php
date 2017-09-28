@@ -9,24 +9,35 @@ abstract class OrderStatus
     // etc.
 }
 
+function showHeader(){
+	if(isset($_SESSION["user"])){
+	    $buttons = file_get_contents("includes/header_logged.html");
+	}
+	else{
+	    $buttons = file_get_contents("includes/header_not_logged.html");
+	}
+echo $buttons;
+}
+
 function getClient($id){
     global $db;
-    $sth =$db->prepare('SELECT * FROM tclients WHERE id=:id');
-    $sth->bindParam(':id', $id);
-    $sth->execute();
-    if($sth->rowCount() == 1) {
-        return $sth->fetch();
+    $req =$db->prepare('SELECT * FROM tclients WHERE id=:id');
+    $req->bindParam(':id', $id);
+    $req->execute();
+    if($req->rowCount() == 1) {
+        return $req->fetch();
     }
 }
 
 function checkPassword($clientCode,$password){
     global $db;
-    $sth = $db->prepare('SELECT id FROM tclients WHERE code=:clientCode AND password=:password');
-    $sth->bindParam(':clientCode',$clientCode);
-    $sth->bindParam(':password', sha1($password));
-    $sth->execute();
-    if($sth->rowCount() == 1) {
-        return $sth->fetch(PDO::FETCH_ASSOC)['id'];
+    $hashPassword= sha1($password);
+    $req = $db->prepare('SELECT id FROM tclients WHERE code=:clientCode AND password=:password');
+    $req->bindParam(':clientCode',$clientCode);
+    $req->bindParam(':password',$hashPassword);
+    $req->execute();
+    if($req->rowCount() == 1) {
+        return $req->fetch(PDO::FETCH_ASSOC)['id'];
     }
     else {
         return NULL;
@@ -45,16 +56,16 @@ function createPassword($nbCaractere)
 
 function register($email,$clientCode){
     global $db;
-	
-    $sth = $db->prepare('SELECT id FROM tclients WHERE code=:clientCode AND active = 0');
-    $sth->bindParam(':clientCode',$clientCode);
-    $sth->execute();
-    if($sth->rowCount() == 1) {
+	$hashPassword = sha1($password);
+    $req = $db->prepare('SELECT id FROM tclients WHERE code=:clientCode AND active = 0');
+    $req->bindParam(':clientCode',$clientCode);
+    $req->execute();
+    if($req->rowCount() == 1) {
 		$password = createPassword(8);
-		$id =$sth->fetch(PDO::FETCH_ASSOC)['id'];
+		$id =$req->fetch(PDO::FETCH_ASSOC)['id'];
 		$upd = $db->prepare('UPDATE tclients set password=:password,email=:email, active=1 WHERE id=:id');
-		$upd->bindParam(':password',$password);
-		$upd->bindParam(':email',sha1($email));
+		$upd->bindParam(':password',$hashPassword);
+		$upd->bindParam(':email',$email);
 		$upd->bindParam(':id',$id);	
 		$upd->execute();
 		$subject = 'AlgoBreizh - Inscription';
@@ -73,10 +84,10 @@ function register($email,$clientCode){
 
 function getOrderForClient($id){
     global $db;
-    $sth = $db->prepare('SELECT * FROM tOrders WHERE client_id=:id');
-    $sth->bindParam(':id',$id);
-    $sth->execute();
-    while($row=$sth->fetch(PDO::FETCH_OBJ)) {
+    $req = $db->prepare('SELECT * FROM tOrders WHERE client_id=:id');
+    $req->bindParam(':id',$id);
+    $req->execute();
+    while($row=$req->fetch(PDO::FETCH_OBJ)) {
 		echo '<tr><td>'.$row->date.'</td><td><a href="https://www.w3schools.com">PDF</a></td>'.'</td>';
 		if($row->status == OrderStatus::PENDING){			
 			echo '<td>En attente</td></tr>';

@@ -1,6 +1,10 @@
 <?php
+session_start();
 require_once("config/config.php");
 require_once("functions.php");
+if(isset($_SESSION["user"])){
+  header('Location: index.php');
+}
 if (isset($_POST['register'])){
 	if (isset($_POST['email']) && isset($_POST['clientCode'])){
 		if (register($_POST['email'],$_POST['clientCode']));
@@ -13,7 +17,7 @@ if (isset($_POST['register'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>AlgoBreizh - Inscription</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/bootstrap.css">
@@ -30,29 +34,7 @@ if (isset($_POST['register'])){
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> S'authentifier</a></li>
-		<li><a href="register.php"><span class="glyphicon glyphicon-log-in"></span> S'inscrire</a></li>
-		
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php showHeader(); ?>
 <div class="container">
 	<div class="row">
 <div class="col-md-12">

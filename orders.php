@@ -1,6 +1,10 @@
 <?php
+session_start();
 require_once("config/config.php");
 require_once("functions.php");
+if(!isset($_SESSION["user"])){
+  header('Location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,29 +34,8 @@ require_once("functions.php");
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="login.php">Home</a></li>
-		<li><a href="login.php">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<h1>AlgoBreizh</h1>
+<?php showHeader(); ?>
+<h1>AlgoBreizh - Mes commandes</h1>
 <div class="container">
   <div class="row">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">

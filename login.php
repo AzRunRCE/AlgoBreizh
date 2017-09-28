@@ -1,10 +1,19 @@
 <?php
+session_start();
 require_once("config/config.php");
 require_once("functions.php");
+//Redirection de l'utilisateur si la session user est déja définie
+if(isset($_SESSION["user"])){
+  header('Location: index.php');
+}
+
 if (isset($_POST['login'])){
 	if (isset($_POST['clientCode']) && isset($_POST['password'])){
-		if (checkPassword($_POST['clientCode'],$_POST['password']) != NULL){
-			header('Location: index.php');      
+    // Vérification du mot de passe et redirection vers index.php si checkPassword != NULL
+	$userId = checkPassword($_POST['clientCode'],$_POST['password']);
+	if ($userId != NULL){
+		$_SESSION["user"] = $userId;
+		header('Location: index.php');
 		}
 	}
 }
@@ -12,10 +21,10 @@ if (isset($_POST['login'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>AlgoBreizh - Connexion</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/bootstrap.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -30,27 +39,10 @@ if (isset($_POST['login'])){
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> S'authentifier</a></li>
-		<li><a href="register.php"><span class="glyphicon glyphicon-log-in"></span> S'inscrire</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php 
+showHeader();
+?>
+
 <div class="container">
 	<div class="row">
 <div class="col-md-12">
