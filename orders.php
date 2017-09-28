@@ -14,10 +14,11 @@ if(isset($_GET["action"]) && $_GET['action'] == "logout"){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>AlgoBreizh - Mes commandes</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/bootstrap.css">
+  <link rel="stylesheet" href="style/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -43,7 +44,7 @@ if(isset($_GET["action"]) && $_GET['action'] == "logout"){
 if(verifyUserIsLogged())
     showHeader();
 ?>
-<h1>AlgoBreizh - Mes commandes</h1>
+<h1 class="pageTitle">AlgoBreizh - Mes commandes</h1>
 <div class="container">
   <div class="row">
 	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">

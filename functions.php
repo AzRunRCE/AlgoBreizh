@@ -11,10 +11,10 @@ abstract class OrderStatus
 
 function showHeader(){
 	if(isset($_SESSION["user"])){
-	    $buttons = file_get_contents("includes/header_logged.html");
+	    $buttons = file_get_contents("includes/header_logged.php");
 	}
 	else{
-	    $buttons = file_get_contents("includes/header_not_logged.html");
+	    $buttons = file_get_contents("includes/header_not_logged.php");
 	}
 echo $buttons;
 }
@@ -103,16 +103,18 @@ function getProducts(){
     $req = $db->prepare('SELECT * FROM tproducts');
     $req->execute();
     while($row=$req->fetch(PDO::FETCH_OBJ)) {
+        $description = str_replace("-", " ", $row->description);
+        $description = str_replace("_", " ", $description);
 		echo '<div class="col-md-2">
-            <div class="card">
+            <div class="card" style="height: 230px">
                 <div class="card-image">
                     <center> <img class="imageClip" src="thumbnail/'.$row->label.'.jpg"> </center>           
                 </div>       
-                <div class="card-content">
-                    <p>'.$row->description.'</p>
-					 <p>Prix: '.$row->price.'</p>
+                <div class="card-content" style="height: 60px">
+                    <p style="font-size: 16px">'.$description.'</p>
                 </div>   
                 <div class="card-action">
+                <p>Prix: '.$row->price.'€</p>
                     <a href="#" class="btn btn-sm btn-success">Ajouter au panier</a>
                 </div>
             </div>
