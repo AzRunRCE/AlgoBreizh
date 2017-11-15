@@ -34,21 +34,24 @@
         <li class="active"><a href="index.php">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-		    <li><a href="login.php" style="color: white;"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>
-		    <li><a href="register.php" style="color: white;"><span class="glyphicon glyphicon-edit"></span> Inscription</a></li>
+      	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
+		<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> Mes commandes</a></li>
+		<li><a href="index.php?action=logout" style="color:  red;"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
       </ul>
     </div>
   </div>
 </nav>
-<h1 class="pageTitle">AlgoBreizh - <?= $title ?></h1>
+<h1 class="pageTitle"><?= $title ?></h1>
 <div class="container">
   <div class="row" id="content">
 	  <?= $content ?>
   </div>
 </div>
 
+</body>
+
 <div class="navbar navbar-default navbar-fixed-bottom" id="footer">
-<table>
+	<table>
 		<tr>
 			<td><img src="img/AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>
 			<td>
@@ -59,8 +62,6 @@
 		</tr>
 	</table>
 </div>
-
-</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

@@ -1,13 +1,11 @@
 <?php
-require_once 'Model/Product.php';
 require_once 'View/View.php';
-class WelcomeControler {
+class LoginControler {
     public function __construct() {
-        $this->product = new Product();
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
-        $view = new View("Welcome");
+        $view = new View("Login");
         $view->generate(null);
     }
 }
