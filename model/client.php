@@ -8,10 +8,10 @@ abstract class OrderStatus
     // etc.
 }
 
-class Order extends Model {
+class Client extends Model {
 	// Renvoie la liste des commandes associés à un client
-    public function getOrders($idClient){
-		$req = 'SELECT * FROM tOrders WHERE client_id=?';
+    public function getClients($id){
+		$req = 'SELECT * FROM tproducts';
 		return $this->executerRequete($req, array($id));
 	}
 }

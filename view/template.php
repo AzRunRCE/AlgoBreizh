@@ -1,7 +1,11 @@
+
+<?php 
+require("../controler.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AlgoBreizh - Mes commandes</title>
+  <title>AlgoBreizh - </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/bootstrap.css">
@@ -23,22 +27,11 @@
 if(verifyUserIsLogged())
     showHeader();
 ?>
-<h1 class="pageTitle">AlgoBreizh - Mes commandes</h1>
+<h1 class="pageTitle">AlgoBreizh - </h1>
 <div class="container">
-  <div class="row">
-	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>Date</th>    
-                <th>Justificatif</th>
-                <th>status</th>
-            </tr>
-        </thead>
-        <tbody>
-           <?php echo getOrderForClient(1);?>
-        </tbody>
-    </table>
-	</div>
+  <div class="row" id="content">
+	
+  </div>
 </div>
 <div class="navbar navbar-default navbar-fixed-bottom">
 <table>
