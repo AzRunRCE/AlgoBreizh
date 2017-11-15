@@ -1,9 +1,9 @@
 <?php
-require_once 'Controler/WelcomeControler.php';
-require_once 'Controler/OrderControler.php';
+require_once 'Controler/welcomeControler.php';
+require_once 'Model/Order.php';
 require_once 'View/View.php';
 
-class ControlerOrder {
+class OrderControler {
     private $order;
     public function __construct() {
         $this->order = new Order();    
@@ -11,8 +11,8 @@ class ControlerOrder {
     // Affiche les détails sur un billet
     public function order($idClient) {
         $order = $this->order->getOrders($idClient);
-        $vue = new Vue("Commande");
-        $vue->generer(array('order' => $order));
+        $vue = new Vue("Order");
+        $vue->generate(array('Order' => $order));
     }
 }
 ?>

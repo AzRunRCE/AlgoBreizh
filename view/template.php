@@ -1,16 +1,12 @@
-
-<?php 
-require("../controler.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>AlgoBreizh - </title>
+  <title>AlgoBreizh - <?= $title ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style/bootstrap.css">
   <link rel="stylesheet" href="style/style.css">
- 
+
   
   <style>
     h1, h2, h3, h4, h5, h6 {
@@ -23,17 +19,35 @@ require("../controler.php");
   </style>
 </head>
 <body>
-<?php 
-if(verifyUserIsLogged())
-    showHeader();
-?>
-<h1 class="pageTitle">AlgoBreizh - </h1>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.php">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+		    <li><a href="login.php" style="color: white;"><span class="glyphicon glyphicon-user"></span> Connexion</a></li>
+		    <li><a href="register.php" style="color: white;"><span class="glyphicon glyphicon-edit"></span> Inscription</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h1 class="pageTitle">AlgoBreizh - <?= $title ?></h1>
 <div class="container">
   <div class="row" id="content">
-	
+	  <?= $content ?>
   </div>
 </div>
-<div class="navbar navbar-default navbar-fixed-bottom">
+
+<div class="navbar navbar-default navbar-fixed-bottom" id="footer">
 <table>
 		<tr>
 			<td><img src="img/AlgoBreizh_Logo_128px.png" alt="AlgoBreizh" /></td>
@@ -45,15 +59,11 @@ if(verifyUserIsLogged())
 		</tr>
 	</table>
 </div>
+
 </body>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-  <script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 </html>

@@ -10,9 +10,9 @@ abstract class OrderStatus
 
 class Product extends Model {
 	// Renvoie la liste des commandes associés à un client
-    public function getProducts($id){
+    public function getProducts(){
 		$req = 'SELECT * FROM tproducts';
-		return $this->executerRequete($req, array($id));
+		return $this->executerRequete($req);
 	}
 }
 ?>
