@@ -23,39 +23,34 @@ class Router {
 			$isLogged = $this->UserIsLogged();
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] == 'order' && $isLogged) {
-					   $this->orderCtrl->show();
+					   $this->orderCtrl->show($_SESSION['client']['id']);
 				} 
 				else if ($_GET['action'] == 'bill' && $isLogged) {
 						$this->productCtrl->show();
 				}
-				else if ($_GET['action'] == 'login' && !$isLogged) {
+			
+				else if ($_GET['action'] == 'login' ) {
+					if (isset($_POST['clientCode']) && isset($_POST['password'])) {
+						$code = 	$this->getParameter($_POST,'clientCode');
+						$password =	$this->getParameter($_POST,'password');
+						$this->loginCtrl->Login($code,$password);	
+					}
+					else
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products') {
-						$this->productCtrl->show($isLogged);
+						$this->productCtrl->show();
 				}
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
-					$this->welcomeCtrl->show(false);
+					header("Location: index.php");
 				}
-				else {
-						$this->welcomeCtrl->show($isLogged);
-				}
-			}
-			else if (isset($_POST['login'])){
-				if (isset($_POST['clientCode']) && isset($_POST['password'])){
-					$code = $_POST['clientCode'];
-					$password = $_POST['password'];
-					// Vérification du mot de passe et redirection vers index.php si checkPassword != NULL
-					//if (checkPassword($code,$password) != NULL){
-						$_SESSION["user"] = $code;
-						$this->welcomeCtrl->show(true);			
-					//}
+				else{
+					$this->welcomeCtrl->show();
 				}
 			}
-		
 			else{
-				$this->welcomeCtrl->show($isLogged);
+				$this->welcomeCtrl->show();
 			}
 			
 			
@@ -67,13 +62,21 @@ class Router {
 		// Redirection vers login.php si la session n'existe pas
 
 	private function UserIsLogged(){
-		if(!isset($_SESSION["user"])){
+		if(!isset($_SESSION["client"])){
 			return false;
 		} 
 		else{
 			return true;
 		}
 	}
+	
+	 private function getParameter($tableau, $nom) {
+        if (isset($tableau[$nom])) {
+            return $tableau[$nom];
+        }
+        else
+            throw new Exception("Paramètre '$nom' absent");
+    }
     // Affiche une erreur
     private function erreur($msgErreur) {
         $view = new View("Error");
