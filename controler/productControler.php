@@ -9,10 +9,10 @@ class ProductControler {
         $this->product = new Product();    
     }
     // Affiche les détails sur un billet
-    public function show() {
+    public function show($isConnected) {
         $products = $this->product->getProducts();
         $view = new View("product");
-        $view->generate(array('products' => $products));
+        $view->generate(array('products' => $products,'Connected' =>$isConnected));
     }
 }
 ?>

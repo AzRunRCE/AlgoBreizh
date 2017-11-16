@@ -32,21 +32,40 @@ class Router {
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products') {
-						$this->productCtrl->show();
+						$this->productCtrl->show($isLogged);
 				}
-				else{
-					$this->welcomeCtrl->show();
+				else if ($_GET['action'] == 'logout') {
+					session_destroy();
+					$this->welcomeCtrl->show(false);
+				}
+				else {
+						$this->welcomeCtrl->show($isLogged);
 				}
 			}
+			else if (isset($_POST['login'])){
+				if (isset($_POST['clientCode']) && isset($_POST['password'])){
+					$code = $_POST['clientCode'];
+					$password = $_POST['password'];
+					// Vérification du mot de passe et redirection vers index.php si checkPassword != NULL
+					//if (checkPassword($code,$password) != NULL){
+						$_SESSION["user"] = $code;
+						$this->welcomeCtrl->show(true);			
+					//}
+				}
+			}
+		
 			else{
-				$this->welcomeCtrl->show();
+				$this->welcomeCtrl->show($isLogged);
 			}
+			
+			
         }
         catch (Exception $e) {
             $this->erreur($e->getMessage());
         }
     }
 		// Redirection vers login.php si la session n'existe pas
+
 	private function UserIsLogged(){
 		if(!isset($_SESSION["user"])){
 			return false;
@@ -55,7 +74,6 @@ class Router {
 			return true;
 		}
 	}
-
     // Affiche une erreur
     private function erreur($msgErreur) {
         $view = new View("Error");

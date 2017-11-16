@@ -7,7 +7,7 @@
 							<h3 class="panel-title">S'authentifier</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" action="login.php" method="POST">
+							<form role="form" action="index.php" method="POST">
 								<fieldset>
 										<input name="login" type="hidden" value="">      
 									<div class="form-group">

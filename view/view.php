@@ -15,10 +15,19 @@ class View {
         $content = $this->generateFile($this->file, $data);
         // Génération du gabarit commun utilisant la partie spécifique
         $view = $this->generateFile('View/template.php',
-                array('title' => $this->title, 'content' => $content));
+                array('title' => $this->title, 'content' => $content, 'logged' => $this->UserIsLogged()));
         // Renvoi de la vue au navigateur
         echo $view;
     }
+	
+	private function UserIsLogged(){
+		if(!isset($_SESSION["user"])){
+			return false;
+		} 
+		else{
+			return true;
+		}
+	}
     // Génère un fichier vue et renvoie le résultat produit
     private function generateFile($file, $data) {
         if (file_exists($file)) {
