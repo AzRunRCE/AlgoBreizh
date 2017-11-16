@@ -17,8 +17,13 @@ class LoginControler  extends BaseControler {
     }
 	
 	public function Login($clientCode,$password) {
-		$_SESSION['client'] = $this->client->getClient($clientCode,$password);
-		$this->welcomeCtrl->show();
+		$client = $this->client->getClient($clientCode,$password);
+		if ($client){
+			$this->welcomeCtrl->show();
+			$_SESSION['client'] = $client;
+		}
+		else
+			$this->show();
     }
 	private function sendPassword($to,$password)
 	{
