@@ -9,10 +9,10 @@ class OrderControler {
         $this->order = new Order();    
     }
     // Affiche les détails sur un billet
-    public function order($idClient) {
-        $order = $this->order->getOrders($idClient);
-        $vue = new Vue("Order");
-        $vue->generate(array('Order' => $order));
+    public function show($idClient) {
+        $orders = $this->order->getOrders($idClient);
+        $view = new View("Order");
+        $view->generate(array('orders' => $orders));
     }
 }
 ?>

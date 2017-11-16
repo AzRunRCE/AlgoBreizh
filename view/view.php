@@ -21,7 +21,7 @@ class View {
     }
 	
 	private function UserIsLogged(){
-		if(!isset($_SESSION["user"])){
+		if(!isset($_SESSION["client"])){
 			return false;
 		} 
 		else{

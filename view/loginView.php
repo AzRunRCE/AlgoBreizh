@@ -7,9 +7,8 @@
 							<h3 class="panel-title">S'authentifier</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" action="index.php" method="POST">
+							<form role="form" action="index.php?action=login" method="POST">
 								<fieldset>
-										<input name="login" type="hidden" value="">      
 									<div class="form-group">
 										<input class="form-control" placeholder="Code Client" name="clientCode" required="" autofocus="">
 									</div>

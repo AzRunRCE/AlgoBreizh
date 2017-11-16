@@ -5,9 +5,9 @@ class WelcomeControler {
     public function __construct() {
     }
 	// Affiche la liste de tous les billets du blog
-    public function show($logged) {
+    public function show() {
         $view = new View("Welcome");
-		$view->generate(null);
+		$view->generate(NULL);
 	
     }
 }
