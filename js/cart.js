@@ -8,3 +8,11 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
 }
+
+object.onclick = function() {
+	$.ajax({
+        url : '../controller/Router.php?action=order',
+        type : 'GET',
+        data: { 
+    });
+};

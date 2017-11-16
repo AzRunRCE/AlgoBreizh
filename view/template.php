@@ -3,11 +3,11 @@
 <head>
   <title>AlgoBreizh - <?= $title ?></title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/bootstrap.css">
-  <link rel="stylesheet" href="style/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style/bootstrap.css" />
+  <link rel="stylesheet" href="style/style.css" />
 
-  
   <style>
     h1, h2, h3, h4, h5, h6 {
 		font-family: 'Trebuchet MS';
@@ -18,36 +18,36 @@
 	}
   </style>
 </head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'order' : 'login') ?>" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> <?= ($logged  ? 'Mes commandes' : 'Connection') ?></a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'register') ?>" style="color:  red;"><span class="glyphicon glyphicon-log-out"></span> <?= ($logged ? 'Déconnexion' : 'Inscription') ?></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<h1 class="pageTitle"><?= $title ?></h1>
-<div class="container">
-  <div class="row" id="content">
-	  <?= $content ?>
-  </div>
-</div>
 
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#"><img src="img/AlgoBreizh_Logo_48px.png" alt="AlgoBreizh" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.php">Accueil</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+       	  <li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
+		  <li><a href="index.php?action=<?= ($logged ? 'order' : 'login') ?>" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> <?= ($logged  ? 'Mes commandes' : 'Connexion') ?></a></li>
+		  <li><a href="index.php?action=<?= ($logged ? 'logout' : 'register') ?>" style="color: red;"><span class="glyphicon glyphicon-log-out"></span> <?= ($logged ? 'Déconnexion' : 'Inscription') ?></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h1 class="pageTitle"><?= $title ?></h1>
+  <div class="container">
+    <div class="row" id="content">
+	  <?= $content ?>
+    </div>
+  </div>
 </body>
 
 <div class="navbar navbar-default navbar-fixed-bottom" id="footer">
