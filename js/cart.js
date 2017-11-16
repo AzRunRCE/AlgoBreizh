@@ -11,8 +11,9 @@ function httpGetAsync(theUrl, callback)
 
 object.onclick = function() {
 	$.ajax({
-        url : '../controller/Router.php?action=order',
+        url : 'controller/Router.php?action=addToCart',
         type : 'GET',
-        data: { 
+        data: {
+			amount = null;
     });
 };

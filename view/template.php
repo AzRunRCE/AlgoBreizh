@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <title>AlgoBreizh - <?= $title ?></title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style/bootstrap.css">
-  <link rel="stylesheet" href="style/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+  <link rel="stylesheet" href="style/bootstrap.css" />
+  <link rel="stylesheet" href="style/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -35,12 +36,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home</a></li>
+        <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'order' : 'login') ?>" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> <?= ($logged ? 'Mes commandes' : 'Connection') ?></a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'register') ?>" style="color:  red;"><span class="glyphicon glyphicon-log-out"></span> <?= ($logged ? 'Déconnexion' : 'Inscription') ?></a></li>
+		<li><a href="index.php?action=<?= ($logged ? 'order' : 'register') ?>" style="color: white;"><span class="<?= ($logged ? 'glyphicon glyphicon-barcode' : 'glyphicon glyphicon-pencil') ?>"></span> <?= ($logged ? 'Mes commandes' : 'Inscription') ?></a></li>
+		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" style="color:  <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
       </ul>
     </div>
   </div>

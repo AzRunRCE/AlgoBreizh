@@ -11,7 +11,7 @@
                 </div>   
                 <div class="card-action">
                 <p>Prix: <?php echo $product['price']; ?></p>
-                    <a href="#" class="btn btn-sm btn-success">Ajouter au panier</a>
+                    <a href="#" id="<?php echo $product['id']; ?>" class="btn btn-sm btn-success">Ajouter au panier</a>
                 </div>
             </div>
         </div>
