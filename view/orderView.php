@@ -1,7 +1,7 @@
 <?php $this->title = "Mes commandes"; ?>
-<?php foreach ($orders as $order):?>
+
   <div class="row">
-	<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="orderTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Date</th>    
@@ -11,16 +11,17 @@
         </thead>
         <tbody>
 			<tr>
+			<?php foreach ($orders as $order):?>
 				<td><?php echo $order['date']; ?></td>
 				<td><a href="https://www.w3schools.com">PDF</a></td>
 				<td><?= ($order['status'] ? 'Traîtée' : 'En attente') ?></td>
+			<?php endforeach; ?>
 			</tr>
         </tbody>
     </table>
 	</div>
-<?php endforeach; ?>
  <script>
   $(document).ready(function() {
-    $('#example').DataTable();
+    $('#orderTable').DataTable();
 } );
 </script>

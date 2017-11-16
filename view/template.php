@@ -39,7 +39,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'order' : 'login') ?>" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> <?= ($logged  ? 'Mes commandes' : 'Connection') ?></a></li>
+		<li><a href="index.php?action=<?= ($logged ? 'order' : 'login') ?>" style="color: white;"><span class="glyphicon glyphicon-barcode"></span> <?= ($logged ? 'Mes commandes' : 'Connection') ?></a></li>
 		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'register') ?>" style="color:  red;"><span class="glyphicon glyphicon-log-out"></span> <?= ($logged ? 'Déconnexion' : 'Inscription') ?></a></li>
       </ul>
     </div>

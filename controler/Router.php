@@ -34,7 +34,6 @@ class Router {
 						$code = 	$this->getParameter($_POST,'clientCode');
 						$password =	$this->getParameter($_POST,'password');
 						$this->loginCtrl->Login($code,$password);	
-						$this->welcomeCtrl->show();
 					}
 					else
 						$this->loginCtrl->show();
@@ -44,7 +43,7 @@ class Router {
 				}
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
-					$this->welcomeCtrl->show();
+					header("Location: index.php");
 				}
 				else{
 					$this->welcomeCtrl->show();
