@@ -79,7 +79,7 @@ class Router {
     }
     // Affiche une erreur
     private function erreur($msgErreur) {
-        $view = new View("Error");
+        $view = new View("Error",false);
         $view->generate(array('msgErreur' => $msgErreur));
     }
     // Recherche un paramètre dans un tableau
