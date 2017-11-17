@@ -3,6 +3,8 @@ require_once 'Controler/welcomeControler.php';
 require_once 'Controler/orderControler.php';
 require_once 'Controler/productControler.php';
 require_once 'Controler/loginControler.php';
+require_once 'Controler/cartControler.php';
+
 require_once 'View/View.php';
 
 class Router {
@@ -10,12 +12,14 @@ class Router {
     private $orderCtrl;
 	private $productCtrl;
 	private $loginCtrl;
+	private $cartCtrl;	
     public function __construct() {
 		session_start();
         $this->welcomeCtrl = new WelcomeControler();
         $this->orderCtrl = new OrderControler();
 		$this->productCtrl = new ProductControler();
 		$this->loginCtrl = new LoginControler();
+		$this->cartCtrl = new CartControler();
     }
     // Route une requête entrante : exécution l'action associée
     public function routerRequest() {
@@ -40,6 +44,9 @@ class Router {
 				}
 				else if ($_GET['action'] == 'products') {
 						$this->productCtrl->show();
+				}
+				else if ($_GET['action'] == 'cart') {
+						$this->cartCtrl->show();
 				}
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
