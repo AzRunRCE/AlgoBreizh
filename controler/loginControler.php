@@ -1,9 +1,9 @@
 <?php
 require 'Model/Client.php';
 require_once 'View/View.php';
-require_once 'Controler/baseControler.php';
+require_once 'Tools/CredentialManager.php';
 
-class LoginControler  extends BaseControler {
+class LoginControler   {
 	private $client;
 	private $welcomeCtrl;
     public function __construct() {
@@ -12,18 +12,19 @@ class LoginControler  extends BaseControler {
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
-        $view = new View("login",$this->UserIsLogged());
+        $view = new View("login",UserIsLogged());
         $view->generate(null);
     }
 	
-	public function Login($clientCode,$password) {
-		$client = $this->client->getClient($clientCode,$password);
+	public function Login($username,$password) {
+		$client = $this->client->getClient($username,$password);
 		if ($client){
 			$_SESSION['client'] = $client;
 			$this->welcomeCtrl->show();
 		}
 		else
 			$this->show();
+	
     }
 	private function sendPassword($to,$password)
 	{

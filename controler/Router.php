@@ -34,10 +34,10 @@ class Router {
 				}
 			
 				else if ($_GET['action'] == 'login' ) {
-					if (isset($_POST['clientCode']) && isset($_POST['password'])) {
-						$code = 	$this->getParameter($_POST,'clientCode');
+					if (isset($_POST['username']) && isset($_POST['password'])) {
+						$username = 	$this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
-						$this->loginCtrl->Login($code,$password);	
+						$this->loginCtrl->Login($username,$password);	
 					}
 					else
 						$this->loginCtrl->show();

@@ -1,6 +1,4 @@
 <?php
-abstract class BaseControler {
-  
 	 function UserIsLogged(){
 		if(!isset($_SESSION["client"])){
 			return false;
@@ -9,5 +7,9 @@ abstract class BaseControler {
 			return true;
 		}
 	}
-}
+	function checkLogin(){
+	}
+	function register()
+	{
+	}
 ?>

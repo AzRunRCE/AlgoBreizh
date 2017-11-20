@@ -10,7 +10,7 @@
 							<form role="form" action="index.php?action=login" method="POST">
 								<fieldset>
 									<div class="form-group">
-										<input class="form-control" placeholder="Code Client" name="clientCode" required="" autofocus="">
+										<input class="form-control" placeholder="Code Client" name="username" required="" autofocus="">
 									</div>
 									<div class="form-group">
 										<input class="form-control" placeholder="Mot de passe" name="password" type="password" value="">
