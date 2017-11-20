@@ -15,7 +15,7 @@ class CartControler  extends BaseControler {
         $view->generate(null);
     }
 	
-	public function addToCart($producId) {
+	public function addToCart($producId,$quantity) {
 		$this->cart->addToCart($producId);
     }
 	

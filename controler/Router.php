@@ -52,6 +52,11 @@ class Router {
 					session_destroy();
 					header("Location: index.php");
 				}
+				else if ($_GET['action'] == 'addToCart' ) {
+					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
+						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
+					}
+				}
 				else{
 					$this->welcomeCtrl->show();
 				}
