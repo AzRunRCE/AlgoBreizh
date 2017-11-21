@@ -1,6 +1,7 @@
 <?php
 require_once 'Controler/welcomeControler.php';
 require_once 'Controler/orderControler.php';
+require_once 'Controler/productsControler.php';
 require_once 'Controler/productControler.php';
 require_once 'Controler/loginControler.php';
 require_once 'Controler/cartControler.php';
@@ -10,6 +11,7 @@ require_once 'View/View.php';
 class Router {
     private $welcomeCtrl;
     private $orderCtrl;
+	private $productsCtrl;
 	private $productCtrl;
 	private $loginCtrl;
 	private $cartCtrl;	
@@ -17,6 +19,7 @@ class Router {
 		session_start();
         $this->welcomeCtrl = new WelcomeControler();
         $this->orderCtrl = new OrderControler();
+		$this->productsCtrl = new ProductsControler();
 		$this->productCtrl = new ProductControler();
 		$this->loginCtrl = new LoginControler();
 		$this->cartCtrl = new CartControler();
@@ -29,9 +32,6 @@ class Router {
 				if ($_GET['action'] == 'order' && $isLogged) {
 					   $this->orderCtrl->show($_SESSION['client']['id']);
 				} 
-				else if ($_GET['action'] == 'bill' && $isLogged) {
-						$this->productCtrl->show();
-				}
 			
 				else if ($_GET['action'] == 'login' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
@@ -43,7 +43,7 @@ class Router {
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products') {
-						$this->productCtrl->show();
+						$this->productsCtrl->show();
 				}
 				else if ($_GET['action'] == 'cart') {
 						$this->cartCtrl->show();

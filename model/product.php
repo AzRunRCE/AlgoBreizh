@@ -1,18 +1,16 @@
 <?php
-require_once("model.php");
-abstract class OrderStatus
-{
-    const PENDING = 0;
-	
-    const CLOSE = 1;
-    // etc.
-}
-
-class Product extends Model {
-	// Renvoie la liste des commandes associés à un client
-    public function getProducts(){
-		$req = 'SELECT * FROM tproducts';
-		return $this->executerRequete($req);
-	}
+class Product{
+	public $Id;
+	public $Label;
+	public $Price;
+	public $Desc;
+	public $Reference;
+    public function __construct($_id, $_label, $_price, $_desc, $_reference) {
+		$this->Id = $_id;
+		$this->Price = $_price;
+		$this->Desc = $_desc;
+		$this->Reference = $_reference;
+		$this->Label = $_label;
+    }
 }
 ?>
