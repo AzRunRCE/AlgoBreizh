@@ -45,6 +45,9 @@ class Router {
 				else if ($_GET['action'] == 'products') {
 						$this->productsCtrl->show();
 				}
+				else if ($_GET['action'] == 'product') {
+						$this->productCtrl->show($this->getParameter($_GET,'id'));
+				}
 				else if ($_GET['action'] == 'cart') {
 						$this->cartCtrl->show();
 				}
