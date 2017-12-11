@@ -30,9 +30,10 @@
         </div>
         <div class="modal-body">
           <div class="card" style="height: 230px">
-				<center><img id="modal_article_img" class="imageClip" src="thumbnail/conserves.jpg"></center>           
+				<center><img id="modal_article_img" class="imageClip" src="thumbnail/conserves.jpg"></center>   
+				<input type="hidden" id="modal_article_id">
                 <div class="card-content" style="height: 60px">
-                    <p id="modal_article_desc" style="font-size: 16px"> conserves</p>
+                    <p id="modal_article_desc" style="font-size: 16px"></p>
                 </div>   
                 <center>
 				<div class="card-action">
@@ -53,6 +54,7 @@
                 <!--
                         function showProduct(id)
                         {
+							document.getElementById("modal_article_id").innerText = id;
 							document.getElementById("modal_article_title").innerText = capitalizeFirstLetter(document.getElementById("article_desc_" + id).innerText);
 							document.getElementById("modal_article_desc").innerText = capitalizeFirstLetter(document.getElementById("article_desc_" + id).innerText);
 							document.getElementById("modal_article_img").src = document.getElementById("article_img_" + id).src; 
