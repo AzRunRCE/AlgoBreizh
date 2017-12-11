@@ -6,8 +6,8 @@ class ProductsFactory extends Model {
 	// Renvoie la liste des commandes associés à un client
    function GetProductById($id){
 	$req = 'SELECT * FROM tproducts WHERE id=?';
-	$result = $this->executerRequete($req, array($id));
-	return new Product($result);
+	$result = $this->executerRequete($req, array($id))->fetch();
+	return new Product($result['id'],$result['label'],$result['price'],$result['description'],$result['reference']);
    }
    
    function GetProducts(){

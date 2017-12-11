@@ -11,13 +11,16 @@ class View {
         $this->file = "View/" . $action . "view.php";
 		$this->logged = $_logged;
     }
-    // Génère et affiche la vue
-    public function generate($data) {
+
+	public function generate($data,$template = True) {
         // Génération de la partie spécifique de la vue
         $content = $this->generateFile($this->file, $data);
         // Génération du gabarit commun utilisant la partie spécifique
-        $view = $this->generateFile('View/template.php',
+		$view = $content;
+		if ($template){
+			$view = $this->generateFile('View/template.php',
                 array('title' => $this->title, 'content' => $content, 'logged' => $this->logged));
+		}
         // Renvoi de la vue au navigateur
         echo $view;
     }

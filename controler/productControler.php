@@ -14,7 +14,7 @@ class ProductControler   {
     public function show($id) {
         $product = $this->productsFactory->GetProductById($id);
         $view = new View("product",UserIsLogged());
-        $view->generate(array('product' => $product));
+        $view->generate(array('product' => $product),False);
     }
 }
 ?>
