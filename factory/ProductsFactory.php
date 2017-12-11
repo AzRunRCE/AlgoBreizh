@@ -7,7 +7,7 @@ class ProductsFactory extends Model {
    function GetProductById($id){
 	$req = 'SELECT * FROM tproducts WHERE id=?';
 	$result = $this->executerRequete($req, array($id))->fetch();
-	return new Product($result['id'],$result['label'],$result['price'],$result['description'],$result['reference']);
+	return new Product($result['id'],$result['label'],$result['name'],$result['price'],$result['reference']);
    }
    
    function GetProducts(){
@@ -15,7 +15,7 @@ class ProductsFactory extends Model {
 	$req = 'SELECT * FROM tproducts';
 	$result = $this->executerRequete($req)->fetchAll();
 	foreach ($result as $row){
-		$itm = new Product($row['id'],$row['label'],$row['price'],$row['description'],$row['reference']);
+		$itm = new Product($row['id'],$row['label'],$row['name'],$row['price'],$row['reference']);
 		array_push($stack, $itm);
 	}
 	return $stack;
