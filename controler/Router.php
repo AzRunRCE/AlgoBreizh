@@ -48,16 +48,22 @@ class Router {
 				else if ($_GET['action'] == 'product') {
 						$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
-				else if ($_GET['action'] == 'cart') {
-						$this->cartCtrl->show();
-				}
+				
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
 					header("Location: index.php");
 				}
+				else if ($_GET['action'] == 'cart') {
+						$this->cartCtrl->show();
+				}
 				else if ($_GET['action'] == 'addToCart' ) {
 					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
 						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
+					}
+				}
+				else if ($_GET['action'] == 'removeFromCart' ) {
+					if (isset($_GET['productId'])) {
+						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
 				else{

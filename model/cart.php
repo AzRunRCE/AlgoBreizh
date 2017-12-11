@@ -1,22 +1,29 @@
 <?php
 require_once("model.php");
+
 class Cart extends Model {
 	// Renvoie la liste des commandes associés à un client
+	 private $productsFactory;
 	public function __construct() {
+		$this->productsFactory = new ProductsFactory();    
 		if (!isset($_SESSION['cart'])){
 			$_SESSION['cart']=array();
 		}
     }
 	public function addToCart($productId,$quantity){
-		$product = new Product($productId);
+		$product = 	$this->productsFactory->GetProductById($productId);
 		for($i=0; $i < $quantity ; $i++ )
 		  array_push($_SESSION['cart'],$product);
 		return true;
 	}
 	
-	 public function getCart(){
-		
-		return NULL;
+	public function getCart(){
+		return $_SESSION['cart'];
+	}
+	
+	public function RemoveFromCart($position){
+		array_splice($_SESSION['cart'], $position, 1);
+		return true;
 	}
 	
     public function Push(){

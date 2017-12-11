@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="modal-footer">
-        <a href="#" class="btn btn-sm btn-success" data-toggle="modal" >Ajouter au panier</a>
+        <a href="#" class="btn btn-sm btn-success" data-dismiss="modal" >Ajouter au panier</a>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
 							return string.charAt(0).toUpperCase() + string.slice(1);
 						}
 						function AddToCart(productId,Quantity) {
-						
+							
 						}
                 -->
 </script>
