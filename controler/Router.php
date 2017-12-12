@@ -48,16 +48,21 @@ class Router {
 				else if ($_GET['action'] == 'product') {
 					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
-				else if ($_GET['action'] == 'cart') {
-					$this->cartCtrl->show();
-				}
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
 					header("Location: index.php");
 				}
+				else if ($_GET['action'] == 'cart') {
+					$this->cartCtrl->show();
+				}
 				else if ($_GET['action'] == 'addToCart' ) {
 					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
 						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
+					}
+				}
+				else if ($_GET['action'] == 'removeFromCart' ) {
+					if (isset($_GET['productId'])) {
+						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
 				else{
@@ -67,15 +72,12 @@ class Router {
 			else{
 				$this->welcomeCtrl->show();
 			}
-			
-			
         }
         catch (Exception $e) {
             $this->erreur($e->getMessage());
         }
     }
-		// Redirection vers login.php si la session n'existe pas
-
+	// Redirection vers login.php si la session n'existe pas
 	private function UserIsLogged(){
 		if(!isset($_SESSION["client"])){
 			return false;

@@ -3,9 +3,9 @@
 <?php foreach ($products as $product):?>
 	<div class="col-md-2">
 		<div class="card center" style="height: 230px;">
-			<a href="thumbnail/<?= $product->Label ?>.jpg" target="_blank">
+			<a href="thumbnail/<?= $product->Reference ?>.jpg" target="_blank">
 			<div class="card-image" onmouseover="this.style.cursor='zoom-in'">
-				<img id="article_img_<?= $product->Id ?>" class="imageClip" src="thumbnail/<?= $product->Label ?>.jpg">
+				<img id="article_img_<?= $product->Id ?>" class="imageClip" src="thumbnail/<?= $product->Reference ?>.jpg">
 			</div>
 			</a>
 			<div class="card-content" style="height: 70px;">
