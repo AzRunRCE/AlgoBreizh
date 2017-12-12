@@ -39,7 +39,8 @@
         <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
+      	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-home"></span> Boutique</a></li>
+		<?php if ($logged){echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>';}?>
 		<li><a href="index.php?action=<?= ($logged ? 'order' : 'register') ?>" style="color: white;"><span class="<?= ($logged ? 'glyphicon glyphicon-barcode' : 'glyphicon glyphicon-pencil') ?>"></span> <?= ($logged ? 'Mes commandes' : 'Inscription') ?></a></li>
 		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" style="color:  <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
       </ul>

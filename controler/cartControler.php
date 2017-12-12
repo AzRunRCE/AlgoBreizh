@@ -21,6 +21,6 @@ class CartControler{
 	
 	public function removeFromCart($producId) {
 		$this->cart->removeFromCart($producId);
-		$this->show();
+		header('Location: index.php?action=cart');
     }
 }

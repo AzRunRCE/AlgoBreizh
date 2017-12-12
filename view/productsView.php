@@ -4,7 +4,7 @@
    <div class="col-md-2">
             <div class="card" style="height: 230px">
                 <div class="card-image">
-                    <center> <img id="article_img_<?=$product->Id ?>" class="imageClip" src="thumbnail/<?=$product->Label ?>.jpg"> </center>           
+                    <center> <img id="article_img_<?=$product->Id ?>" class="imageClip" src="thumbnail/<?=$product->Reference ?>.jpg"> </center>           
                 </div>       
                 <div class="card-content" style="height: 60px">
                     <p id="article_desc_<?=$product->Id ?>" style="font-size: 16px"> <?= $product->Desc ?></p>
@@ -55,13 +55,10 @@
                         function showProduct(id)
                         {
 							document.getElementById("modal_article_id").innerText = id;
-							document.getElementById("modal_article_title").innerText = capitalizeFirstLetter(document.getElementById("article_desc_" + id).innerText);
-							document.getElementById("modal_article_desc").innerText = capitalizeFirstLetter(document.getElementById("article_desc_" + id).innerText);
+							document.getElementById("modal_article_title").innerText = document.getElementById("article_desc_" + id).innerText;
+							document.getElementById("modal_article_desc").innerText = document.getElementById("article_desc_" + id).innerText;
 							document.getElementById("modal_article_img").src = document.getElementById("article_img_" + id).src; 
 							document.getElementById("modal_article_price").innerText = document.getElementById("article_price_" + id).innerText ;
-						}
-						function capitalizeFirstLetter(string) {
-							return string.charAt(0).toUpperCase() + string.slice(1);
 						}
 						function AddToCart(productId,Quantity) {
 							
