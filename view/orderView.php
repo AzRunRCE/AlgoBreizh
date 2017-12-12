@@ -6,7 +6,7 @@
             <tr>
                 <th>Date</th>    
                 <th>Justificatif</th>
-                <th>status</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -23,5 +23,5 @@
  <script>
   $(document).ready(function() {
     $('#orderTable').DataTable();
-} );
+  });
 </script>

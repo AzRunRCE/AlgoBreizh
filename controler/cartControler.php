@@ -16,7 +16,7 @@ class CartControler{
     }
 	
 	public function addToCart($producId,$quantity) {
-		$this->cart->addToCart($producId);
+		$this->cart->addToCart($producId,$quantity);
     }
 	
 }

@@ -30,7 +30,7 @@ class Router {
 			$isLogged = $this->UserIsLogged();
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] == 'order' && $isLogged) {
-					   $this->orderCtrl->show($_SESSION['client']['id']);
+					$this->orderCtrl->show($_SESSION['client']['id']);
 				} 
 			
 				else if ($_GET['action'] == 'login' ) {
@@ -43,13 +43,13 @@ class Router {
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products') {
-						$this->productsCtrl->show();
+					$this->productsCtrl->show();
 				}
 				else if ($_GET['action'] == 'product') {
-						$this->productCtrl->show($this->getParameter($_GET,'id'));
+					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
 				else if ($_GET['action'] == 'cart') {
-						$this->cartCtrl->show();
+					$this->cartCtrl->show();
 				}
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();

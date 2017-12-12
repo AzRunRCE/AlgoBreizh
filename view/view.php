@@ -5,7 +5,7 @@ class View {
     
     // Titre de la vue (défini dans le fichier vue)
     private $title;
-	 private $logged;
+	private $logged;
     public function __construct($action,$_logged) {
         // Détermination du nom du fichier vue à partir de l'action
         $this->file = "View/" . $action . "view.php";
