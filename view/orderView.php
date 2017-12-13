@@ -12,16 +12,39 @@
         <tbody>
 			<tr>
 			<?php foreach ($orders as $order):?>
-				<td><?php echo $order['date']; ?></td>
+				<td><?= $order['date']; ?></td>
 				<td><a href="https://www.w3schools.com">PDF</a></td>
 				<td><?= ($order['status'] ? 'Traîtée' : 'En attente') ?></td>
 			<?php endforeach; ?>
 			</tr>
         </tbody>
     </table>
-	</div>
- <script>
+  </div>
+
+<script>
   $(document).ready(function() {
-    $('#orderTable').DataTable();
+    //Paramètres du DataTable
+	$('#orderTable').DataTable({
+		"stateSave": true,
+		"deferRender": false,
+		"bFilter": false,
+  		"bLengthChange": false,
+		"responsive": true,
+		"language": { 
+			"url": 'assets/plugins/DataTables/json/french.json'
+		},
+	  	"aoColumns": [
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": false},
+		   {"bSortable": false},
+		   {"bSortable": false}
+	  	],
+		"processing": false,
+	  	"serverSide": false,
+	});
+	if ($('.dataTables_empty').html('No data available in table')) {
+	  $('.dataTables_empty').html('<p class="center">Vous n\'avez passé aucune commande</p>');
+	}
   });
 </script>

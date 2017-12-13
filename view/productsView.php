@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-sm btn-success" data-toggle="modal" onclick="addToCart()">AJOUTER AU PANIER</a>
+          <a href="#" class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(<?=$product->Id ?>)">AJOUTER AU PANIER</a>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
 						function addToCart(id) {
 							var Quantity = $("#modal_quantity").val();
 							$.ajax({
-								url: 'index.php?action=addToCart&productId='+productId+'&quantity='+Quantity,
+								url: 'index.php?action=addToCart&productId='+id+'&quantity='+Quantity,
 								type: 'GET',
 								dataType: 'json',
 								success: function(json) {
