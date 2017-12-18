@@ -10,18 +10,24 @@ class Cart extends Model {
 			$_SESSION['cart']=array();
 		}
     }
-	public function addToCart($productId,$quantity){
-		$product = 	$this->productsFactory->GetProductById($productId);
-		for($i=0; $i < $quantity ; $i++ )
-		  array_push($_SESSION['cart'],$product);
-		return true;
-	}
 	
 	public function getCart(){
 		return $_SESSION['cart'];
 	}
 	
-	public function RemoveFromCart($position){
+	public function addToCart($productId, $quantity){
+		$product = 	$this->productsFactory->GetProductById($productId);
+		for($i=0; $i < $quantity; $i++)
+			array_push($_SESSION['cart'], $product);
+		return true;
+	}
+	
+	public function removeFromCart($position){
+		array_splice($_SESSION['cart'], $position, 1);
+		return true;
+	}
+	
+	public function removeAllFromCart($position){
 		array_splice($_SESSION['cart'], $position, 1);
 		return true;
 	}

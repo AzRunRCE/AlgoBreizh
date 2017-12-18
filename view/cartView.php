@@ -27,7 +27,7 @@
 			<?php $position = $position + 1;?>
 			<?php endforeach; ?>
         </tbody>
-		<tr class="center">
+		<tr id="actionsBtn" class="center">
 			<td colspan="5">
 				<br />
 				<a href="index.php?action=buyAllFromCart&productId=<?= $position; ?>" class="btn btn-sm btn-success">PASSER COMMANDE</a> &nbsp; 
@@ -61,6 +61,9 @@
 	});
 	if ($('.dataTables_empty').html('No data available in table')) {
 	  $('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>');
+	  $('#actionsBtn').addClass('hidden');
+	} else {
+		$('#actionsBtn').removeClass('hidden');
 	}
   });
 </script>

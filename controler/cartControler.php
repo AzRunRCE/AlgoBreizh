@@ -15,12 +15,17 @@ class CartControler{
         $view->generate(array('products' => $this->cart->getCart()));
     }
 
-	public function addToCart($producId,$quantity) {
-		$this->cart->addToCart($producId,$quantity);
+	public function addToCart($producId, $quantity) {
+		$this->cart->addToCart($producId, $quantity);
     }
 
 	public function removeFromCart($producId) {
 		$this->cart->removeFromCart($producId);
+		header('Location: index.php?action=cart');
+    }
+	
+	public function removeAllFromCart($producId) {
+		$this->cart->removeAllFromCart($producId);
 		header('Location: index.php?action=cart');
     }
 }

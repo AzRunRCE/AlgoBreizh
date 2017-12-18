@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(<?=$product->Id ?>)">AJOUTER AU PANIER</a>
+          <button class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(<?=$product->Id ?>)">AJOUTER AU PANIER</button>
         </div>
       </div>
     </div>
