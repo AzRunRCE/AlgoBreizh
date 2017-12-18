@@ -20,15 +20,15 @@
 				<td><?= $product->Price; ?> €</td>
 				<td>&times;1</td>
 				<td>
-					<a href="index.php?action=buyFromCart&productId=<?= $position; ?>" class="btn btn-sm btn-success">ACHETER CET ARTICLE</a> &nbsp; 
-					<a href="index.php?action=removeFromCart&productId=<?= $position; ?>" class="btn btn-sm btn-danger">SUPPRIMER</a>
+					<a href="index.php?action=buyFromCart&productId=<?= $position; ?>" id="buyBtn" class="btn btn-sm btn-success">ACHETER CET ARTICLE</a> &nbsp; 
+					<a href="index.php?action=removeFromCart&productId=<?= $position; ?>" id="deleteBtn" class="btn btn-sm btn-danger">SUPPRIMER</a>
 				</td>
 			</tr>
 			<?php $position = $position + 1;?>
 			<?php endforeach; ?>
         </tbody>
 		<tr id="actionsBtn" class="center">
-			<td colspan="5">
+			<td colspan="5" style="border:solid 1px white; background: white;">
 				<br />
 				<a href="index.php?action=buyAllFromCart" class="btn btn-sm btn-success">PASSER COMMANDE</a> &nbsp; 
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> VIDER LE PANIER</a>
@@ -59,11 +59,11 @@
 		"processing": false,
 	  	"serverSide": false,
 	});
-	if ($('.dataTables_empty').html('No data available in table')) {
-	  setTimeout(function(){$('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>')}, 15000);
-	  $('#actionsBtn').addClass('hidden');
+	if ($('.dataTables_empty')) {
+	  setTimeout(function(){$('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>')}, 500);
+	  //$('#actionsBtn').addClass('hidden');
 	} else {
-	  $('#actionsBtn').removeClass('hidden');
+	  //$('#actionsBtn').removeClass('hidden');
 	}
   });
 </script>

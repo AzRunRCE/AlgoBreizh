@@ -23,7 +23,7 @@ class CartControler{
 		$this->cart->removeFromCart($producId);
 		header('Location: index.php?action=cart');
     }
-	
+
 	public function clearCart() {
 		$this->cart->clearCart();
 		header('Location: index.php?action=cart');
