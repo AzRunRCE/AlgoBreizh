@@ -27,7 +27,7 @@ class Cart extends Model {
 		return true;
 	}
 	
-	public function removeAllFromCart($position){
+	public function clearCart($position){
 		array_splice($_SESSION['cart'], $position, 1);
 		return true;
 	}
