@@ -60,10 +60,14 @@
 	  	"serverSide": false,
 	});
 	if ($('.dataTables_empty').html('No data available in table')) {
-	  $('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>');
+	  setTimeout(function(){$('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>')}, 15000);
 	  $('#actionsBtn').addClass('hidden');
 	} else {
 		$('#actionsBtn').removeClass('hidden');
 	}
   });
+
+  function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+  }
 </script>
