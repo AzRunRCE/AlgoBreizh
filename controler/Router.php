@@ -71,6 +71,9 @@ class Router {
 						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
+				else if ($_GET['action'] == 'clearCart' ) {
+					$this->cartCtrl->clearCart();
+				}
 				else {
 					$this->welcomeCtrl->show();
 				}

@@ -24,8 +24,8 @@ class CartControler{
 		header('Location: index.php?action=cart');
     }
 	
-	public function removeAllFromCart($producId) {
-		$this->cart->removeAllFromCart($producId);
+	public function clearCart() {
+		$this->cart->clearCart();
 		header('Location: index.php?action=cart');
     }
 }
