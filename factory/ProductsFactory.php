@@ -9,7 +9,7 @@ class ProductsFactory extends Model {
 	$result = $this->executerRequete($req, array($id))->fetch();
 	return new Product($result['id'],$result['label'],$result['name'],$result['price'],$result['reference']);
    }
-   
+
    function GetProducts(){
 	$stack = array();
 	$req = 'SELECT * FROM tproducts';

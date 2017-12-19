@@ -10,28 +10,28 @@ class Cart extends Model {
 			$_SESSION['cart']=array();
 		}
     }
-	
+
 	public function getCart(){
 		return $_SESSION['cart'];
 	}
-	
+
 	public function addToCart($productId, $quantity){
-		$product = 	$this->productsFactory->GetProductById($productId);
+		$product = $this->productsFactory->GetProductById($productId);
 		for($i=0; $i < $quantity; $i++)
 			array_push($_SESSION['cart'], $product);
 		return true;
 	}
-	
+
 	public function removeFromCart($position){
 		array_splice($_SESSION['cart'], $position, 1);
 		return true;
 	}
-	
+
 	public function clearCart($position){
 		array_splice($_SESSION['cart'], $position, 1);
 		return true;
 	}
-	
+
     public function Push(){
 		$req = 'SELECT * FROM tOrders WHERE client_id=?';
 		return $this->executerRequete($req, array($idClient));

@@ -19,7 +19,7 @@
 				<td><?= $product->Name; ?></td>
 				<td><?= $product->Price; ?> €</td>
 				<td>&times;1</td>
-				<td>
+				<td class="center" style="width: 30%;">
 					<a href="index.php?action=buyFromCart&productId=<?= $position; ?>" id="buyBtn" class="btn btn-sm btn-success">ACHETER CET ARTICLE</a> &nbsp; 
 					<a href="index.php?action=removeFromCart&productId=<?= $position; ?>" id="deleteBtn" class="btn btn-sm btn-danger">SUPPRIMER</a>
 				</td>
