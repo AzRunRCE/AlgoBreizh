@@ -10,7 +10,7 @@
 	"sInfoPostFix":    "",
 	"sLoadingRecords": "Chargement en cours...",
     "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-	"sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+	"sEmptyTable":     "<p class=\"center\">Vous ne disposez d'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href=\"index.php?action=products\"><span class=\"glyphicon glyphicon-shopping-cart\"></span> Boutique</a></p>",
 	"oPaginate": {
 		"sFirst":      "Premier",
 		"sPrevious":   "Pr&eacute;c&eacute;dent",

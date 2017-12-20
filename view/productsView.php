@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="modal-footer center">
-          <button class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(document.getElementById('modal_article_id').innerText)">Ajouter au panier</button>
+          <button class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart($('#modal_article_id').text());">Ajouter au panier</button>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
         <div class="modal-body">
           <div>
 			<div class="center">
-			  <p id="modal_message_error"></p>
+			  <p id="modal_message_error"><span><img src="img/Danger_Icon.png" style="width: 7%; height: 7%;" />&nbsp; Une erreur est survenue. Veuillez réesayer ultérieurement.</span></p>
 			</div>
           </div>
 		</div>
@@ -99,12 +99,10 @@
 <script type="text/javascript">
                 <!--
 						$(document).ready(function() {
-							if ($(".glyphicon-log-in")[0]) {
+							if ($(".glyphicon-log-in")[0]) {	// Si pas authentifié, restriction d'ajout au panier
 								$(".btn-success").addClass("disabled");
+								$(".btn-success").attr("data-target", "#myModal3");
 								$(".articleBtn").attr("title", "Vous devez être authentifié pour pouvoir ajouter un article.");
-							} else {
-								$(".btn-success").removeClass("disabled");
-								$(".articleBtn").removeAttr("title");
 							}
 						});
 						function capitalizeFirstLetter(string) {

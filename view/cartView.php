@@ -30,7 +30,7 @@
 		<tr id="actionsBtn" class="center hidden">
 			<td colspan="5" id="table-footer">
 				<br />
-				<p>Prix total à payer: <b><?= $totalPrice ?> €</b></p>
+				<p style="font-size: 16px;">Prix total à payer: <b style="color: red;"><?= $totalPrice ?> €</b></p>
 				<br />
 				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
@@ -63,11 +63,10 @@
 	});
 	setTimeout(function(){
 	if ($(".dataTables_empty")[0]) {
-	  $(".dataTables_empty").html("<p class=\"center\">Vous ne disposez d'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href=\"index.php?action=products\"><span class=\"glyphicon glyphicon-shopping-cart\"></span> Boutique</a></p>");
 	  $(".dataTables_info").addClass("hidden");
 	  $(".pagination").addClass("hidden");
 	} else {
 	  $("#actionsBtn").removeClass("hidden");
-	}}, 500);
+	}}, 550);
   });
 </script>
