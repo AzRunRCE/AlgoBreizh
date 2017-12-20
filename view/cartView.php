@@ -32,7 +32,7 @@
 				<br />
 				<p>Prix total à payer: <b><?= $totalPrice ?> €</b></p>
 				<br />
-				<a href="index.php?action=buyAllFromCart" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
+				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
 			</td>
 		</tr>

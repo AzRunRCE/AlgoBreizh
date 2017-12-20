@@ -70,6 +70,9 @@ class Router {
 						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
+				else if ($_GET['action'] == 'checkOut' ) {
+					$this->cartCtrl->checkOut();
+				}
 				else if ($_GET['action'] == 'clearCart' ) {
 					$this->cartCtrl->clearCart();
 				}
