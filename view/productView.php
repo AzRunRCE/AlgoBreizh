@@ -35,7 +35,7 @@
         <div class="modal-body">
           <div class="card" style="height: 230px">
                 <div class="card-image">
-                    <center> <img class="imageClip" src="thumbnail/<?= $product->Label ?>.jpg"> </center>           
+                    <center> <img class="imageClip" src="thumbnail/<?= $product->Reference ?>.jpg"> </center>           
                 </div>       
                 <div class="card-content" style="height: 60px">
                     <p style="font-size: 16px"><?= $product->Desc ?></p>
