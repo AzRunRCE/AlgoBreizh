@@ -14,7 +14,7 @@
 			<div class="card-action">
 				<p>Prix: <span id="article_price_<?= $product->Id ?>"><?= $product->Price ?></span> €</p>
 				<div class="articleBtn">
-					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">VOIR L'ARTICLE</a>
+					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">Voir l'article</a>
 				</div>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="modal-footer center">
-          <button class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(document.getElementById('modal_article_id').innerText)">AJOUTER AU PANIER</button>
+          <button class="btn btn-sm btn-success" data-dismiss="modal" onclick="addToCart(document.getElementById('modal_article_id').innerText)">Ajouter au panier</button>
         </div>
       </div>
     </div>
@@ -67,8 +67,8 @@
           </div>
         </div>
         <div class="modal-footer center">
-          <button class="btn btn-sm btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-shopping-cart"></span> CONTINUER MES ACHATS</button> &nbsp; 
-		  <a href="index.php?action=cart" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-lock"></span> CONSULTER MON PANIER</a>
+          <button class="btn btn-sm btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-shopping-cart"></span> Continuer mes achats</button> &nbsp; 
+		  <a href="index.php?action=cart" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-lock"></span> Consulter mon panier</a>
         </div>
       </div>
     </div>

@@ -26,7 +26,6 @@ CREATE TABLE tClients(
 
 CREATE TABLE tProducts(
         id          Int NOT NULL ,
-        label       Varchar (255) ,
         name        Varchar (255) NOT NULL ,
         price       Float NOT NULL ,
         reference   Varchar (25) NOT NULL ,
@@ -75,24 +74,24 @@ INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `
 # Insert Table: tProducts
 #------------------------------------------------------------
 
-INSERT INTO `tproducts` (`id`, `label`, `name`, `price`, `reference`) VALUES
-(1, 'chrondus-crispus', 'Chondrus crispus', 10, 'P001'),
-(2, 'conserves', 'Conserves', 8, 'P002'),
-(3, 'court-bouillon', 'Court bouillon', 12, 'P003'),
-(4, 'emiette-de-thon-wakame', 'Émietté de thon Wakamé', 10, 'P004'),
-(5, 'epices-marines', 'Épices marines', 9, 'P005'),
-(6, 'haricot-de-mer-en-saumure-500-g', 'Haricots de mer en saumure (500g)', 19, 'P006'),
-(7, 'haricots-marins', 'Haricots marins', 12.5, 'P007'),
-(8, 'laitue-de-mer-feuilles', 'Laitue de mer en feuilles', 11.9, 'P008'),
-(9, 'laitue-de-mer-paillete', 'Laitue de mer en paillettes', 18.5, 'P009'),
-(10, 'moutarde-salicorne', 'Moutarde à la salicorne', 15.5, 'P010'),
-(11, 'nori-en-feuilles', 'Nori en feuilles', 15.1, 'P011'),
-(12, 'nori-paillette', 'Nori en paillettes', 7.5, 'P012'),
-(13, 'nori-saupoudreur-aromate-10g', 'Nori saupoudreur aromate (10g)', 5, 'P013'),
-(14, 'pates-aux-algues', 'Pates aux algues', 8, 'P014'),
-(15, 'salicornes_au_naturel', 'Salicornes au naturel', 9.5, 'P015'),
-(16, 'salicornes_au_vinaigre', 'Salicornes au vinaigre', 13.8, 'P016'),
-(17, 'sels-aux-algues', 'Sels aux algues', 17, 'P017'),
-(18, 'tisane-aux-algues', 'Tisane aux algues', 7, 'P018'),
-(19, 'wakame_feuille', 'Wakamé en feuilles', 5, 'P019'),
-(20, 'wakame-paillette', 'Wakamé en paillettes', 8, 'P020');
+INSERT INTO `tproducts` (`id`, `name`, `price`, `reference`) VALUES
+(1, 'Chondrus crispus', 10, 'P001'),
+(2, 'Conserves', 8, 'P002'),
+(3, 'Court bouillon', 12, 'P003'),
+(4, 'Émietté de thon Wakamé', 10, 'P004'),
+(5, 'Épices marines', 9, 'P005'),
+(6, 'Haricots de mer en saumure (500g)', 19, 'P006'),
+(7, 'Haricots marins', 12.5, 'P007'),
+(8, 'Laitue de mer en feuilles', 11.9, 'P008'),
+(9, 'Laitue de mer en paillettes', 18.5, 'P009'),
+(10, 'Moutarde à la salicorne', 15.5, 'P010'),
+(11, 'Nori en feuilles', 15.1, 'P011'),
+(12, 'Nori en paillettes', 7.5, 'P012'),
+(13, 'Nori saupoudreur aromate (10g)', 5, 'P013'),
+(14, 'Pates aux algues', 8, 'P014'),
+(15, 'Salicornes au naturel', 9.5, 'P015'),
+(16, 'Salicornes au vinaigre', 13.8, 'P016'),
+(17, 'Sels aux algues', 17, 'P017'),
+(18, 'Tisane aux algues', 7, 'P018'),
+(19, 'Wakamé en feuilles', 5, 'P019'),
+(20, 'Wakamé en paillettes', 8, 'P020');
