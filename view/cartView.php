@@ -31,7 +31,7 @@
 			<td colspan="5" style="border:solid 1px white; background: white;">
 				<br />
 				<p>Sous-Total: <?= $totalPrice ?> €</p> &nbsp; 
-				<a href="index.php?action=buyAllFromCart" class="btn btn-sm btn-success">PASSER COMMANDE</a> &nbsp; 
+				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">PASSER COMMANDE</a> &nbsp; 
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> VIDER LE PANIER</a>
 			</td>
 		</tr>

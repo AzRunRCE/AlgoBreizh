@@ -46,7 +46,7 @@ class Cart extends Model {
 		return true;
 	}
 
-    public function Push(){
+    public function checkOut(){
 		$req = 'SELECT * FROM tOrders WHERE client_id=?';
 		return $this->executerRequete($req, array($idClient));
 	}
