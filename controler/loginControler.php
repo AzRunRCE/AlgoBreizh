@@ -7,7 +7,7 @@ class LoginControler   {
 	private $client;
 	private $welcomeCtrl;
     public function __construct() {
-		 $this->client = new Client();    
+		 $this->client = new Client();
 		 $this->welcomeCtrl = new WelcomeControler();
     }
 	// Affiche la liste de tous les billets du blog
@@ -15,8 +15,8 @@ class LoginControler   {
         $view = new View("login",UserIsLogged());
         $view->generate(null);
     }
-	
-	public function Login($username,$password) {
+
+	public function login($username,$password) {
 		$client = $this->client->getClient($username,$password);
 		if ($client){
 			$_SESSION['client'] = $client;
@@ -24,8 +24,8 @@ class LoginControler   {
 		}
 		else
 			$this->show();
-	
     }
+
 	private function sendPassword($to,$password)
 	{
 		$subject = 'AlgoBreizh - Inscription';
@@ -35,6 +35,4 @@ class LoginControler   {
 		'X-Mailer: PHP/' . phpversion();
 		mail($email, $subject, $message, $headers);
 	}
-	
-	
 }

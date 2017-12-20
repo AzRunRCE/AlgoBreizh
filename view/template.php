@@ -34,7 +34,7 @@
       	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
 		<?php if ($logged){echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Panier</a></li>';}?>
 		<li><a href="index.php?action=<?= ($logged ? 'order' : 'register') ?>" style="color: white;"><span class="<?= ($logged ? 'glyphicon glyphicon-euro' : 'glyphicon glyphicon-pencil') ?>"></span> <?= ($logged ? 'Mes commandes' : 'Inscription') ?></a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" <?= ($logged ? 'data-toggle="tooltip" data-placement="bottom" title="Connecté en tant que: FIRSTNAME LASTNAME"' : '') ?> style="color: <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
+		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" class="login" <?= ($logged ? 'data-toggle="tooltip" data-placement="bottom" title="Session: "' : '') ?> style="color: <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
       </ul>
     </div>
   </div>
@@ -52,6 +52,21 @@
   $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
   });
+  $.ajax({
+	url: 'index.php?action=isUserLogged',
+	type: 'GET',
+	dataType: 'json',
+	success: function(json) {
+		if (json['code'] == 'logged') {
+			var loginTitle = $(".login").attr("data-original-title");
+			if (json['firstname'] && json['lastname']) {
+				$(".login").attr("data-original-title", loginTitle +" "+ json['firstname'].toUpperCase() +" "+ json['lastname'].toUpperCase());
+			} else {
+				$(".login").attr("data-original-title", loginTitle + "UNKNOWN");
+			}
+		}
+	}
+});
 </script>
 </body>
 

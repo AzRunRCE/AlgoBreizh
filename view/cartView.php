@@ -58,15 +58,15 @@
 		   {"bSortable": false},
 		   {"bSortable": false}
 	  	],
-		"processing": false,
+		"processing": true,
 	  	"serverSide": false,
 	});
 	setTimeout(function(){
 	if ($(".dataTables_empty")[0]) {
-	  $(".dataTables_info").addClass("hidden");
-	  $(".pagination").addClass("hidden");
+	  //$(".dataTables_info").addClass("hidden");
+	  //$(".pagination").addClass("hidden");
 	} else {
 	  $("#actionsBtn").removeClass("hidden");
-	}}, 550);
+	}}, 700);
   });
 </script>

@@ -36,7 +36,7 @@ class Router {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
-						$this->loginCtrl->Login($username,$password);	
+						$this->loginCtrl->login($username,$password);	
 					}
 					else
 						$this->loginCtrl->show();
@@ -50,6 +50,17 @@ class Router {
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
 					header("Location: index.php");
+				}
+				else if ($_GET['action'] == 'isUserLogged') {
+					if (isset($_SESSION['client']['id'])) {
+						$return['firstname'] = $_SESSION['client']['firstname'];
+						$return['lastname'] = $_SESSION['client']['lastname'];
+						$return['code'] = 'logged';
+					} else {
+						$return['code'] = 'notLogged';
+					}
+					echo json_encode($return);
+					exit;
 				}
 				else if ($_GET['action'] == 'cart') {
 					$this->cartCtrl->show();
