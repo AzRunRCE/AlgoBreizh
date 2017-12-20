@@ -13,7 +13,9 @@
 			</div>   
 			<div class="card-action">
 				<p>Prix: <span id="article_price_<?= $product->Id ?>"><?= $product->Price ?></span> €</p>
-				<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">Voir l'article</a>
+				<div class="articleBtn">
+					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">VOIR L'ARTICLE</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -30,7 +32,7 @@
         <div class="modal-body">
           <div class="card" style="height: 230px;">
 			<div class="center">
-			  <img id="modal_article_img" class="imageClip center" src="thumbnail/conserves.jpg" />
+			  <img id="modal_article_img" class="imageClip center" src="img/Warning_Icon.png" />
 			  <input type="hidden" id="modal_article_id" />
               <div class="card-content" style="height: 60px;">
 				<p id="modal_article_name" style="font-size: 16px;"></p>
@@ -96,6 +98,15 @@
 
 <script type="text/javascript">
                 <!--
+						$(document).ready(function() {
+							if ($(".glyphicon-log-in")[0]) {
+								$(".btn-success").addClass("disabled");
+								$(".articleBtn").attr("title", "Vous devez être authentifié pour pouvoir ajouter un article.");
+							} else {
+								$(".btn-success").removeClass("disabled");
+								$(".articleBtn").removeAttr("title");
+							}
+						});
 						function capitalizeFirstLetter(string) {
 							return string.charAt(0).toUpperCase() + string.slice(1);
 						}

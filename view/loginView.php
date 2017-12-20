@@ -21,7 +21,7 @@
 										</label>
 									</div>
 									<!-- Change this to a button or input when using this as a form -->
-									<input type="submit" value="Connexion" class="btn btn-sm btn-success"/>
+									<input type="submit" value="CONNEXION" class="btn btn-sm btn-success"/>
 								</fieldset>
 							</form>
 						</div>

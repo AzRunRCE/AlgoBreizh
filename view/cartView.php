@@ -27,7 +27,7 @@
 			<?php $position = $position + 1;?>
 			<?php endforeach; ?>
         </tbody>
-		<tr id="actionsBtn" class="center">
+		<tr id="actionsBtn" class="center hidden">
 			<td colspan="5" style="border:solid 1px white; background: white;">
 				<br />
 				<a href="index.php?action=buyAllFromCart" class="btn btn-sm btn-success">PASSER COMMANDE</a> &nbsp; 
@@ -40,17 +40,17 @@
 <script>
   $(document).ready(function() {
     //Paramètres du DataTable
-	$('#cartTable').DataTable({
+	$("#cartTable").DataTable({
 		"stateSave": true,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'assets/plugins/DataTables/json/french.json'
+			"url": '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
 		},
 	  	"aoColumns": [
-		   {"bSortable": true},
+		   {"bSortable": false},
 		   {"bSortable": true},
 		   {"bSortable": false},
 		   {"bSortable": false},
@@ -59,11 +59,13 @@
 		"processing": false,
 	  	"serverSide": false,
 	});
-	if ($('.dataTables_empty')) {
-	  setTimeout(function(){$('.dataTables_empty').html('<p class="center">Vous ne disposez d\'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href="index.php?action=products"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></p>')}, 500);
-	  //$('#actionsBtn').addClass('hidden');
+	setTimeout(function(){
+	if ($(".dataTables_empty")[0]) {
+	  $(".dataTables_empty").html("<p class=\"center\">Vous ne disposez d'aucun produit. Pour ajouter un produit à votre panier, consultez la <a href=\"index.php?action=products\"><span class=\"glyphicon glyphicon-shopping-cart\"></span> Boutique</a></p>");
+	  $(".dataTables_info").addClass("hidden");
+	  $(".pagination").addClass("hidden");
 	} else {
-	  //$('#actionsBtn').removeClass('hidden');
-	}
+	  $("#actionsBtn").removeClass("hidden");
+	}}, 500);
   });
 </script>

@@ -24,17 +24,17 @@
 <script>
   $(document).ready(function() {
     //Paramètres du DataTable
-	$('#orderTable').DataTable({
+	$("#orderTable").DataTable({
 		"stateSave": true,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'assets/plugins/DataTables/json/french.json'
+			"url": '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
 		},
 	  	"aoColumns": [
-		   {"bSortable": true},
+		   {"bSortable": false},
 		   {"bSortable": true},
 		   {"bSortable": false},
 		   {"bSortable": false},
@@ -43,8 +43,9 @@
 		"processing": false,
 	  	"serverSide": false,
 	});
-	if ($('.dataTables_empty').html('No data available in table')) {
-	  $('.dataTables_empty').html('<p class="center">Vous n\'avez passé aucune commande</p>');
-	}
+	setTimeout(function(){
+	if ($(".dataTables_empty").html("No data available in table")) {
+	  $(".dataTables_empty").html("<p class=\"center\">Vous n'avez passé aucune commande</p>");
+	}}, 500);
   });
 </script>
