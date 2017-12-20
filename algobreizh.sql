@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 20 Décembre 2017 à 14:50
+-- Généré le :  Mer 20 Décembre 2017 à 21:04
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -35,14 +35,17 @@ CREATE TABLE `tclients` (
   `email` varchar(255) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
---
--- Index pour la table `tclients`
---
-ALTER TABLE `tclients`
-  ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `tclients` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- Contenu de la table `tclients`
+--
 
+INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `active`) VALUES
+(1, 'qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1),
+(2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1),
+(3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1);
+
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `torders`
@@ -51,8 +54,16 @@ ALTER TABLE `tclients` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 CREATE TABLE `torders` (
   `id` int(11) NOT NULL,
   `done` tinyint(1) DEFAULT NULL,
+  `creationDate` datetime NOT NULL,
   `id_tClients` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `torders`
+--
+
+INSERT INTO `torders` (`id`, `done`, `creationDate`, `id_tClients`) VALUES
+(24, 0, '2017-12-20 21:03:05', 2);
 
 -- --------------------------------------------------------
 
@@ -65,6 +76,15 @@ CREATE TABLE `torders_products` (
   `id` int(11) NOT NULL,
   `id_tProducts` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `torders_products`
+--
+
+INSERT INTO `torders_products` (`quantity`, `id`, `id_tProducts`) VALUES
+(1, 24, 2),
+(1, 24, 3),
+(1, 24, 5);
 
 -- --------------------------------------------------------
 
@@ -83,10 +103,37 @@ CREATE TABLE `tproducts` (
 -- Contenu de la table `tproducts`
 --
 
+INSERT INTO `tproducts` (`id`, `name`, `price`, `reference`) VALUES
+(1, 'Chondrus crispus', 10, 'P001'),
+(2, 'Conserves', 8, 'P002'),
+(3, 'Court bouillon', 12, 'P003'),
+(4, 'Émietté de thon Wakamé', 10, 'P004'),
+(5, 'Épices marines', 9, 'P005'),
+(6, 'Haricots de mer en saumure (500g)', 19, 'P006'),
+(7, 'Haricots marins', 12.5, 'P007'),
+(8, 'Laitue de mer en feuilles', 11.9, 'P008'),
+(9, 'Laitue de mer en paillettes', 18.5, 'P009'),
+(10, 'Moutarde à la salicorne', 15.5, 'P010'),
+(11, 'Nori en feuilles', 15.1, 'P011'),
+(12, 'Nori en paillettes', 7.5, 'P012'),
+(13, 'Nori saupoudreur aromate (10g)', 5, 'P013'),
+(14, 'Pates aux algues', 8, 'P014'),
+(15, 'Salicornes au naturel', 9.5, 'P015'),
+(16, 'Salicornes au vinaigre', 13.8, 'P016'),
+(17, 'Sels aux algues', 17, 'P017'),
+(18, 'Tisane aux algues', 7, 'P018'),
+(19, 'Wakamé en feuilles', 5, 'P019'),
+(20, 'Wakamé en paillettes', 8, 'P020');
+
 --
 -- Index pour les tables exportées
 --
 
+--
+-- Index pour la table `tclients`
+--
+ALTER TABLE `tclients`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `torders`
@@ -107,7 +154,26 @@ ALTER TABLE `torders_products`
 --
 ALTER TABLE `tproducts`
   ADD PRIMARY KEY (`id`);
-ALTER TABLE `tproducts` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `tclients`
+--
+ALTER TABLE `tclients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `torders`
+--
+ALTER TABLE `torders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT pour la table `tproducts`
+--
+ALTER TABLE `tproducts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Contraintes pour les tables exportées
 --
@@ -115,7 +181,6 @@ ALTER TABLE `tproducts` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour la table `torders`
 --
-ALTER TABLE `torders` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `torders`
   ADD CONSTRAINT `FK_tOrders_id_tClients` FOREIGN KEY (`id_tClients`) REFERENCES `tclients` (`id`);
 
@@ -129,40 +194,3 @@ ALTER TABLE `torders_products`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
---
--- Contenu de la table `tclients`
---
-
-INSERT INTO `tclients` (`username`, `firstname`, `lastname`, `password`, `email`, `active`) VALUES
-('qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1),
-('bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1),
-('dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1);
-
--- --------------------------------------------------------
-
-
-
-INSERT INTO `tproducts` (`name`, `price`, `reference`) VALUES
-('Chondrus crispus', 10, 'P001'),
-('Conserves', 8, 'P002'),
-('Court bouillon', 12, 'P003'),
-('Émietté de thon Wakamé', 10, 'P004'),
-('Épices marines', 9, 'P005'),
-('Haricots de mer en saumure (500g)', 19, 'P006'),
-('Haricots marins', 12.5, 'P007'),
-('Laitue de mer en feuilles', 11.9, 'P008'),
-('Laitue de mer en paillettes', 18.5, 'P009'),
-('Moutarde à la salicorne', 15.5, 'P010'),
-('Nori en feuilles', 15.1, 'P011'),
-('Nori en paillettes', 7.5, 'P012'),
-('Nori saupoudreur aromate (10g)', 5, 'P013'),
-('Pates aux algues', 8, 'P014'),
-('Salicornes au naturel', 9.5, 'P015'),
-('Salicornes au vinaigre', 13.8, 'P016'),
-('Sels aux algues', 17, 'P017'),
-('Tisane aux algues', 7, 'P018'),
-('Wakamé en feuilles', 5, 'P019'),
-('Wakamé en paillettes', 8, 'P020');

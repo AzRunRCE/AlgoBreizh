@@ -1,10 +1,14 @@
 <?php
-require_once("model.php");
-class Order extends Model {
-	// Renvoie la liste des commandes associés à un client
-    public function getOrders($idClient){
-		$req = 'SELECT * FROM tOrders WHERE id_tClients=?';
-		return $this->executerRequete($req, array($idClient));
-	}
+class Order{
+	public $Id;
+	public $CreationDate;
+	public $Status;
+	public $OwnerId;
+    public function __construct($_id, $_creationDate, $_status, $_OwnerId) {
+		$this->Id = $_id;
+		$this->CreationDate = $_creationDate;
+		$this->Status = $_status;
+		$this->OwnerId = $_OwnerId;
+    }
 }
 ?>

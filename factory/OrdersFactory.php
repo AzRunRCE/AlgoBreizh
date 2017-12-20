@@ -1,7 +1,6 @@
 <?php
 require_once("Model/model.php");
-require_once('Model/Product.php');
-
+require_once 'Model/Order.php';
 class OrdersFactory extends Model {
 	// Renvoie la liste des commandes associés à un client
    function GetBillByOrderId($id){
@@ -11,9 +10,9 @@ class OrdersFactory extends Model {
    function GetOrders($clientId){
 	$stack = array();
 	$req = 'SELECT * FROM torders  where id_tClients = ?';
-	$result = $this->executerRequete($req)->fetchAll();
+	$result = $this->executerRequete($req,array($clientId))->fetchAll();
 	foreach ($result as $row){
-		$itm = new Product($row['id'],$row['name'],$row['price'],$row['reference']);
+		$itm = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients']);
 		array_push($stack, $itm);
 	}
 	return $stack;
