@@ -17,18 +17,32 @@ class Cart extends Model {
 
 	public function addToCart($productId, $quantity){
 		$product = $this->productsFactory->GetProductById($productId);
-		for($i=0; $i < $quantity; $i++)
-			array_push($_SESSION['cart'], $product);
+		$find = false;
+		for ($i=0; $i < count($_SESSION['cart']);$i++){
+			
+			if ($_SESSION['cart'][$i][0]->Id == $productId){
+				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] + 1;
+				return true;
+			}
+		}
+		array_push($_SESSION['cart'],array($product, $quantity));
 		return true;
 	}
 
-	public function removeFromCart($position){
-		array_splice($_SESSION['cart'], $position, 1);
+	public function removeFromCart($productId){
+		for ($i=0; $i < count($_SESSION['cart']);$i++){
+			if ($_SESSION['cart'][$i][0]->Id == $productId){
+				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] - 1;
+				if ($_SESSION['cart'][$i][1] == 0){
+						array_splice($_SESSION['cart'], $i, 1);
+				}
+			}
+		}
 		return true;
 	}
 
-	public function clearCart($position){
-		array_splice($_SESSION['cart'], $position, 1);
+	public function clearCart(){
+		array_splice($_SESSION['cart'], 0, count($_SESSION['cart']));
 		return true;
 	}
 
