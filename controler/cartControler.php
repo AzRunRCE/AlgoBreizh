@@ -12,7 +12,7 @@ class CartControler{
 	// Affiche la liste de tous les billets du blog
     public function show() {
         $view = new View("cart",UserIsLogged());
-        $view->generate(array('products' => $this->cart->getCart()));
+		$view->generate(array('cart' => $this->cart->getCart()));
     }
 
 	public function addToCart($producId, $quantity) {
