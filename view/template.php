@@ -48,6 +48,7 @@
   </div>
 </div>
 <div style="height: 120px;"></div>
+
 <script>
   $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();

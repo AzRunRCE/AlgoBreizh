@@ -72,6 +72,9 @@
 #cartTable {
 	border-collapse: collapse;
 }
+#orderTable {
+	border-collapse: collapse;
+}
 #table-footer {
 	border: solid 1px white;
 	border-top: solid 1px #dddddd;

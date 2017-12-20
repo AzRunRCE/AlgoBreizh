@@ -2,16 +2,16 @@
 
   <div class="row">
 	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
+		<thead>
+			<tr>
 				<th></th>    
-                <th>Article</th>    
-                <th>Prix (unitaire)</th>
+				<th>Article</th>    
+				<th>Prix (unitaire)</th>
 				<th>Quantité</th>
 				<th></th>
-            </tr>
-        </thead>
-        <tbody>
+			</tr>
+		</thead>
+		<tbody>
 			<?php $totalPrice = 0; ?>
 			<?php foreach ($cart as $product): ?>
 			<tr>
@@ -26,7 +26,7 @@
 			</tr>
 			<?php $totalPrice += $product[0]->Price*$product[1]; ?>
 			<?php endforeach; ?>
-        </tbody>
+		</tbody>
 		<tr id="actionsBtn" class="center hidden">
 			<td colspan="5" id="table-footer">
 				<br />
@@ -36,7 +36,7 @@
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
 			</td>
 		</tr>
-    </table>
+	</table>
   </div>
 
 <script>
@@ -49,7 +49,7 @@
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'style/French.json'
+			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
 		   {"bSortable": false},
