@@ -4,22 +4,15 @@
   <title>AlgoBreizh - <?= $title ?></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-  <link rel="stylesheet" href="style/bootstrap.css" />
-  <link rel="stylesheet" href="style/style.css" />
-  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-  <style>
-    h1, h2, h3, h4, h5, h6 {
-		font-family: 'Trebuchet MS';
-		color: #005500;
-	}
-	p, div {
-    font-family: 'Trebuchet MS';
-	}
-  </style>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <link rel="stylesheet" href="style/jquery.dataTables.css" type="text/css" />
+  <link rel="stylesheet" href="style/style.css" type="text/css" />
+  <script src="js/jquery-3.2.1.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.dataTables.js"></script>
+  <script src="js/dataTables.bootstrap.js"></script>
 </head>
 
 <body>

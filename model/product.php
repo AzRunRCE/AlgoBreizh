@@ -1,7 +1,6 @@
 <?php
 class Product{
 	public $Id;
-	public $Label;
 	public $Name;
 	public $Price;
 	public $Reference;
