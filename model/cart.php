@@ -47,8 +47,14 @@ class Cart extends Model {
 	}
 
     public function checkOut(){
-		$req = 'SELECT * FROM tOrders WHERE client_id=?';
-		return $this->executerRequete($req, array($idClient));
+		$req = "INSERT INTO tOrders (done,id_tClients) VALUES (0,?)";
+		$this->executerRequete($req, array($_SESSION['client'][0]));
+		for ($i=0; $i < count($_SESSION['cart']);$i++){
+			$productReq = "INSERT INTO torders_products (quantity,id,id_tProducts) VALUES (?,LAST_INSERT_ID(),?)";
+			$this->executerRequete($productReq, array($_SESSION['cart'][$i][1],$_SESSION['cart'][$i][0]->Id));
+		}
+		$this->clearCart();
+		return true;
 	}
 }
 ?>
