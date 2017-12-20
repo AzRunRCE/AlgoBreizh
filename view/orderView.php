@@ -5,18 +5,21 @@
         <thead>
             <tr>
                 <th>Date</th>    
+				<th>N° Commande</th>
                 <th>Justificatif</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
-			<tr>
 			<?php foreach ($orders as $order):?>
-				<td><?= $order['date']; ?></td>
-				<td><a href="https://www.w3schools.com">PDF</a></td>
-				<td><?= ($order['status'] ? 'Traîtée' : 'En attente') ?></td>
+				<tr>
+				<td><?= $order->CreationDate ?></td>
+				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
+				<td><a href="https://www.w3schools.com?order=<?= $order->Id ?>">PDF</a></td>
+				<td><?= ($order->Status == 1 ? 'Traîtée' : 'En attente') ?></td>
+				</tr>
 			<?php endforeach; ?>
-			</tr>
+			
         </tbody>
     </table>
   </div>

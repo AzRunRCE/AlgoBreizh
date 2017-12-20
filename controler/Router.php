@@ -9,29 +9,30 @@ require_once 'Controler/cartControler.php';
 require_once 'View/View.php';
 
 class Router {
-	private $welcomeCtrl;
-	private $orderCtrl;
+    private $welcomeCtrl;
+    private $orderCtrl;
 	private $productsCtrl;
 	private $productCtrl;
 	private $loginCtrl;
 	private $cartCtrl;	
-	public function __construct() {
+    public function __construct() {
 		session_start();
-		$this->welcomeCtrl = new WelcomeControler();
-		$this->orderCtrl = new OrderControler();
+        $this->welcomeCtrl = new WelcomeControler();
+        $this->orderCtrl = new OrderControler();
 		$this->productsCtrl = new ProductsControler();
 		$this->productCtrl = new ProductControler();
 		$this->loginCtrl = new LoginControler();
 		$this->cartCtrl = new CartControler();
     }
     // Route une requête entrante : exécution l'action associée
-	public function routerRequest() {
-		try {
+    public function routerRequest() {
+        try {
 			$isLogged = $this->UserIsLogged();
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] == 'order' && $isLogged) {
 					$this->orderCtrl->show($_SESSION['client']['id']);
-				}
+				} 
+			
 				else if ($_GET['action'] == 'login' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
@@ -86,6 +87,9 @@ class Router {
 				}
 				else if ($_GET['action'] == 'clearCart' ) {
 					$this->cartCtrl->clearCart();
+				}
+				else if ($_GET['action'] == 'orders' ) {
+					$this->orderCtrl->show();
 				}
 				else {
 					$this->welcomeCtrl->show();

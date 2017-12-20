@@ -30,6 +30,6 @@ class CartControler{
     }
 	public function checkOut() {
 		$this->cart->checkOut();
-		header('Location: index.php?action=cart');
+		header('Location: index.php');
     }
 }

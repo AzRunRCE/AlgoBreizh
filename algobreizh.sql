@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 20 Décembre 2017 à 14:50
+-- Généré le :  Mer 20 Décembre 2017 à 21:04
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -53,11 +53,17 @@ INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `
 
 CREATE TABLE `torders` (
   `id` int(11) NOT NULL,
-  `clientId` int(11) DEFAULT NULL,
-  `orderContentId` int(11) DEFAULT NULL,
   `done` tinyint(1) DEFAULT NULL,
+  `creationDate` datetime NOT NULL,
   `id_tClients` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `torders`
+--
+
+INSERT INTO `torders` (`id`, `done`, `creationDate`, `id_tClients`) VALUES
+(24, 0, '2017-12-20 21:03:05', 2);
 
 -- --------------------------------------------------------
 
@@ -70,6 +76,15 @@ CREATE TABLE `torders_products` (
   `id` int(11) NOT NULL,
   `id_tProducts` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `torders_products`
+--
+
+INSERT INTO `torders_products` (`quantity`, `id`, `id_tProducts`) VALUES
+(1, 24, 2),
+(1, 24, 3),
+(1, 24, 5);
 
 -- --------------------------------------------------------
 
@@ -140,6 +155,25 @@ ALTER TABLE `torders_products`
 ALTER TABLE `tproducts`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `tclients`
+--
+ALTER TABLE `tclients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `torders`
+--
+ALTER TABLE `torders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT pour la table `tproducts`
+--
+ALTER TABLE `tproducts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Contraintes pour les tables exportées
 --
