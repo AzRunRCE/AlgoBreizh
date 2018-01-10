@@ -53,7 +53,7 @@
   $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
   });
-  $.ajax({
+  setTimeout(function(){$.ajax({
 	url: 'index.php?action=isUserLogged',
 	type: 'GET',
 	dataType: 'json',
@@ -67,7 +67,7 @@
 			}
 		}
 	}
-});
+})}, 100);
 </script>
 </body>
 
