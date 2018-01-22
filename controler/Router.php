@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once 'Controler/welcomeControler.php';
 require_once 'Controler/orderControler.php';
 require_once 'Controler/productsControler.php';
@@ -39,10 +39,10 @@ class Router {
 					}else
 						$this->loginCtrl->show();
 				}
-				else if ($_GET['action'] == 'products') {
+				else if ($_GET['action'] == 'products' && $isLogged) {
 					$this->productsCtrl->show();
 				}
-				else if ($_GET['action'] == 'product') {
+				else if ($_GET['action'] == 'product' && $isLogged) {
 					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
 				else if ($_GET['action'] == 'logout') {
