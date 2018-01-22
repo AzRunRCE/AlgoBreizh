@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
@@ -33,17 +33,21 @@ CREATE TABLE `tclients` (
   `lastname` varchar(255) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `active` tinyint(1) DEFAULT NULL
+  `active` tinyint(1) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `tclients`
 --
 
-INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `active`) VALUES
-(1, 'qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1),
-(2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1),
-(3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1);
+INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `active`, `admin`) VALUES
+(1, 'qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1, 0),
+(2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1, 0),
+(3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1, 0),
+(4, 'adm', 'Admin', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'adm@algobreizh.fr', 1, 0);
+
+
 
 -- --------------------------------------------------------
 
