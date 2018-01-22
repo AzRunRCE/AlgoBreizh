@@ -15,6 +15,17 @@ class OrderControler {
         $view = new View("Order",UserIsLogged());
         $view->generate(array('orders' => $orders));
     }
+
+    public function generatePDF($idOrder){
+        define('FPDF_FONTPATH','fpdf181/font');
+        include('fpdf181/invoice/ex.php');
+    }
+
+    public function getOrderContent($orderId){
+        $order = new Order($orderId, "", "", "");
+        $orderInfos = $order->getContent();
+        //print_r($orderInfos);
+        return $orderInfos;
+    }
 }
 ?>
-  

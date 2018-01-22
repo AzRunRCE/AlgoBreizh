@@ -25,21 +25,18 @@ class Router {
 		$this->cartCtrl = new CartControler();
     }
     // Route une requête entrante : exécution l'action associée
-    public function routerRequest() {
+    public function routerRequest() { // Pourquoi pas un switch case à la place ?
         try {
 			$isLogged = $this->UserIsLogged();
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] == 'order' && $isLogged) {
 					$this->orderCtrl->show($_SESSION['client']['id']);
-				} 
-			
-				else if ($_GET['action'] == 'login' ) {
+				} else if ($_GET['action'] == 'login' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
 						$this->loginCtrl->login($username,$password);	
-					}
-					else
+					}else
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products') {
@@ -90,6 +87,9 @@ class Router {
 				}
 				else if ($_GET['action'] == 'orders' ) {
 					$this->orderCtrl->show();
+				} else if ($_GET['action'] == 'pdf') {
+					//$this->orderCtrl->getOrderContent($this->getParameter($_GET, 'orderId'));
+					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				}
 				else {
 					$this->welcomeCtrl->show();
