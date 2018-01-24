@@ -20,7 +20,7 @@ class OrdersFactory extends Model {
 
    function GetAllOrders(){
 		$stack = array();
-		$req = "SELECT * FROM torders ORDER BY done,creationDate";
+		$req = "SELECT * FROM torders WHERE done = 0 ORDER BY creationDate";
 		$result = $this->executerRequete($req)->fetchAll();
 		foreach ($result as $row){
 			$itm = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients']);

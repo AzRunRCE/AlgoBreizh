@@ -6,7 +6,7 @@
 			<tr>
 				<th>Date</th>    
 				<th>N° Commande</th>
-				<th>Justificatif</th>
+				<th>Facture</th>
 				<th>Status</th>
 			</tr>
 		</thead>
@@ -15,7 +15,15 @@
 			<tr>
 				<td><?= $order->CreationDate ?></td>
 				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
-				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->Id ?>">PDF</a></td>
+				<?php 
+				if ($order->Status == 1 ){
+					echo '<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId='.$order->Id.'">PDF</a></td>';
+				}
+				else{
+					echo '<td>Non disponible</td>';
+				}
+					
+				?>
 				<td><?= ($order->Status == 1 ? 'Traîtée' : 'En attente') ?></td>
 			</tr>
 			<?php endforeach; ?>
