@@ -19,7 +19,7 @@ $pdf->addSociete( "AlgoBreizh",
                   "29810 LAMPAUL-PLOUARZEL\n".
                   "R.C.S. RENNES B 000 000 007\n" .
                   "Capital : 18000 " . EURO );
-$pdf->fact_dev( "Facture ", $_GET['orderId'] );
+$pdf->fact_dev( "Facture" , str_pad($_GET['orderId'], 8, '0', STR_PAD_LEFT));
 $pdf->addDate($date);
 $pdf->addClient($clientFullname);
 $pdf->addPageNumber("1");
@@ -51,7 +51,7 @@ $y    = 109;
 for($i = 0; $i < sizeof($orderContent); $i++){
 
     $reference = strval($orderContent[$i]['reference']);
-    $name = strval($orderContent[$i]['name']);
+    $name = utf8_decode($orderContent[$i]['name']);
     $price = floatval($orderContent[$i]['price']);
     $quantity = floatval($orderContent[$i][0]['quantity']);
 
@@ -93,15 +93,15 @@ $pdf->addCadreTVAs();
 //                      "accompte_percent" => percent  // pourcentage d'acompte (TTC)
 //                  "Remarque" => "texte"              // texte
 
-$params  = array( "RemiseGlobale" => 1,
-                      "remise_tva"     => 1,       // {la remise s'applique sur ce code TVA}
+$params  = array( "RemiseGlobale" => 0,
+                      "remise_tva"     => 0,       // {la remise s'applique sur ce code TVA}
                       "remise"         => 0,       // {montant de la remise}
                       "remise_percent" => 10,      // {pourcentage de remise sur ce montant de TVA}
-                  "FraisPort"     => 1,
+                  "FraisPort"     => 0,
                       "portTTC"        => 10,      // montant des frais de ports TTC
                                                    // par defaut la TVA = 19.6 %
                       "portHT"         => 0,       // montant des frais de ports HT
-                      "portTVA"        => 19.6,    // valeur de la TVA a appliquer sur le montant HT
+                      "portTVA"        => 20,    // valeur de la TVA a appliquer sur le montant HT
                   "AccompteExige" => 0,
                 //      "accompte"         => 0,     // montant de l'acompte (TTC)
                 //      "accompte_percent" => 0,    // pourcentage d'acompte (TTC)
