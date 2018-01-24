@@ -1,4 +1,17 @@
-﻿SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+=======
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le :  mer. 24 jan. 2018 à 08:38
+-- Version du serveur :  10.1.28-MariaDB
+-- Version de PHP :  5.6.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,7 +42,7 @@ CREATE TABLE `tclients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `tclients`
+-- Déchargement des données de la table `tclients`
 --
 
 INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `active`, `admin`) VALUES
@@ -37,8 +50,6 @@ INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `
 (2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1, 0),
 (3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1, 0),
 (4, 'adm', 'Admin', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'adm@algobreizh.fr', 1, 1);
-
-
 
 -- --------------------------------------------------------
 
@@ -54,11 +65,13 @@ CREATE TABLE `torders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `torders`
+-- Déchargement des données de la table `torders`
 --
 
 INSERT INTO `torders` (`id`, `done`, `creationDate`, `id_tClients`) VALUES
-(24, 0, '2017-12-20 21:03:05', 2);
+(24, 0, '2017-12-20 21:03:05', 2),
+(25, 0, '2018-01-22 12:28:59', 1),
+(26, 0, '2018-01-24 08:29:22', 4);
 
 -- --------------------------------------------------------
 
@@ -73,13 +86,17 @@ CREATE TABLE `torders_products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `torders_products`
+-- Déchargement des données de la table `torders_products`
 --
 
 INSERT INTO `torders_products` (`quantity`, `id`, `id_tProducts`) VALUES
 (1, 24, 2),
 (1, 24, 3),
-(1, 24, 5);
+(1, 24, 5),
+(1, 25, 4),
+(1, 25, 5),
+(1, 26, 4),
+(1, 26, 5);
 
 -- --------------------------------------------------------
 
@@ -95,7 +112,7 @@ CREATE TABLE `tproducts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `tproducts`
+-- Déchargement des données de la table `tproducts`
 --
 
 INSERT INTO `tproducts` (`id`, `name`, `price`, `reference`) VALUES
@@ -121,7 +138,7 @@ INSERT INTO `tproducts` (`id`, `name`, `price`, `reference`) VALUES
 (20, 'Wakamé en paillettes', 8, 'P020');
 
 --
--- Index pour les tables exportées
+-- Index pour les tables déchargées
 --
 
 --
@@ -151,26 +168,29 @@ ALTER TABLE `tproducts`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
 -- AUTO_INCREMENT pour la table `tclients`
 --
 ALTER TABLE `tclients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT pour la table `torders`
 --
 ALTER TABLE `torders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
 -- AUTO_INCREMENT pour la table `tproducts`
 --
 ALTER TABLE `tproducts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -185,6 +205,7 @@ ALTER TABLE `torders`
 ALTER TABLE `torders_products`
   ADD CONSTRAINT `FK_tOrders_Products_id` FOREIGN KEY (`id`) REFERENCES `torders` (`id`),
   ADD CONSTRAINT `FK_tOrders_Products_id_tProducts` FOREIGN KEY (`id_tProducts`) REFERENCES `tproducts` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

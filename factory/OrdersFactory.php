@@ -9,7 +9,7 @@ class OrdersFactory extends Model {
 
    function GetOrders($clientId){
 	$stack = array();
-	$req = 'SELECT * FROM torders  where id_tClients = ?';
+	$req = 'SELECT * FROM torders WHERE id_tClients = ? ORDER BY creationDate';
 	$result = $this->executerRequete($req,array($clientId))->fetchAll();
 	foreach ($result as $row){
 		$itm = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients']);
@@ -17,5 +17,17 @@ class OrdersFactory extends Model {
 	}
 	return $stack;
    }
+
+   function GetAllOrders(){
+		$stack = array();
+		$req = "SELECT * FROM torders ORDER BY done,creationDate";
+		$result = $this->executerRequete($req)->fetchAll();
+		foreach ($result as $row){
+			$itm = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients']);
+			array_push($stack, $itm);
+		}
+	return $stack;
+   }
+
 }
 ?>

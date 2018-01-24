@@ -87,9 +87,11 @@ class Router {
 				}
 				else if ($_GET['action'] == 'orders' ) {
 					$this->orderCtrl->show();
-				} else if ($_GET['action'] == 'pdf') {
-					//$this->orderCtrl->getOrderContent($this->getParameter($_GET, 'orderId'));
+				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
+				} else if ($_GET['action'] == 'switchState') {
+					$this->orderCtrl->switchState($this->getParameter($_GET, 'orderId'));
+					$this->orderCtrl->show();
 				}
 				else {
 					$this->welcomeCtrl->show();

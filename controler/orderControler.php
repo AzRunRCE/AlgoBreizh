@@ -11,9 +11,16 @@ class OrderControler {
     }
     // Affiche les détails sur un billet
     public function show($idClient) {
-        $orders = $this->orderFactory->getOrders($idClient);
-        $view = new View("Order",UserIsLogged());
-        $view->generate(array('orders' => $orders));
+		if (UserIsAdmin()){
+			$orders = $this->orderFactory->getAllOrders();
+			$view = new View("OrderAdmin",UserIsLogged());
+			$view->generate(array('orders' => $orders));
+		}else {
+			$orders = $this->orderFactory->getOrders($idClient);
+			$view = new View("Order",UserIsLogged());
+			$view->generate(array('orders' => $orders));
+		}
+        
     }
 
     public function generatePDF($idOrder){
@@ -26,6 +33,11 @@ class OrderControler {
         $orderInfos = $order->getContent();
         //print_r($orderInfos);
         return $orderInfos;
+    }
+	 public function switchState($orderId){
+        $order = new Order($orderId, "", "", "");
+        $orderInfos = $order->switchState();
+		return true;
     }
 }
 ?>

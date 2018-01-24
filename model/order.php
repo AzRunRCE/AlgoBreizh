@@ -13,6 +13,8 @@ class Order extends Model{
 		$this->OwnerId = $_OwnerId;
 		}
 
+
+	// Requête en base de données pour récuperer le contenu de la commande
 	public function getContent(){
 		$content = array();
 		$req = "SELECT quantity, id_tProducts FROM torders_products WHERE id = ?";
@@ -32,5 +34,11 @@ class Order extends Model{
 		
 	return $content;
 	}
+	// Changement d'état en base de données : 0 = En attente / 1 = Validée
+	public function switchState(){
+		$req = "UPDATE torders SET done = 1 WHERE id = ?";
+		$this->executerRequete($req, array($this->Id));
+	}
+
 }
 ?>
