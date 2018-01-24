@@ -15,7 +15,7 @@
 			<tr>
 				<td><?= $order->CreationDate ?></td>
 				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
-				<td><a href="https://www.w3schools.com?order=<?= $order->Id ?>">PDF</a></td>
+				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->Id ?>">PDF</a></td>
 				<td><?= ($order->Status == 1 ? 'Traîtée' : 'En attente') ?></td>
 			</tr>
 			<?php endforeach; ?>
