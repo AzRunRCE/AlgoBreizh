@@ -17,5 +17,16 @@ class OrdersFactory extends Model {
 	}
 	return $stack;
    }
+   
+   function GetAllOrders($clientId){
+	$stack = array();
+	$req = 'SELECT * FROM torders order by done';
+	$result = $this->executerRequete($req,array($clientId))->fetchAll();
+	foreach ($result as $row){
+		$itm = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients']);
+		array_push($stack, $itm);
+	}
+	return $stack;
+   }
 }
 ?>
