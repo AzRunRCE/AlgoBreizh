@@ -41,6 +41,7 @@ class Router {
 						$username = $this->getParameter($_POST,'username');
 						$email =	$this->getParameter($_POST,'email');
 						$this->loginCtrl->sendPassword($username,$email);	
+						$this->loginCtrl->show('login');
 					}else{
 						$this->loginCtrl->show($_GET['action']);
 					}
