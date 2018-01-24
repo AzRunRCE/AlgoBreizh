@@ -10,14 +10,15 @@ class OrderControler {
         $this->orderFactory = new OrdersFactory();    
     }
     // Affiche les détails sur un billet
-    public function show($idClient = 0) {
+    public function show($idClient) {
 		if (UserIsAdmin()){
 			$orders = $this->orderFactory->getAllOrders();
-			$view = new View("OrderAdmin",UserIsLogged());
+			
+			$view = new View("OrderAdmin");
 			$view->generate(array('orders' => $orders));
 		}else {
 			$orders = $this->orderFactory->getOrders($idClient);
-			$view = new View("Order",UserIsLogged());
+			$view = new View("Order");
 			$view->generate(array('orders' => $orders));
 		}
         

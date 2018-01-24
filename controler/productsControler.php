@@ -13,7 +13,7 @@ class ProductsControler   {
     // Affiche les détails sur un billet
     public function show() {
         $products = $this->productsFactory->GetProducts();
-        $view = new View("products",UserIsLogged());
+        $view = new View("products");
         $view->generate(array('products' => $products));
 	
     }
