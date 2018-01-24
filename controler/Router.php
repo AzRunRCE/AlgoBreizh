@@ -24,7 +24,7 @@ class Router {
 		$this->loginCtrl = new LoginControler();
 		$this->cartCtrl = new CartControler();
     }
-    // Route une requête entrante : exécution l'action associée
+    // Route une requête entrante : exécute l'action associée
     public function routerRequest() { // Pourquoi pas un switch case à la place ?
         try {
 			$isLogged = $this->UserIsLogged();
@@ -36,7 +36,7 @@ class Router {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
 						$this->loginCtrl->login($username,$password);	
-					}else
+					} else
 						$this->loginCtrl->show();
 				}
 				else if ($_GET['action'] == 'products' && $isLogged) {
