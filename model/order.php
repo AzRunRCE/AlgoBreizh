@@ -37,7 +37,7 @@ class Order extends Model{
 	// Changement d'état en base de données : 0 = En attente / 1 = Validée
 	public function switchState(){
 		$req = "UPDATE torders SET done = 1 WHERE id = ?";
-		$this->executerRequete($req, array($this->id));
+		$this->executerRequete($req, array($this->Id));
 	}
 
 }

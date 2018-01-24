@@ -7,6 +7,9 @@
 			return true;
 		}
 	}
+	function UserIsAdmin(){
+			return true;
+	}
 	function checkLogin(){
 	}
 	function register(){
