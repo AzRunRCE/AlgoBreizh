@@ -1,4 +1,4 @@
-<?php $this->title = "Mes commandes"; ?>
+<?php $this->title = "Commandes"; ?>
 
   <div class="row">
 	<table id="orderTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
