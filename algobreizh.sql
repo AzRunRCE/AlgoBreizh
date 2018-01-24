@@ -49,7 +49,7 @@ INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `
 (1, 'qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1, 0),
 (2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1, 0),
 (3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1, 0),
-(4, 'adm', 'Admin', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'adm@algobreizh.fr', 1, 1);
+(4, 'adm', 'Admin', 'Admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'adm@algobreizh.fr', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `
 
 CREATE TABLE `torders` (
   `id` int(11) NOT NULL,
-  `done` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   `creationDate` datetime NOT NULL,
   `id_tClients` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,9 +68,9 @@ CREATE TABLE `torders` (
 -- Déchargement des données de la table `torders`
 --
 
-INSERT INTO `torders` (`id`, `done`, `creationDate`, `id_tClients`) VALUES
-(24, 0, '2017-12-20 21:03:05', 2),
-(25, 0, '2018-01-22 12:28:59', 1),
+INSERT INTO `torders` (`id`, `status`, `creationDate`, `id_tClients`) VALUES
+(24, 1, '2017-12-20 21:03:05', 2),
+(25, 2, '2018-01-22 12:28:59', 1),
 (26, 0, '2018-01-24 08:29:22', 4);
 
 -- --------------------------------------------------------

@@ -13,14 +13,13 @@ class Order extends Model{
 		$this->OwnerId = $_OwnerId;
 		}
 
-
 	// Requête en base de données pour récuperer le contenu de la commande
 	public function getContent(){
 		$content = array();
 		$req = "SELECT quantity, id_tProducts FROM torders_products WHERE id = ?";
         $productsIndexInOrder = $this->executerRequete($req, array($this->Id));
 		$result = $productsIndexInOrder->fetchAll(PDO::FETCH_ASSOC);
-		
+
 		for($i = 0; $i < $productsIndexInOrder->rowCount(); $i++){
 			$req2 = "SELECT * FROM tproducts WHERE id = ?";
 			$productsInfos = $this->executerRequete($req2, array($result[$i]['id_tProducts']));
@@ -31,12 +30,12 @@ class Order extends Model{
 				$content[$i] = $result2;
 			}
 		}
-		
+
 	return $content;
 	}
-	// Changement d'état en base de données : 0 = En attente / 1 = Validée
+	// Changement d'état en base de données : 0 = En attente / 1 = Validée / 2 = Annulée
 	public function switchState(){
-		$req = "UPDATE torders SET done = 1 WHERE id = ?";
+		$req = "UPDATE torders SET status = 1 WHERE id = ?";
 		$this->executerRequete($req, array($this->Id));
 	}
 
