@@ -6,9 +6,11 @@ require_once 'Tools/CredentialManager.php';
 require_once 'factory/OrdersFactory.php';
 class OrderControler {
     private $order;
+
     public function __construct() {
         $this->orderFactory = new OrdersFactory();    
     }
+
     // Affiche les détails sur un billet
     public function show($idClient) {
 		if (UserIsAdmin()){
@@ -20,7 +22,6 @@ class OrderControler {
 			$view = new View("Order",UserIsLogged());
 			$view->generate(array('orders' => $orders));
 		}
-        
     }
 
     public function generatePDF($idOrder){
@@ -31,9 +32,9 @@ class OrderControler {
     public function getOrderContent($orderId){
         $order = new Order($orderId, "", "", "");
         $orderInfos = $order->getContent();
-        //print_r($orderInfos);
         return $orderInfos;
     }
+
 	 public function switchState($orderId){
         $order = new Order($orderId, "", "", "");
         $orderInfos = $order->switchState();
