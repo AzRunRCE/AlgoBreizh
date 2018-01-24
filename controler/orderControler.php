@@ -10,7 +10,7 @@ class OrderControler {
         $this->orderFactory = new OrdersFactory();    
     }
     // Affiche les détails sur un billet
-    public function show($idClient) {
+    public function show($idClient = 0) {
 		if (UserIsAdmin()){
 			$orders = $this->orderFactory->getAllOrders();
 			$view = new View("OrderAdmin",UserIsLogged());
