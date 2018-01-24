@@ -11,8 +11,8 @@ class LoginControler   {
 		 $this->welcomeCtrl = new WelcomeControler();
     }
 	// Affiche la liste de tous les billets du blog
-    public function show() {
-        $view = new View("login");
+    public function show($action) {
+        $view = new View($action);
         $view->generate(null);
     }
 
@@ -25,9 +25,19 @@ class LoginControler   {
 		else
 			$this->show();
     }
-
-	private function sendPassword($to,$password)
+	private function generateRandomString($length = 10) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
+	
+	public function sendPassword($username,$email)
 	{
+		$password = $this->generateRandomString(5);
 		$subject = 'AlgoBreizh - Inscription';
 		$message = 'Mot de passe: '.$password;
 		$headers = 'From: client@algobreizh.com' . "\r\n" .

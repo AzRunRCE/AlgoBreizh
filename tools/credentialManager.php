@@ -8,7 +8,6 @@
 		}
 	}
 	function UserIsAdmin(){
-		$adminRight = $_SESSION["client"]["admin"];
 		if(isset($_SESSION["client"])){
 			if($_SESSION["client"]["admin"] == 1){		
 				return true;

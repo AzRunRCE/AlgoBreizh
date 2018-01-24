@@ -31,13 +31,19 @@ class Router {
 			if (isset($_GET['action'])) {
 				if ($_GET['action'] == 'order' && $isLogged) {
 					$this->orderCtrl->show($_SESSION['client']['id']);
-				} else if ($_GET['action'] == 'login' ) {
+				} else if ($_GET['action'] == 'login' or $_GET['action'] == 'register' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
-						$this->loginCtrl->login($username,$password);	
-					}else
-						$this->loginCtrl->show();
+						$this->loginCtrl->login($username,$password);
+					}						
+					else if($_POST['username'] && $_POST['email'] ){
+						$username = $this->getParameter($_POST,'username');
+						$email =	$this->getParameter($_POST,'email');
+						$this->loginCtrl->sendPassword($username,$email);	
+					}else{
+						$this->loginCtrl->show($_GET['action']);
+					}
 				}
 				else if ($_GET['action'] == 'products' && $isLogged) {
 					$this->productsCtrl->show();
