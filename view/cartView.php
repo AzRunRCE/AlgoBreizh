@@ -44,6 +44,7 @@
     //Paramètres du DataTable
 	$("#cartTable").DataTable({
 		"stateSave": true,
+		"ordering": false,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
@@ -52,11 +53,11 @@
 			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
-		   {"bSortable": false},
 		   {"bSortable": true},
-		   {"bSortable": false},
-		   {"bSortable": false},
-		   {"bSortable": false}
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true}
 	  	],
 		"processing": true,
 	  	"serverSide": false,

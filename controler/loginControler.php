@@ -12,7 +12,7 @@ class LoginControler   {
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
-        $view = new View("login",UserIsLogged());
+        $view = new View("login");
         $view->generate(null);
     }
 

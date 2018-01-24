@@ -1,4 +1,5 @@
 <?php
+require_once 'Tools/CredentialManager.php';
 class View {
     // Nom du fichier associé à la vue
     private $file;
@@ -6,10 +7,13 @@ class View {
     // Titre de la vue (défini dans le fichier vue)
     private $title;
 	private $logged;
-    public function __construct($action,$_logged) {
+	private $admin;
+	
+    public function __construct($action) {
         // Détermination du nom du fichier vue à partir de l'action
         $this->file = "View/" . $action . "view.php";
-		$this->logged = $_logged;
+		$this->logged = UserIsLogged();
+		$this->admin = UserIsAdmin();
     }
 
 	public function generate($data,$template = True) {
@@ -19,7 +23,7 @@ class View {
 		$view = $content;
 		if ($template){
 			$view = $this->generateFile('View/template.php',
-                array('title' => $this->title, 'content' => $content, 'logged' => $this->logged));
+                array('title' => $this->title, 'content' => $content, 'logged' => $this->logged, 'admin' => $this->admin));
 		}
         // Renvoi de la vue au navigateur
         echo $view;

@@ -11,7 +11,7 @@ class CartControler{
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
-        $view = new View("cart",UserIsLogged());
+        $view = new View("cart");
 		$view->generate(array('cart' => $this->cart->getCart()));
     }
 
