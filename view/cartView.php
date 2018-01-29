@@ -1,4 +1,4 @@
-<?php $this->title = "Mon Panier"; ?>
+<?php $this->title = "Panier"; ?>
 
   <div class="row">
 	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">

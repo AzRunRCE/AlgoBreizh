@@ -1,7 +1,7 @@
 <?php $this->title = "Accueil"; ?>
 <div class="container">
   <div class="row">
-	<h3>Projets Algo<b>Breizh</b></h3>
+	<h3>Projets AlgoBreizh</h3>
 	<p><a color="00AA00" href="~an.my">My AN NGOC</a></p>
 	<p><a href="~d.samson">Denis SAMSON</a></p>
 	<p><a href="~j.cadieu">Jonas CADIEU</a></p>

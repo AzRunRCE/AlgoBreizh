@@ -1,4 +1,4 @@
-<?php $this->title = "Boutique" ?>
+<?php $this->title = "Produits" ?>
 
 <?php foreach ($products as $product):?>
 	<div class="col-md-2">
@@ -14,7 +14,7 @@
 			<div class="card-action">
 				<p>Prix: <span id="article_price_<?= $product->Id ?>"><?= $product->Price ?></span> €</p>
 				<div class="articleBtn">
-					<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Voir l'article</button>
+					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">Voir l'article</a>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
         <div class="modal-body">
           <div class="card" style="height: 230px;">
 			<div class="center">
-			  <img id="modal_article_img" class="imageClip center" src="img/warning_sign.png" />
+			  <img id="modal_article_img" class="imageClip center" src="img/Warning_Icon.png" />
 			  <input type="hidden" id="modal_article_id" />
               <div class="card-content" style="height: 60px;">
 				<p id="modal_article_name" style="font-size: 16px;"></p>
@@ -98,10 +98,16 @@
 
 <script type="text/javascript">
                 <!--
+						$(document).ready(function() {
+							if ($(".glyphicon-log-in")[0]) {	// Si pas authentifié, restriction d'ajout au panier
+								$(".btn-success").addClass("disabled");
+								$(".btn-success").attr("data-target", "#myModal3");
+								$(".articleBtn").attr("title", "Vous devez être authentifié pour pouvoir ajouter un article.");
+							}
+						});
 						function capitalizeFirstLetter(string) {
 							return string.charAt(0).toUpperCase() + string.slice(1);
 						}
-						// Affiche les articles dans des modals
                         function showProduct(id)
                         {
 							$("#modal_article_id").text(id);
@@ -110,13 +116,11 @@
 							$("#modal_article_price").text($("#article_price_" + id).text());
 							$("#modal_quantity").val("1");
 						}
-						// Actualise le prix de l'article en fonction de la quantité
 						function newPrice(id) {
 							var Price = $("#article_price_" + id).text();
 							var newPrice = Price * $("#modal_quantity").val();
 							$("#modal_article_price").text(Math.round(newPrice*100)/100);
 						}
-						// Ajoute l'article au panier
 						function addToCart(id) {
 							var Quantity = $("#modal_quantity").val();
 							var Name = $("#modal_article_name").text();
@@ -125,11 +129,11 @@
 								type: 'GET',
 								dataType: 'json',
 								success: function(json) {
-									if (json['code'] == 'success') {	// Ouverture de la modal de succès si l'article a été ajouté
-										$("#modal_message_success").html("<span><img src=\"img/success_sign.png\" style=\"width: 10%; height: 10%;\" />&nbsp; L'article <b>" + Name + " x" + Quantity + "</b> a été ajouté au panier.</span>");
+									if (json['code'] == 'success') {	// Ouverture de la modal de succès, y insère le message
+										$("#modal_message_success").html("<span><img src=\"img/Valid_Icon.png\" style=\"width: 7%; height: 7%;\" />&nbsp; L'article <b>" + Name + " x" + Quantity + "</b> a été ajouté au panier.</span>");
 										$("#myModal2").modal("show");
-									} else {							// Ouverture de la modal d'erreur si une erreur est survenue lors de l'ajout
-										$("#modal_message_error").html("<span><img src=\"img/error_sign.png\" style=\"width: 10%; height: 10%;\" />&nbsp; Une erreur est survenue. Veuillez réesayer ultérieurement.</span>");
+									} else {							// Ouverture de la modal d'erreur, y insère l'erreur
+										$("#modal_message_error").html("<span><img src=\"img/Danger_Icon.png\" style=\"width: 7%; height: 7%;\" />&nbsp; Une erreur est survenue. Veuillez réesayer ultérieurement.</span>");
 										$("#myModal3").modal("show");
 									}
 								}

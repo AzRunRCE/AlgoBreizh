@@ -42,7 +42,7 @@
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'style/french.order.json'
+			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
 		   {"bSortable": true},

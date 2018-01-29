@@ -32,18 +32,22 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 		<?php
-			if ($admin == false && $logged) {
+			if ($admin == false && $logged){
+				
 				echo '<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>';
-				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes Commandes</a></li>';
+				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes commandes</a></li>';
 				echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Mon Panier</a></li>';
 			}
-			else if ($admin && $logged) {
-				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes Commandes</a></li>';
+			else if ($admin && $logged){
+				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span>Commandes</a></li>';
 			}
 			else {
-				echo '<li><a href="index.php?action=register" style="color: white;"><span class="glyphicon glyphicon-pencil"></span> S\'inscrire</a></li>';
+				echo '<li><a href="index.php?action=register" style="color: white;"><span class="glyphicon glyphicon-pencil"></span> S\'enregistrer</a></li>';
 			}
 		?>
+      
+		
+		
 		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" class="login" <?= ($logged ? 'data-toggle="tooltip" data-placement="bottom" title="Session: "' : '') ?> style="color: <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
       </ul>
     </div>
@@ -60,7 +64,6 @@
 <div style="height: 120px;"></div>
 
 <script>
-  // Affichage du nom de l'utilisateur de la session
   $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
   });
@@ -70,13 +73,11 @@
 	dataType: 'json',
 	success: function(json) {
 		if (json['code'] == 'logged') {
-			var loginTitle = "Session: ";
-			if (json['firstname'].toUpperCase() == json['lastname'].toUpperCase()) {
-				$(".login").attr("data-original-title", loginTitle +" "+ json['firstname'].toUpperCase());
-			} else if (json['firstname'] && json['lastname']) {
+			var loginTitle = $(".login").attr("data-original-title");
+			if (json['firstname'] && json['lastname']) {
 				$(".login").attr("data-original-title", loginTitle +" "+ json['firstname'].toUpperCase() +" "+ json['lastname'].toUpperCase());
 			} else {
-				$(".login").attr("data-original-title", loginTitle + "UTILISATEUR");
+				$(".login").attr("data-original-title", loginTitle + "UNKNOWN");
 			}
 		}
 	}
@@ -91,7 +92,7 @@
 			<td>
 				<b>AlgoBreizh</b> - SARL au capital de 100 000 euros<br/>
 				18, rue de Molene, 29810 LAMPAUL-PLOUARZEL<br/>
-				Tel. 02.98.97.96.95 - Mail. www.algobreizh.com / info@algobreizh.com
+				02.98.97.96.95    www.algobreizh.com    info@algobreizh.com
 			</td>
 		</tr>
 	</table>
