@@ -7,7 +7,7 @@ class WelcomeControler   {
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
-        $view = new View("Welcome",UserIsLogged());
+        $view = new View("Welcome");
 		$view->generate(NULL);
 	
     }

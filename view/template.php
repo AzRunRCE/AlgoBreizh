@@ -31,10 +31,20 @@
         <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      	<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>
-		<?php if ($logged){echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Panier</a></li>';}?>
-		<li><a href="index.php?action=<?= ($logged ? 'order' : 'register') ?>" style="color: white;"><span class="<?= ($logged ? 'glyphicon glyphicon-euro' : 'glyphicon glyphicon-pencil') ?>"></span> <?= ($logged ? 'Mes commandes' : 'Inscription') ?></a></li>
-		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" class="login" <?= ($logged ? 'data-toggle="tooltip" data-placement="bottom" title="Session: UTILISATEUR"' : '') ?> style="color: <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
+		<?php
+			if ($admin == false && $logged) {
+				echo '<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>';
+				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes Commandes</a></li>';
+				echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Mon Panier</a></li>';
+			}
+			else if ($admin && $logged) {
+				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes Commandes</a></li>';
+			}
+			else {
+				echo '<li><a href="index.php?action=register" style="color: white;"><span class="glyphicon glyphicon-pencil"></span> S\'inscrire</a></li>';
+			}
+		?>
+		<li><a href="index.php?action=<?= ($logged ? 'logout' : 'login') ?>" class="login" <?= ($logged ? 'data-toggle="tooltip" data-placement="bottom" title="Session: "' : '') ?> style="color: <?= ($logged ? 'orangered' : 'lawngreen') ?>;"><span class="<?= ($logged ? 'glyphicon glyphicon-log-out' : 'glyphicon glyphicon-log-in') ?>"></span> <?= ($logged ? 'Déconnexion' : 'Connexion') ?></a></li>
       </ul>
     </div>
   </div>

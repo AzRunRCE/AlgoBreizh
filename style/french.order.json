@@ -8,7 +8,7 @@
 	"sInfoPostFix":    "",
 	"sLoadingRecords": "Chargement en cours...",
     "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-	"sEmptyTable":     "<p class=\"center\">Vous n'avez actuellement aucune commande.</p>",
+	"sEmptyTable":     "<p class=\"center\">Vous ne disposez actuellement d'aucune commande.</p>",
 	"oPaginate": {
 		"sFirst":      "Premier",
 		"sPrevious":   "Pr&eacute;c&eacute;dent",

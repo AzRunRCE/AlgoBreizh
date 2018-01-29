@@ -1,4 +1,4 @@
-<?php $this->title = "Panier"; ?>
+<?php $this->title = "Mon Panier"; ?>
 
   <div class="row">
 	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -44,6 +44,7 @@
     //Paramètres du DataTable
 	$("#cartTable").DataTable({
 		"stateSave": true,
+		"ordering": false,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
@@ -52,11 +53,11 @@
 			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
-		   {"bSortable": false},
 		   {"bSortable": true},
-		   {"bSortable": false},
-		   {"bSortable": false},
-		   {"bSortable": false}
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true}
 	  	],
 		"processing": true,
 	  	"serverSide": false,

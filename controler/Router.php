@@ -86,7 +86,7 @@ class Router {
 					$this->cartCtrl->clearCart();
 				}
 				else if ($_GET['action'] == 'orders' ) {
-					$this->orderCtrl->show();
+					$this->orderCtrl->show($_SESSION['client']['id']);
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'switchState') {

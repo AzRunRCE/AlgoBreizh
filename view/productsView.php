@@ -1,4 +1,4 @@
-<?php $this->title = "Produits" ?>
+<?php $this->title = "Boutique" ?>
 
 <?php foreach ($products as $product):?>
 	<div class="col-md-2">

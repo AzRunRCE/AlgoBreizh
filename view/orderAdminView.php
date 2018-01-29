@@ -1,4 +1,4 @@
-<?php $this->title = "Mes commandes"; ?>
+<?php $this->title = "Commandes"; ?>
 
   <div class="row">
 	<table id="orderTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -42,6 +42,7 @@
     //Paramètres du DataTable
 	$("#orderTable").DataTable({
 		"stateSave": true,
+		"ordering": false,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
@@ -51,10 +52,9 @@
 		},
 	  	"aoColumns": [
 		   {"bSortable": true},
-		   {"bSortable": false},
-		   {"bSortable": false},
-		   {"bSortable": false},
-		   {"bSortable": false}
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true}
 	  	],
 		"processing": false,
 	  	"serverSide": false,
