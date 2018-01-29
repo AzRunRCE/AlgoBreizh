@@ -27,11 +27,9 @@ class Router {
     // Route une requête entrante : exécution l'action associée
     public function routerRequest() { // Pourquoi pas un switch case à la place ?
         try {
-			$isLogged = $this->UserIsLogged();
+			$isLogged = isset($_SESSION["customer"]);
 			if (isset($_GET['action'])) {
-				if ($_GET['action'] == 'order' && $isLogged) {
-					$this->orderCtrl->show($_SESSION['client']['id']);
-				} else if ($_GET['action'] == 'login' or $_GET['action'] == 'register' ) {
+				if ($_GET['action'] == 'login' or $_GET['action'] == 'register' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
@@ -57,9 +55,9 @@ class Router {
 					header("Location: index.php");
 				}
 				else if ($_GET['action'] == 'isUserLogged') {
-					if (isset($_SESSION['client']['id'])) {
-						$return['firstname'] = $_SESSION['client']['firstname'];
-						$return['lastname'] = $_SESSION['client']['lastname'];
+					if (isset($_SESSION['customer']->Id)) {
+						$return['firstname'] = $_SESSION['customer']->Firstname;
+						$return['lastname'] = $_SESSION['customer']->Lastname;
 						$return['code'] = 'logged';
 					} else {
 						$return['code'] = 'notLogged';
@@ -93,7 +91,7 @@ class Router {
 					$this->cartCtrl->clearCart();
 				}
 				else if ($_GET['action'] == 'orders' ) {
-					$this->orderCtrl->show($_SESSION['client']['id']);
+					$this->orderCtrl->show($_SESSION['customer']->Id);
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'switchState') {

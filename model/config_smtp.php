@@ -1,4 +1,4 @@
 <?php
-ini_set('SMTP','smtp.celeste.fr');
+ini_set('SMTP','smtp.free.fr'); //FAI correspondant
 ini_set('sendmail_from', 'client@algobreizh.fr');
 ?>

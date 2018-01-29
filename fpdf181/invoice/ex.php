@@ -11,7 +11,7 @@ $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 
 // Informations sur le client
-$clientFullname = $_SESSION['client']['firstname'].' '.$_SESSION['client']['lastname'];
+$clientFullname = $_SESSION['customer']->FirstName.' '.$_SESSION['customer']->LastName;
 $clientAddress = "1337 Rue Elon Musk\n75000 PARIS";
 
 // Création PDF + dimensions

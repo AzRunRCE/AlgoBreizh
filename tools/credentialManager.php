@@ -1,6 +1,6 @@
 <?php
 	 function UserIsLogged(){
-		if(!isset($_SESSION["client"])){
+		if(!isset($_SESSION["customer"])){
 			return false;
 		}
 		else{
@@ -8,15 +8,12 @@
 		}
 	}
 	function UserIsAdmin(){
-		if(isset($_SESSION["client"])){
-			if($_SESSION["client"]["admin"] == 1){		
+		if(isset($_SESSION["customer"])){
+			if($_SESSION["customer"]->AdminRight == 1){		
 				return true;
 			}
 		}
 		return false;
 	}
-	function checkLogin(){
-	}
-	function register(){
-	}
+
 ?>
