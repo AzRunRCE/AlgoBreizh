@@ -108,8 +108,8 @@ class Router {
 					$this->orderCtrl->show($_SESSION['customer']->Id);
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
-				} else if ($_GET['action'] == 'switchState') {
-					$this->orderCtrl->switchState($this->getParameter($_GET, 'orderId'));
+				} else if ($_GET['action'] == 'valid') {
+					$this->orderCtrl->ValidOrder($this->getParameter($_GET, 'orderId'));
 					$this->orderCtrl->show($_SESSION['customer']->Id);
 				}
 				else {

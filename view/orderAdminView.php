@@ -24,7 +24,7 @@
 						echo '<td class="center" style="color: red;">Annulée</td>';
 					}
 					else {
-						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=switchState&orderId='.$order->Id.'">Valider</a></td>';
+						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=valid&orderId='.$order->Id.'">Valider</a></td>';
 					}		
 				?>
 			</tr>
