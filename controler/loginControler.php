@@ -19,13 +19,12 @@ class LoginControler {
 	public function login($username,$password) {
 		$password = sha1($password);
 		$customer = $this->customersFactory->GetCustomerByLogin($username,$password);
-				print_r($customer);
 		if ($customer->Password == $password){
 			$_SESSION['customer'] = $customer;
 			$this->welcomeCtrl->show();
 		}
 		else {
-			//$this->show("login");
+			$this->show("login");
 		}
     }
 	private function generateRandomString($length = 10) {
