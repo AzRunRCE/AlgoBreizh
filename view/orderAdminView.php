@@ -35,17 +35,17 @@
     //Paramètres du DataTable
 	$("#orderTable").DataTable({
 		"stateSave": true,
+		"ordering": false,
 		"deferRender": false,
 		"bFilter": false,
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'style/french.order.json'
+			"url": 'style/french.orderAdm.json'
 		},
 	  	"aoColumns": [
-		   {"bSortable": false},
 		   {"bSortable": true},
-		   {"bSortable": false},
+		   {"bSortable": true},
 		   {"bSortable": false},
 		   {"bSortable": false}
 	  	],

@@ -27,37 +27,44 @@ class Router {
     // Route une requête entrante : exécution l'action associée
     public function routerRequest() { // Pourquoi pas un switch case à la place ?
         try {
+			// Vérifie si la session du client est connectée
 			$isLogged = isset($_SESSION["customer"]);
 			if (isset($_GET['action'])) {
+				// Affichage de la page d'inscription / authentification
 				if ($_GET['action'] == 'login' or $_GET['action'] == 'register' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
 						$password =	$this->getParameter($_POST,'password');
 						$this->loginCtrl->login($username,$password);
-					}						
-					else if($_POST['username'] && $_POST['email'] ){
+					}
+					else if($_POST['username'] && $_POST['email'] ) {
 						$username = $this->getParameter($_POST,'username');
 						$email =	$this->getParameter($_POST,'email');
 						$this->loginCtrl->sendPassword($username,$email);	
 						$this->loginCtrl->show('login');
-					}else{
+					}
+					else {
 						$this->loginCtrl->show($_GET['action']);
 					}
 				}
+				// Affichage de la boutique
 				else if ($_GET['action'] == 'products' && $isLogged) {
 					$this->productsCtrl->show();
 				}
+				// Affichage de la modal du produit séléctionné
 				else if ($_GET['action'] == 'product' && $isLogged) {
 					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
+				// Déconnexion de la session de l'utilisateur
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
 					header("Location: index.php");
 				}
+				// Affichage des informations de la session connecté
 				else if ($_GET['action'] == 'isUserLogged') {
 					if (isset($_SESSION['customer']->Id)) {
-						$return['firstname'] = $_SESSION['customer']->Firstname;
-						$return['lastname'] = $_SESSION['customer']->Lastname;
+						$return['firstname'] = $_SESSION['customer']->FirstName;
+						$return['lastname'] = $_SESSION['customer']->LastName;
 						$return['code'] = 'logged';
 					} else {
 						$return['code'] = 'notLogged';
@@ -65,9 +72,11 @@ class Router {
 					echo json_encode($return);
 					exit;
 				}
+				// Affichage du panier
 				else if ($_GET['action'] == 'cart') {
 					$this->cartCtrl->show();
 				}
+				// Ajout de l'article au panier
 				else if ($_GET['action'] == 'addToCart' ) {
 					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
 						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
@@ -79,17 +88,21 @@ class Router {
 					echo json_encode($return);
 					exit;
 				}
+				// Retrait de l'article du panier
 				else if ($_GET['action'] == 'removeFromCart' ) {
 					if (isset($_GET['productId'])) {
 						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
+				// Affichage du message d'erreur
 				else if ($_GET['action'] == 'checkOut' ) {
 					$this->cartCtrl->checkOut();
 				}
+				// Retrait de tous les articles du panier
 				else if ($_GET['action'] == 'clearCart' ) {
 					$this->cartCtrl->clearCart();
 				}
+				// Affichage des commandes
 				else if ($_GET['action'] == 'orders' ) {
 					$this->orderCtrl->show($_SESSION['customer']->Id);
 				} else if ($_GET['action'] == 'generatePdf') {
@@ -110,17 +123,17 @@ class Router {
             $this->erreur($e->getMessage());
         }
     }
-	// Redirection vers login.php si la session n'existe pas
-	private function UserIsLogged(){
+	// Redirection vers "login.php" si la session n'existe pas
+	private function UserIsLogged() {
 		if(!isset($_SESSION["client"])){
 			return false;
-		} 
+		}
 		else{
 			return true;
 		}
 	}
-	
-	 private function getParameter($tableau, $nom) {
+
+	private function getParameter($tableau, $nom) {
         if (isset($tableau[$nom])) {
             return $tableau[$nom];
         }

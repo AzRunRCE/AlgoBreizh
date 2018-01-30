@@ -15,14 +15,13 @@
 			<tr>
 				<td><?= $order->CreationDate ?></td>
 				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
-				<?php 
+				<?php
 				if ($order->Status == 1 ){
 					echo '<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId='.$order->Id.'">PDF</a></td>';
 				}
 				else{
 					echo '<td>Non disponible</td>';
 				}
-					
 				?>
 				<td><?= ($order->Status == 1 ? 'Traîtée' : 'En attente') ?></td>
 			</tr>
@@ -42,13 +41,13 @@
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'style/french.cart.json'
+			"url": 'style/french.order.json'
 		},
 	  	"aoColumns": [
 		   {"bSortable": true},
 		   {"bSortable": true},
-		   {"bSortable": true},
-		   {"bSortable": true},
+		   {"bSortable": false},
+		   {"bSortable": false}
 	  	],
 		"processing": false,
 	  	"serverSide": false,

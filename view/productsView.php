@@ -1,4 +1,4 @@
-<?php $this->title = "Produits" ?>
+<?php $this->title = "Articles" ?>
 
 <?php foreach ($products as $product):?>
 	<div class="col-md-2">
@@ -14,7 +14,7 @@
 			<div class="card-action">
 				<p>Prix: <span id="article_price_<?= $product->Id ?>"><?= $product->Price ?></span> €</p>
 				<div class="articleBtn">
-					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;">Voir l'article</a>
+					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Voir l'article</a>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
         <div class="modal-body">
           <div class="card" style="height: 230px;">
 			<div class="center">
-			  <img id="modal_article_img" class="imageClip center" src="img/Warning_Icon.png" />
+			  <img id="modal_article_img" class="imageClip center" src="img/warning_sign.png" />
 			  <input type="hidden" id="modal_article_id" />
               <div class="card-content" style="height: 60px;">
 				<p id="modal_article_name" style="font-size: 16px;"></p>
@@ -130,10 +130,10 @@
 								dataType: 'json',
 								success: function(json) {
 									if (json['code'] == 'success') {	// Ouverture de la modal de succès, y insère le message
-										$("#modal_message_success").html("<span><img src=\"img/Valid_Icon.png\" style=\"width: 7%; height: 7%;\" />&nbsp; L'article <b>" + Name + " x" + Quantity + "</b> a été ajouté au panier.</span>");
+										$("#modal_message_success").html("<span><img src=\"img/success_sign.png\" style=\"width: 7%; height: 7%;\" />&nbsp; L'article <b>" + Name + " x" + Quantity + "</b> a été ajouté au panier.</span>");
 										$("#myModal2").modal("show");
 									} else {							// Ouverture de la modal d'erreur, y insère l'erreur
-										$("#modal_message_error").html("<span><img src=\"img/Danger_Icon.png\" style=\"width: 7%; height: 7%;\" />&nbsp; Une erreur est survenue. Veuillez réesayer ultérieurement.</span>");
+										$("#modal_message_error").html("<span><img src=\"img/error_sign.png\" style=\"width: 7%; height: 7%;\" />&nbsp; Une erreur est survenue. Veuillez réesayer ultérieurement.</span>");
 										$("#myModal3").modal("show");
 									}
 								}
