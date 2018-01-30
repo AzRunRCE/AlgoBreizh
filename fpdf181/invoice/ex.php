@@ -6,7 +6,7 @@ require('invoice.php');
 $orderControler = new OrderControler();
 $tot_prods = array();
 $orderContent = array();
-$orderContent = $orderControler->getOrderContent($_GET['orderId']);
+$orderContent = $orderControler->GetOrder($_GET['orderId'])->Content;
 $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 
