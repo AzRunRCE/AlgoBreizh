@@ -56,8 +56,8 @@ class Router {
 				}
 				else if ($_GET['action'] == 'isUserLogged') {
 					if (isset($_SESSION['customer']->Id)) {
-						$return['firstname'] = $_SESSION['customer']->Firstname;
-						$return['lastname'] = $_SESSION['customer']->Lastname;
+						$return['firstname'] = $_SESSION['customer']->FirstName;
+						$return['lastname'] = $_SESSION['customer']->LastName;
 						$return['code'] = 'logged';
 					} else {
 						$return['code'] = 'notLogged';
