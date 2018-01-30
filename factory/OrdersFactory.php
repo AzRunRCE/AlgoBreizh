@@ -17,7 +17,7 @@ class OrdersFactory extends Model {
 	}
 	return $stack;
    }
-	
+
 	function GetOrder($clientId){
 		$stack = array();
 		$req = 'SELECT * FROM torders WHERE id = ?';
@@ -37,13 +37,13 @@ class OrdersFactory extends Model {
 		}
 	return $stack;
    }
-   
+
    	private function GetContent($OrderId){
 		$content = array();
 		$req = "SELECT quantity, id_tProducts FROM torders_products WHERE id = ?";
         $productsIndexInOrder = $this->executerRequete($req, array($OrderId));
 		$result = $productsIndexInOrder->fetchAll(PDO::FETCH_ASSOC);
-		
+
 		for($i = 0; $i < $productsIndexInOrder->rowCount(); $i++){
 			$req2 = "SELECT * FROM tproducts WHERE id = ?";
 			$productsInfos = $this->executerRequete($req2, array($result[$i]['id_tProducts']));
@@ -56,6 +56,5 @@ class OrdersFactory extends Model {
 		}
 		return $content;
 	}
-
 }
 ?>

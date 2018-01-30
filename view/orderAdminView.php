@@ -17,8 +17,11 @@
 				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
 				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->Id ?>">PDF</a></td>
 				<?php
-					if ($order->Status == 1){
-						echo '<td class="center">Traîtée</td>';
+					if ($order->Status == 1) {
+						echo '<td class="center" color="blue">Traîtée</td>';
+					}
+					else if ($order->Status == 2) {
+						echo '<td class="center" color="red">Annulée</td>';
 					}
 					else {
 						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=switchState&orderId='.$order->Id.'">Valider</a></td>';

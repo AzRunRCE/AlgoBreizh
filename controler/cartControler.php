@@ -28,8 +28,10 @@ class CartControler{
 		$this->cart->clearCart();
 		header('Location: index.php?action=cart');
     }
+
 	public function checkOut() {
 		$this->cart->checkOut();
 		header('Location: index.php');
     }
 }
+?>

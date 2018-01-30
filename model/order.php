@@ -1,7 +1,7 @@
 <?php
 require_once("model.php");
 
-class Order extends Model{
+class Order extends Model {
 	public $Id;
 	public $CreationDate;
 	public $Status;
@@ -15,7 +15,6 @@ class Order extends Model{
 		$this->Content = $_Content;
 	}
 
-	
 // Changement d'état en base de données : 0 = En attente / 1 = Validée
 	public function switchState(){
 		$req = "UPDATE torders SET done = 1 WHERE id = ?";

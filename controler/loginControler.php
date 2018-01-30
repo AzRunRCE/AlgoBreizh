@@ -3,7 +3,7 @@ require 'Factory/CustomersFactory.php';
 require_once 'View/View.php';
 require_once 'Tools/CredentialManager.php';
 
-class LoginControler   {
+class LoginControler {
 	private $customersFactory;
 	private $welcomeCtrl;
     public function __construct() {
@@ -37,12 +37,11 @@ class LoginControler   {
 		}
 		return $randomString;
 	}
-	
+
 	public function sendPassword($username,$email)
 	{
 		$password = $this->generateRandomString(5);
 		$this->customersFactory->SavePassword($username,$password);
-		
 		$subject = 'AlgoBreizh - Inscription';
 		$message = 'Mot de passe: '.$password;
 		$headers = 'From: client@algobreizh.com' . "\r\n" .

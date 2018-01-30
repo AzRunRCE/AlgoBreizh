@@ -1,36 +1,36 @@
 ﻿<?php
 require_once 'Controler/welcomeControler.php';
-require_once 'Controler/orderControler.php';
+require_once 'Controler/loginControler.php';
 require_once 'Controler/productsControler.php';
 require_once 'Controler/productControler.php';
-require_once 'Controler/loginControler.php';
 require_once 'Controler/cartControler.php';
+require_once 'Controler/orderControler.php';
 
 require_once 'View/View.php';
 
 class Router {
     private $welcomeCtrl;
-    private $orderCtrl;
+	private $loginCtrl;
 	private $productsCtrl;
 	private $productCtrl;
-	private $loginCtrl;
-	private $cartCtrl;	
+	private $cartCtrl;
+	private $orderCtrl;
     public function __construct() {
 		session_start();
         $this->welcomeCtrl = new WelcomeControler();
-        $this->orderCtrl = new OrderControler();
+		$this->loginCtrl = new LoginControler();
 		$this->productsCtrl = new ProductsControler();
 		$this->productCtrl = new ProductControler();
-		$this->loginCtrl = new LoginControler();
 		$this->cartCtrl = new CartControler();
+		$this->orderCtrl = new OrderControler();
     }
-    // Route une requête entrante : exécution l'action associée
-    public function routerRequest() { // Pourquoi pas un switch case à la place ?
+    // Route une requête entrante : exécute l'action associée
+    public function routerRequest() {	// Pourquoi pas un switch case à la place ?
         try {
 			// Vérifie si la session du client est connectée
 			$isLogged = isset($_SESSION["customer"]);
 			if (isset($_GET['action'])) {
-				// Affichage de la page d'inscription / authentification
+				// Affiche la page d'authentification / d'inscription
 				if ($_GET['action'] == 'login' or $_GET['action'] == 'register' ) {
 					if (isset($_POST['username']) && isset($_POST['password'])) {
 						$username = $this->getParameter($_POST,'username');
@@ -47,36 +47,37 @@ class Router {
 						$this->loginCtrl->show($_GET['action']);
 					}
 				}
-				// Affichage de la boutique
+				// Affiche la boutique
 				else if ($_GET['action'] == 'products' && $isLogged) {
 					$this->productsCtrl->show();
 				}
-				// Affichage de la modal du produit séléctionné
+				// Affiche la modal de l'article séléctionné
 				else if ($_GET['action'] == 'product' && $isLogged) {
 					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
-				// Déconnexion de la session de l'utilisateur
+				// Déconnecte la session du client
 				else if ($_GET['action'] == 'logout') {
 					session_destroy();
 					header("Location: index.php");
 				}
-				// Affichage des informations de la session connecté
+				// Affiche les informations de la session connectée
 				else if ($_GET['action'] == 'isUserLogged') {
 					if (isset($_SESSION['customer']->Id)) {
 						$return['firstname'] = $_SESSION['customer']->FirstName;
 						$return['lastname'] = $_SESSION['customer']->LastName;
 						$return['code'] = 'logged';
-					} else {
+					}
+					else {
 						$return['code'] = 'notLogged';
 					}
 					echo json_encode($return);
 					exit;
 				}
-				// Affichage du panier
+				// Affiche le panier du client
 				else if ($_GET['action'] == 'cart') {
 					$this->cartCtrl->show();
 				}
-				// Ajout de l'article au panier
+				// Ajoute l'article sélectionné au panier
 				else if ($_GET['action'] == 'addToCart' ) {
 					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
 						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
@@ -88,21 +89,21 @@ class Router {
 					echo json_encode($return);
 					exit;
 				}
-				// Retrait de l'article du panier
+				// Retir l'article sélectionné du panier
 				else if ($_GET['action'] == 'removeFromCart' ) {
 					if (isset($_GET['productId'])) {
 						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
-				// Affichage du message d'erreur
-				else if ($_GET['action'] == 'checkOut' ) {
-					$this->cartCtrl->checkOut();
-				}
-				// Retrait de tous les articles du panier
+				// Retir tous les articles du panier
 				else if ($_GET['action'] == 'clearCart' ) {
 					$this->cartCtrl->clearCart();
 				}
-				// Affichage des commandes
+				// Affiche le message d'erreur spécifique au panier
+				else if ($_GET['action'] == 'checkOut' ) {
+					$this->cartCtrl->checkOut();
+				}
+				// Affiche les commandes du client
 				else if ($_GET['action'] == 'orders' ) {
 					$this->orderCtrl->show($_SESSION['customer']->Id);
 				} else if ($_GET['action'] == 'generatePdf') {
@@ -154,3 +155,4 @@ class Router {
             throw new Exception("Paramètre '$nom' absent");
     }
 }
+?>
