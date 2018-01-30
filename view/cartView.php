@@ -20,7 +20,6 @@
 				<td><?= $product[0]->Price; ?> €</td>
 				<td>&times;<?= $product[1] ?></td>
 				<td class="center" style="width: 30%;">
-					<a href="index.php?action=buyFromCart&productId=<?= $product[0]->Id; ?>" class="btn btn-sm btn-success">Acheter cet article</a> &nbsp; 
 					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->Id; ?>" class="btn btn-sm btn-danger">Supprimer</a>
 				</td>
 			</tr>

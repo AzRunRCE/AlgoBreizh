@@ -19,7 +19,7 @@ class OrderControler {
 			$view = new View("OrderAdmin");
 			$view->generate(array('orders' => $orders));
 		}else {
-			$orders = $this->orderFactory->getOrders($idClient);
+			$orders = $this->orderFactory->GetOrdersByClient($idClient);
 			$view = new View("Order");
 			$view->generate(array('orders' => $orders));
 		}
@@ -30,14 +30,13 @@ class OrderControler {
         include('fpdf181/invoice/ex.php');
     }
 
-    public function getOrderContent($orderId){
-        $order = new Order($orderId, "", "", "");
-        $orderInfos = $order->getContent();
-        return $orderInfos;
+    public function GetOrder($orderId){
+        $order = $this->orderFactory->GetOrder($orderId);
+        return $order;
     }
 
 	 public function switchState($orderId){
-        $order = new Order($orderId, "", "", "");
+        $order = new Order($orderId, "", "", "",null);
         $orderInfos = $order->switchState();
 		return true;
     }
