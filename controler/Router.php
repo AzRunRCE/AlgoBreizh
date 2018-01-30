@@ -74,11 +74,11 @@ class Router {
 					exit;
 				}
 				// Affiche le panier du client
-				else if ($_GET['action'] == 'cart') {
+				else if ($_GET['action'] == 'cart' && $isLogged) {
 					$this->cartCtrl->show();
 				}
 				// Ajoute l'article sélectionné au panier
-				else if ($_GET['action'] == 'addToCart' ) {
+				else if ($_GET['action'] == 'addToCart' && $isLogged) {
 					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
 						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
 						$return['code'] = 'success';
@@ -90,21 +90,21 @@ class Router {
 					exit;
 				}
 				// Retir l'article sélectionné du panier
-				else if ($_GET['action'] == 'removeFromCart' ) {
+				else if ($_GET['action'] == 'removeFromCart' && $isLogged) {
 					if (isset($_GET['productId'])) {
 						$this->cartCtrl->removeFromCart($this->getParameter($_GET,'productId'));
 					}
 				}
 				// Retir tous les articles du panier
-				else if ($_GET['action'] == 'clearCart' ) {
+				else if ($_GET['action'] == 'clearCart' && $isLogged) {
 					$this->cartCtrl->clearCart();
 				}
 				// Affiche le message d'erreur spécifique au panier
-				else if ($_GET['action'] == 'checkOut' ) {
+				else if ($_GET['action'] == 'checkOut' && $isLogged) {
 					$this->cartCtrl->checkOut();
 				}
 				// Affiche les commandes du client
-				else if ($_GET['action'] == 'orders' ) {
+				else if ($_GET['action'] == 'orders' && $isLogged) {
 					$this->orderCtrl->show($_SESSION['customer']->Id);
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));

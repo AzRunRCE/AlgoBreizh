@@ -1,4 +1,5 @@
 <?php $this->title = "Accueil"; ?>
+
 <div class="container">
   <div class="row">
 	<h3>Projets Algo<b>Breizh</b></h3>

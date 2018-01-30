@@ -1,4 +1,4 @@
-<?php $this->title = "Commandes"; ?>
+<?php $this->title = "Commandes clients"; ?>
 
   <div class="row">
 	<table id="orderTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -7,7 +7,7 @@
 				<th>Date</th>    
 				<th>N° Commande</th>
 				<th>Justificatif</th>
-				<th>Status</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,10 +18,10 @@
 				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->Id ?>">PDF</a></td>
 				<?php
 					if ($order->Status == 1) {
-						echo '<td class="center" color="blue">Traîtée</td>';
+						echo '<td class="center" style="color: green;">Traîtée</td>';
 					}
 					else if ($order->Status == 2) {
-						echo '<td class="center" color="red">Annulée</td>';
+						echo '<td class="center" style="color: red;">Annulée</td>';
 					}
 					else {
 						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=switchState&orderId='.$order->Id.'">Valider</a></td>';
