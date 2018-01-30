@@ -41,7 +41,7 @@ class LoginControler   {
 	public function sendPassword($username,$email)
 	{
 		$password = $this->generateRandomString(5);
-		$this->client->savePassword($username,$password);
+		$this->customersFactory->SavePassword($username,$password);
 		
 		$subject = 'AlgoBreizh - Inscription';
 		$message = 'Mot de passe: '.$password;

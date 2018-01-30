@@ -37,7 +37,7 @@ class Router {
 						$password =	$this->getParameter($_POST,'password');
 						$this->loginCtrl->login($username,$password);
 					}
-					else if($_POST['username'] && $_POST['email'] ) {
+					else if(isset($_POST['username']) && isset($_POST['email']) ) {
 						$username = $this->getParameter($_POST,'username');
 						$email =	$this->getParameter($_POST,'email');
 						$this->loginCtrl->sendPassword($username,$email);	
@@ -109,7 +109,7 @@ class Router {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'switchState') {
 					$this->orderCtrl->switchState($this->getParameter($_GET, 'orderId'));
-					$this->orderCtrl->show();
+					$this->orderCtrl->show($_SESSION['customer']->Id);
 				}
 				else {
 					$this->welcomeCtrl->show();
