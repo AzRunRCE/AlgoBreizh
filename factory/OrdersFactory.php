@@ -23,7 +23,6 @@ class OrdersFactory extends Model {
 		$req = 'SELECT * FROM torders WHERE id = ?';
 		$row = $this->executerRequete($req,array($clientId))->fetch();
 		$order = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients'],$this->GetContent($row['id']));
-	
 		return $order;
    }
 
