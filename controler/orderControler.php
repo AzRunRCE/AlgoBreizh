@@ -3,23 +3,23 @@ require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
 require_once 'Tools/CredentialManager.php';
-require_once 'factory/OrdersFactory.php';
+require_once 'factory/OrderManager.php';
 
 class OrderControler {
     private $order;
 
     public function __construct() {
-        $this->orderFactory = new OrdersFactory();    
+        $this->orderManager = new OrderManager();    
     }
     // Affiche les détails sur un billet
     public function show($idClient) {
 		if (UserIsAdmin()){
-			$orders = $this->orderFactory->GetAllOrders();
+			$orders = $this->orderManager->GetAllOrders();
 			$view = new View("OrderAdmin");
 			$view->generate(array('orders' => $orders));
 		}
 		else {
-			$orders = $this->orderFactory->GetOrdersByClient($idClient);
+			$orders = $this->orderManager->GetOrdersByClient($idClient);
 			$view = new View("Order");
 			$view->generate(array('orders' => $orders));
 		}
@@ -31,14 +31,12 @@ class OrderControler {
     }
 
     public function GetOrder($orderId){
-        $order = $this->orderFactory->GetOrder($orderId);
+        $order = $this->orderManager->GetOrder($orderId);
         return $order;
     }
 
-	 public function switchState($orderId){
-        $order = new Order($orderId, "", "", "",null);
-        $orderInfos = $order->switchState();
-		return true;
+	 public function ValidOrder($orderId){
+        $this->orderManager->ValidOrder($orderId);
     }
 }
 ?>
