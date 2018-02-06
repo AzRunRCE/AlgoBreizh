@@ -2,8 +2,7 @@
 require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
-require_once 'Tools/CredentialManager.php';
-require_once 'factory/OrderManager.php';
+require_once 'Manager/OrderManager.php';
 
 class OrderControler {
     private $order;

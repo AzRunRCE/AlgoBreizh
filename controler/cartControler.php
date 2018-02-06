@@ -1,13 +1,14 @@
 <?php
-require 'Model/Cart.php';
 require_once 'View/View.php';
 require_once 'Tools/CredentialManager.php';
+require_once 'manager/CartManager.php';
+
 
 class CartControler{
 	private $cart;
 	private $welcomeCtrl;
     public function __construct() {
-		$this->cart = new Cart();
+		$this->cart = new CartManager();
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
@@ -31,7 +32,7 @@ class CartControler{
 
 	public function checkOut() {
 		$this->cart->checkOut();
-		header('Location: index.php');
+		header('Location: index.php?action=orders');
     }
 }
 ?>

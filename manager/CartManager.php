@@ -1,7 +1,7 @@
 <?php
-require_once("model.php");
+require_once("Model/model.php");
 
-class Cart extends Model {
+class CartManager extends Model {
 	// Renvoie la liste des commandes associés à un client
 	private $productsFactory;
 	public function __construct() {
@@ -11,7 +11,7 @@ class Cart extends Model {
 		}
     }
 
-	public function getCart() {
+	public function GetCart() {
 		return $_SESSION['cart'];
 	}
 
@@ -29,7 +29,7 @@ class Cart extends Model {
 		return true;
 	}
 
-	public function removeFromCart($productId) {
+	public function RemoveFromCart($productId) {
 		for ($i=0; $i < count($_SESSION['cart']);$i++) {
 			if ($_SESSION['cart'][$i][0]->Id == $productId) {
 				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] - 1;
@@ -41,12 +41,14 @@ class Cart extends Model {
 		return true;
 	}
 
-	public function clearCart() {
+	public function ClearCart() {
 		array_splice($_SESSION['cart'], 0, count($_SESSION['cart']));
 		return true;
 	}
 
-    public function checkOut() {
+		
+	//Enregistre un object cart en tant que commande en base.
+    public function CheckOut() {
 		$req = "INSERT INTO tOrders (creationDate,done,id_tClients) VALUES (?,0,?)";
 		$date = date(DATE_W3C);
 		$this->executerRequete($req, array($date,$_SESSION['customer']->Id));
@@ -57,5 +59,6 @@ class Cart extends Model {
 		$this->clearCart();
 		return true;
 	}
+
 }
 ?>

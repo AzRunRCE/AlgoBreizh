@@ -2,7 +2,7 @@
 require_once("Model/model.php");
 require_once('Model/Customer.php');
 
-class CustomersFactory extends Model {
+class CustomerManager extends Model {
 	// Renvoie la liste des commandes associés à un client
 	public function GetCustomerByLogin($username,$password){
 		$req = 'SELECT * FROM tclients WHERE username=? AND password=?';
