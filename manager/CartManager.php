@@ -15,7 +15,7 @@ class CartManager extends Model {
 		return $_SESSION['cart'];
 	}
 
-	public function addToCart($productId, $quantity) {
+	public function AddToCart($productId, $quantity) {
 		$product = $this->productsFactory->GetProductById($productId);
 		$find = false;
 		for ($i=0; $i < count($_SESSION['cart']);$i++){

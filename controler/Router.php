@@ -106,6 +106,13 @@ class Router {
 				// Affiche les commandes du client
 				else if ($_GET['action'] == 'orders' && $isLogged) {
 					$this->orderCtrl->show($_SESSION['customer']->Id);
+				}
+				else if ($_GET['action'] == 'order' && $isLogged) {
+					if (isset($_GET['order'])) {
+						$order = $this->getParameter($_GET,'order');
+						$this->orderCtrl->show($_SESSION['customer']->Id);	
+					}
+						
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'valid') {

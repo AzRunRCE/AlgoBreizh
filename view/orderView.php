@@ -1,44 +1,43 @@
-<?php $this->title = "Mes commandes"; ?>
+<?php $this->title = "Panier"; ?>
 
   <div class="row">
-	<table id="orderTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
 			<tr>
-				<th>Date</th>    
-				<th>N° Commande</th>
-				<th>Facture</th>
-				<th>Statut</th>
+				<th></th>    
+				<th>Article</th>    
+				<th>Prix (unitaire)</th>
+				<th>Quantité</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($orders as $order): ?>
+			<?php $totalPrice = 0; ?>
+			<?php foreach ($cart as $product): ?>
 			<tr>
-				<td><?= $order->CreationDate ?></td>
-				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
-				<?php
-					if ($order->Status == 1) {
-						echo '<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId='.$order->Id.'">PDF</a></td>';
-						echo '<td><span style="color: green;">Traîtée</span></td>';
-					}
-					else if ($order->Status == 2) {
-						echo '<td>Non disponible</td>';
-						echo '<td><span style="color: red;">Annulée</span></td>';
-					}
-					else {
-						echo '<td>Non disponible</td>';
-						echo '<td><span style="color: orange;">En attente</span></td>';
-					}
-				?>
+				<td class="center"><img id="article_img_<?= $product[0]->Id ?>" height="36" width="36" src="thumbnail/<?= $product[0]->Reference; ?>.jpg"></td>
+				<td><?= $product[0]->Name; ?></td>
+				<td><?= $product[0]->Price; ?> €</td>
+				<td>&times;<?= $product[1] ?></td>
 			</tr>
+			<?php $totalPrice += $product[0]->Price*$product[1]; ?>
 			<?php endforeach; ?>
 		</tbody>
+		<tr id="actionsBtn" class="center hidden">
+			<td colspan="5" id="table-footer">
+				<br />
+				<p style="font-size: 16px;">Prix total à payer: <b style="color: red;"><?= $totalPrice ?> €</b></p>
+				<br />
+				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
+				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
+			</td>
+		</tr>
 	</table>
   </div>
 
 <script>
   $(document).ready(function() {
     //Paramètres du DataTable
-	$("#orderTable").DataTable({
+	$("#cartTable").DataTable({
 		"stateSave": true,
 		"ordering": false,
 		"deferRender": false,
@@ -46,16 +45,24 @@
   		"bLengthChange": false,
 		"responsive": true,
 		"language": { 
-			"url": 'style/french.order.json'
+			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
 		   {"bSortable": true},
 		   {"bSortable": true},
-		   {"bSortable": false},
-		   {"bSortable": false}
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true}
 	  	],
-		"processing": false,
+		"processing": true,
 	  	"serverSide": false,
 	});
+	setTimeout(function(){
+	if ($(".dataTables_empty")[0]) {
+	  //$(".dataTables_info").addClass("hidden");
+	  //$(".pagination").addClass("hidden");
+	} else {
+	  $("#actionsBtn").removeClass("hidden");
+	}}, 700);
   });
 </script>
