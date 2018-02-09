@@ -109,8 +109,9 @@ class Router {
 				}
 				else if ($_GET['action'] == 'order' && $isLogged) {
 					if (isset($_GET['order'])) {
-						$order = $this->getParameter($_GET,'order');
-						$this->orderCtrl->show($_SESSION['customer']->Id);	
+						$orderId = $this->getParameter($_GET,'order');
+						
+						$this->orderCtrl->showOrder($_SESSION['customer']->Id,$orderId);	
 					}
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));

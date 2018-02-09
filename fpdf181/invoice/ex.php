@@ -1,12 +1,12 @@
 <?php
-require_once 'Controler/orderControler.php';
+require_once 'Manager/OrderManager.php';
 require('invoice.php');
 
 //Informations sur la commande
-$orderControler = new OrderControler();
+$orderManager = new OrderManager();
 $tot_prods = array();
 $orderContent = array();
-$orderContent = $orderControler->GetOrder($_GET['orderId'])->Content;
+$orderContent = $orderManager->GetOrder($_GET['orderId'])->Content;
 $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 

@@ -24,18 +24,19 @@ class OrderControler {
 			$view->generate(array('orders' => $orders));
 		}
     }
-    
+
+    public function showOrder($idClient, $idOrder){
+            $Order = $this->orderManager->GetOrder($idOrder);
+			$view = new View("Order");
+		    $view->generate(array('Order' => $Order));
+    }
+
     public function generatePDF($idOrder){
         define('FPDF_FONTPATH','fpdf181/font');
         include('fpdf181/invoice/ex.php');
     }
 
-    public function GetOrder($orderId){
-        $order = $this->orderManager->GetOrder($orderId);
-        return $order;
-    }
-
-	 public function ValidOrder($orderId){
+	public function ValidOrder($orderId){
         $this->orderManager->ValidOrder($orderId);
     }
 }

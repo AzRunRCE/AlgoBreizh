@@ -1,4 +1,4 @@
-<?php $this->title = "Panier"; ?>
+<?php $this->title = "Commande N°".str_pad($Order->Id, 8, '0', STR_PAD_LEFT); ?>
 
   <div class="row">
 	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -11,25 +11,25 @@
 			</tr>
 		</thead>
 		<tbody>
+			
 			<?php $totalPrice = 0; ?>
-			<?php foreach ($cart as $product): ?>
+			<?php foreach ($Order->Content as $product): ?>
 			<tr>
-				<td class="center"><img id="article_img_<?= $product[0]->Id ?>" height="36" width="36" src="thumbnail/<?= $product[0]->Reference; ?>.jpg"></td>
-				<td><?= $product[0]->Name; ?></td>
-				<td><?= $product[0]->Price; ?> €</td>
-				<td>&times;<?= $product[1] ?></td>
+				<td class="center"><img id="article_img_<?= $product['reference']; ?>" height="36" width="36" src="thumbnail/<?= $product['reference']; ?>.jpg"></td>
+				<td><?= $product['name']; ?></td>
+				<td><?= $product['price'] ?> €</td>
+				<td><?= $product[0]['quantity'];?></td>
+				
 			</tr>
-			<?php $totalPrice += $product[0]->Price*$product[1]; ?>
+		
 			<?php endforeach; ?>
 		</tbody>
 		<tr id="actionsBtn" class="center hidden">
 			<td colspan="5" id="table-footer">
 				<br />
-				<p style="font-size: 16px;">Prix total à payer: <b style="color: red;"><?= $totalPrice ?> €</b></p>
+				<p style="font-size: 16px;">Prix total: <b style="color: red;"><?= $totalPrice ?> €</b></p>
 				<br />
-				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
-				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
-			</td>
+				</td>
 		</tr>
 	</table>
   </div>

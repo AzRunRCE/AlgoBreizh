@@ -24,10 +24,10 @@ class OrderManager extends Model {
 
    // Retourne un object de type Order
 	function GetOrder($orderId){
-		$stack = array();
 		$req = 'SELECT * FROM torders WHERE id = ?';
 		$row = $this->executerRequete($req,array($orderId))->fetch();
-		$order = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients'],$this->GetContent($row['id']));
+		$order = new Order($row['id'],$row['creationDate'],$row['done'],$row['id_tClients'],$this->GetContent($orderId));
+		
 		return $order;
     }
 
@@ -45,11 +45,11 @@ class OrderManager extends Model {
 
 	// Retourne le contenu de la commande sous forme de tableau
    	private function GetContent($OrderId){
+		   
 		$content = array();
 		$req = "SELECT quantity, id_tProducts FROM torders_products WHERE id = ?";
         $productsIndexInOrder = $this->executerRequete($req, array($OrderId));
 		$result = $productsIndexInOrder->fetchAll(PDO::FETCH_ASSOC);
-
 		for($i = 0; $i < $productsIndexInOrder->rowCount(); $i++){
 			$req2 = "SELECT * FROM tproducts WHERE id = ?";
 			$productsInfos = $this->executerRequete($req2, array($result[$i]['id_tProducts']));
@@ -60,6 +60,7 @@ class OrderManager extends Model {
 				$content[$i] = $result2;
 			}
 		}
+		
 		return $content;
 	}
 
