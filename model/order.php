@@ -3,13 +3,14 @@ require_once("model.php");
 
 class Order  {
 	private $_id;
-	public $_creationDate;
-	public $_state;
-	public $_ownerId;
-	public $_content;
+	private $_creationDate;
+	private $_state;
+	private $_clientId;
+	private $_content;
 
     public function __construct($data,$content) {
 		$this->hydrate($data);
+		$this->setContent($content);
 	}
 
 	public function hydrate(array $data)
@@ -30,7 +31,7 @@ class Order  {
 	public function id() { return $this->_id; }
 	public function creationDate() { return $this->_creationDate; }
 	public function state() { return $this->_state; }
-	public function ownerId() { return $this->_ownerId; }
+	public function clientId() { return $this->_clientId; }
 	public function content() { return $this->_content; }
 
  	public function setId($id)
@@ -63,11 +64,11 @@ class Order  {
 		}
 	}
 
-	public function setOwnerId($id){
+	public function setClientId($id){
 		$id = (int) $id;
 		if ($id > 0)
 		{
-			$this->_ownerId = (int) $id;
+			$this->_clientId = (int) $id;
 		}
 		else {
 			throw new Exception("ownerId property can't be 0");

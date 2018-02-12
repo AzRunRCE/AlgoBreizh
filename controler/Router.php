@@ -111,7 +111,7 @@ class Router {
 					if (isset($_GET['order'])) {
 						$orderId = $this->getParameter($_GET,'order');
 						
-						//$this->ordersCtrl->showOrder($_SESSION['customer']->Id,$orderId);	
+						$this->ordersCtrl->showOrder($orderId);	
 					}
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->ordersCtrl->generatePDF($this->getParameter($_GET, 'orderId'));

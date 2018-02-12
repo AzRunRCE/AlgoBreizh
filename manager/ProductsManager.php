@@ -7,6 +7,7 @@ class ProductsManager extends Model {
 	public function get($id){
 		$req = 'SELECT * FROM tproducts WHERE id=?';
 		$row = $this->executerRequete($req, array($id))->fetch();
+		print_r($row);
 		return new Product($row);
     }
 

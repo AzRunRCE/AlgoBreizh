@@ -13,7 +13,7 @@ class OrdersManager extends Model {
 	// Retourne toutes les commande d'un client donné
 	function getListForClient($clientId){
 		$stack = array();
-		$req = 'SELECT * FROM torders WHERE id_tClients = ? ORDER BY creationDate DESC';
+		$req = 'SELECT * FROM torders WHERE clientId = ? ORDER BY creationDate DESC';
 		$result = $this->executerRequete($req,array($clientId))->fetchAll();
 		foreach ($result as $row){
 			$itm = new Order($row, $this->getContent($row['id']));
@@ -24,9 +24,9 @@ class OrdersManager extends Model {
 
    // Retourne un object de type Order
 	function get($orderId){
-		$req = 'SELECT * FROM torders WHERE id = ?';
-		$row = $this->executerRequete($req,array($orderId))->fetch();
-		$order = new Order($row,$this->getContent($row['id']));
+		
+		$row = $this->executerRequete('SELECT * FROM torders WHERE id = ?', array($orderId))->fetch();
+		$order = new Order($row, $this->getContent($row['id']));
 		return $order;
     }
 
@@ -45,16 +45,18 @@ class OrdersManager extends Model {
 	// Retourne le contenu de la commande sous forme de tableau
    	private function getContent($OrderId){
 		$content = array();
-		$req = "SELECT quantity, id_tProducts FROM torders_products WHERE id = ?";
+		$req = "SELECT quantity, productId FROM torders_products WHERE id = ?";
         $productsIndexInOrder = $this->executerRequete($req, array($OrderId));
 		$result = $productsIndexInOrder->fetchAll(PDO::FETCH_ASSOC);
 		for($i = 0; $i < $productsIndexInOrder->rowCount(); $i++){
 			$req2 = "SELECT * FROM tproducts WHERE id = ?";
-			$res =	$this->executerRequete($req, array($OrderId));
-			$product = $productsInfos->fetch(PDO::FETCH_ASSOC);
-			array_push($content,new Product($product));
+			$productsInfos = $this->executerRequete($req2, array($result[$i]['productId']));
+			$result2 = $productsInfos->fetch(PDO::FETCH_ASSOC);
+			for ($j = 0; $j < $productsInfos->rowCount(); $j++){
+				$result2[$j]['quantity'] = $result[$i]['quantity'];
+				$content[$i] = $result2;
+			}
 		}
-		
 		return $content;
 	}
 

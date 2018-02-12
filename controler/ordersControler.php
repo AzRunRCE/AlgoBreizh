@@ -25,10 +25,10 @@ class OrdersControler {
 		}
     }
 
-    public function showOrder($idOrder){
-            $Order = $this->ordersManager->get($idOrder);
-			$view = new View("Order");
-		    $view->generate(array('Order' => $Order));
+    public function showOrder($OrderId){
+            $order = $this->ordersManager->get($OrderId);
+		    $view = new View("Order");
+		    $view->generate(array('Order' => $order));
     }
 
     public function generatePDF($idOrder){
