@@ -49,12 +49,12 @@ class CartManager extends Model {
 		
 	//Enregistre un object cart en tant que commande en base.
     public function CheckOut() {
-		$req = "INSERT INTO tOrders (creationDate,done,id_tClients) VALUES (?,0,?)";
+		$req = "INSERT INTO tOrders (creationDate,state,clientId) VALUES (?,0,?)";
 		$date = date(DATE_W3C);
-		$this->executerRequete($req, array($date,$_SESSION['customer']->Id));
+		$this->executerRequete($req, array($date,$_SESSION['customer']->id()));
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
-			$productReq = "INSERT INTO torders_products (quantity,id,id_tProducts) VALUES (?,LAST_INSERT_ID(),?)";
-			$this->executerRequete($productReq, array($_SESSION['cart'][$i][1],$_SESSION['cart'][$i][0]->Id));
+			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
+			$this->executerRequete($productReq, array($_SESSION['cart'][$i][1],$_SESSION['cart'][$i][0]->id()));
 		}
 		$this->clearCart();
 		return true;

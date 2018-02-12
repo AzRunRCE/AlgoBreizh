@@ -62,12 +62,12 @@ $y    = 109;
  - Prix unitaire hors taxes
  - Quantité commandée de cet item
  */
-for($i = 0; $i < sizeof($orderContent); $i++){
+for($i = 0; $i < count($orderContent); $i++){
 
-    $reference = strval($orderContent[$i]['reference']);
-    $name = utf8_decode($orderContent[$i]['name']);
-    $price = floatval($orderContent[$i]['price']);
-    $quantity = floatval($orderContent[$i][0]['quantity']);
+    $reference = strval($orderContent[$i]->reference());
+    $name = utf8_decode($orderContent[$i]->name());
+    $price = floatval($orderContent[$i]->price());
+    $quantity = floatval($orderContent[$i]->quantity());
 
     // Affichage des informations de la commande sur l'item courant
     $line = array( 

@@ -53,15 +53,13 @@ class Order  {
 	
 	public function setState($state){
 		$state = (int) $state;
-		if ($state = 0 || $state = 1){
+		if ($state =+ 0 || $state == 1){
 			$this->_state = $state;
 		}
 	}
 
 	public function setContent($content){
-		if (is_array($content)){
 			$this->_content = $content;
-		}
 	}
 
 	public function setClientId($id){

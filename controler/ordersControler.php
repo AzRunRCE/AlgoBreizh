@@ -37,7 +37,9 @@ class OrdersControler {
     }
 
 	public function ValidOrder($orderId){
-        $this->ordersManager->ValidOrder($orderId);
+        $order = $this->ordersManager->get($orderId);
+        $order->setState(1);
+        $this->ordersManager->update($order);
     }
 }
 ?>

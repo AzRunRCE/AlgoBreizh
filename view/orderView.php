@@ -15,13 +15,12 @@
 			<?php $totalPrice = 0; ?>
 			<?php foreach ($Order->content() as $product): ?>
 			<tr>
-				<td class="center"><img id="article_img_<?= $product->reference(); ?>" height="36" width="36" src="thumbnail/<?= $product->reference(); ?>.jpg"></td>
-				<td><?= $product->name(); ?></td>
-				<td><?= $product->price(); ?> €</td>
-			<td><?= $product[0]['quantity'];?></td>
-				
+				<td class="center"><img id="article_img_<?= $product->reference(); ?>" height="36" width="36" src="thumbnail/<?= $product->reference() ?>.jpg"></td>
+				<td><?= $product->name() ?></td>
+				<td><?= $product->price() ?> €</td>
+				<td>x<?= $product->quantity() ?> </td>
 			</tr>
-			<?php $totalPrice += $product[0]->price()*$product[1]; ?>
+			<?php $totalPrice += $product->price()*$product->quantity(); ?>
 			<?php endforeach; ?>
 		</tbody>
 		<tr id="actionsBtn" class="center hidden">

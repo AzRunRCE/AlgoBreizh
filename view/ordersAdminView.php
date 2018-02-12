@@ -13,18 +13,20 @@
 		<tbody>
 			<?php foreach ($orders as $order): ?>
 			<tr>
-				<td><?= $order->CreationDate ?></td>
-				<td><?= str_pad($order->Id, 8, '0', STR_PAD_LEFT) ?></td>
-				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->Id ?>">PDF</a></td>
+				<td><?= $order->creationDate() ?></td>
+				<td><?php 		$idFormated = str_pad($order->Id(), 8, '0', STR_PAD_LEFT);
+					echo '<a href="http://localhost/AlgoBreizh/index.php?action=order&order='.$order->Id().'".</a>'.$idFormated.'</td>';
+					?>
+				<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId=<?= $order->id() ?>">PDF</a></td>
 				<?php
-					if ($order->Status == 1) {
+					if ($order->state() == 1) {
 						echo '<td class="center" style="color: green;">Traîtée</td>';
 					}
-					else if ($order->Status == 2) {
+					else if ($order->state() == 2) {
 						echo '<td class="center" style="color: red;">Annulée</td>';
 					}
 					else {
-						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=valid&orderId='.$order->Id.'">Valider</a></td>';
+						echo '<td class="center"><a class="btn btn-sm btn-success" href="http://localhost/AlgoBreizh/index.php?action=valid&orderId='.$order->id().'">Valider</a></td>';
 					}		
 				?>
 			</tr>

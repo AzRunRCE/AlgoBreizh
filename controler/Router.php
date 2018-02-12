@@ -116,10 +116,8 @@ class Router {
 				} else if ($_GET['action'] == 'generatePdf') {
 					$this->ordersCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'valid') {
-					$order = $this->OrdersManager->get($_GET['action'] );
-					$order.setState(1);
-					$this->ordersManager->update($order);
-					
+					$this->ordersCtrl->ValidOrder($this->getParameter($_GET, 'orderId'));
+					$this->ordersCtrl->show($_SESSION['customer']->id());
 				}
 				else {
 					$this->welcomeCtrl->show();
