@@ -15,15 +15,15 @@
 			<?php $totalPrice = 0; ?>
 			<?php foreach ($cart as $product): ?>
 			<tr>
-				<td class="center"><img id="article_img_<?= $product[0]->Id ?>" height="36" width="36" src="thumbnail/<?= $product[0]->Reference; ?>.jpg"></td>
-				<td><?= $product[0]->Name; ?></td>
-				<td><?= $product[0]->Price; ?> €</td>
+				<td class="center"><img id="article_img_<?= $product[0]->id() ?>" height="36" width="36" src="thumbnail/<?= $product[0]->reference(); ?>.jpg"></td>
+				<td><?= $product[0]->name(); ?></td>
+				<td><?= $product[0]->price(); ?> €</td>
 				<td>&times;<?= $product[1] ?></td>
 				<td class="center" style="width: 30%;">
-					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->Id; ?>" class="btn btn-sm btn-danger">Supprimer</a>
+					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->id(); ?>" class="btn btn-sm btn-danger">Supprimer</a>
 				</td>
 			</tr>
-			<?php $totalPrice += $product[0]->Price*$product[1]; ?>
+			<?php $totalPrice += $product[0]->price()*$product[1]; ?>
 			<?php endforeach; ?>
 		</tbody>
 		<tr id="actionsBtn" class="center hidden">

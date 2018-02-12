@@ -3,19 +3,19 @@ require_once 'Controler/welcomeControler.php';
 require_once 'Tools/CredentialManager.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
-require_once 'Factory/ProductsFactory.php';
+require_once 'Manager/ProductsManager.php';
 
 class ProductsControler   {
-    private $productsFactory;
+    private $productsManager;
     public function __construct() {
-        $this->productsFactory = new ProductsFactory();    
+        $this->productsManager = new ProductsManager();    
     }
-    // Affiche les détails sur un billet
+    // Affiche les produits
     public function show() {
-        $products = $this->productsFactory->GetProducts();
+        $products = $this->productsManager->getList();
         $view = new View("products");
         $view->generate(array('products' => $products));
-	
+       
     }
 }
 ?>

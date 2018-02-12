@@ -13,16 +13,16 @@
 		<tbody>
 			<?php foreach ($orders as $order): ?>
 			<tr>
-				<td><?= $order->CreationDate ?></td>
+				<td><?= $order->creationDate() ?></td>
 				<td>
 				<?php
-					$idFormated = str_pad($order->Id, 8, '0', STR_PAD_LEFT);
-					echo '<a href="http://localhost/AlgoBreizh/index.php?action=order&order='.$order->Id.'".</a>'.$idFormated.'</td>';
-					if ($order->Status == 1) {
-						echo '<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId='.$order->Id.'">PDF</a></td>';
+					$idFormated = str_pad($order->Id(), 8, '0', STR_PAD_LEFT);
+					echo '<a href="http://localhost/AlgoBreizh/index.php?action=order&order='.$order->Id().'".</a>'.$idFormated.'</td>';
+					if ($order->state() == 1) {
+						echo '<td><a href="http://localhost/AlgoBreizh/index.php?action=generatePdf&orderId='.$order->id().'">PDF</a></td>';
 						echo '<td><span style="color: green;">Traîtée</span></td>';
 					}
-					else if ($order->Status == 2) {
+					else if ($order->state() == 2) {
 						echo '<td>Non disponible</td>';
 						echo '<td><span style="color: red;">Annulée</span></td>';
 					}

@@ -9,7 +9,7 @@
 	}
 	function UserIsAdmin(){
 		if(isset($_SESSION["customer"])){
-			if($_SESSION["customer"]->AdminRight == 1){		
+			if($_SESSION["customer"]->UserRights() == 1){		
 				return true;
 			}
 		}

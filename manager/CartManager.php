@@ -3,9 +3,9 @@ require_once("Model/model.php");
 
 class CartManager extends Model {
 	// Renvoie la liste des commandes associés à un client
-	private $productsFactory;
+	private $productsManager;
 	public function __construct() {
-		$this->productsFactory = new ProductsFactory();    
+		$this->productsManager = new ProductsManager();    
 		if (!isset($_SESSION['cart'])){
 			$_SESSION['cart']=array();
 		}
@@ -16,11 +16,11 @@ class CartManager extends Model {
 	}
 
 	public function AddToCart($productId, $quantity) {
-		$product = $this->productsFactory->GetProductById($productId);
+		$product = $this->productsManager->get($productId);
 		$find = false;
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
 
-			if ($_SESSION['cart'][$i][0]->Id == $productId) {
+			if ($_SESSION['cart'][$i][0]->id() == $productId) {
 				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] + 1;
 				return true;
 			}
@@ -31,7 +31,7 @@ class CartManager extends Model {
 
 	public function RemoveFromCart($productId) {
 		for ($i=0; $i < count($_SESSION['cart']);$i++) {
-			if ($_SESSION['cart'][$i][0]->Id == $productId) {
+			if ($_SESSION['cart'][$i][0]->id() == $productId) {
 				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] - 1;
 				if ($_SESSION['cart'][$i][1] == 0) {
 					array_splice($_SESSION['cart'], $i, 1);

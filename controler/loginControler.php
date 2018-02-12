@@ -1,13 +1,13 @@
 <?php
-require 'manager/CustomerManager.php';
+require 'manager/CustomersManager.php';
 require_once 'View/View.php';
 require_once 'Tools/CredentialManager.php';
 
 class LoginControler {
-	private $CustomerManager;
+	private $CustomersManager;
 	private $welcomeCtrl;
     public function __construct() {
-		 $this->CustomerManager = new CustomerManager();
+		 $this->CustomersManager = new CustomersManager();
 		 $this->welcomeCtrl = new WelcomeControler();
     }
 	// Affiche la liste de tous les billets du blog
@@ -18,8 +18,8 @@ class LoginControler {
 
 	public function login($username,$password) {
 		$password = sha1($password);
-		$customer = $this->CustomerManager->GetCustomerByLogin($username,$password);
-		if ($customer->Password == $password){
+		$customer = $this->CustomersManager->get($username);
+		if ($customer->Password() == $password){
 			$_SESSION['customer'] = $customer;
 			$this->welcomeCtrl->show();
 		}
@@ -40,7 +40,7 @@ class LoginControler {
 	public function sendPassword($username,$email)
 	{
 		$password = $this->generateRandomString(5);
-		$this->CustomerManager->SavePassword($username,$password);
+		$this->CustomersManager->SavePassword($username,$password);
 		$subject = 'AlgoBreizh - Inscription';
 		$message = 'Mot de passe: '.$password;
 		$headers = 'From: client@algobreizh.com' . "\r\n" .

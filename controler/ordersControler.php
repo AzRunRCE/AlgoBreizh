@@ -2,31 +2,31 @@
 require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
-require_once 'Manager/OrderManager.php';
+require_once 'Manager/OrdersManager.php';
 require_once 'Tools/CredentialManager.php';
 
-class OrderControler {
-    private $order;
+class OrdersControler {
+    private $ordersManager;
 
     public function __construct() {
-        $this->orderManager = new OrderManager();    
+        $this->ordersManager = new OrdersManager();    
     }
     // Affiche les détails sur un billet
     public function show($idClient) {
 		if (UserIsAdmin()){
-			$orders = $this->orderManager->GetAllOrders();
+			$orders = $this->ordersManager->getList();
 			$view = new View("OrdersAdmin");
 			$view->generate(array('orders' => $orders));
 		}
 		else {
-			$orders = $this->orderManager->GetOrdersByClient($idClient);
+			$orders = $this->ordersManager->getListForClient($idClient);
 			$view = new View("Orders");
 			$view->generate(array('orders' => $orders));
 		}
     }
 
-    public function showOrder($idClient, $idOrder){
-            $Order = $this->orderManager->GetOrder($idOrder);
+    public function showOrder($idOrder){
+            $Order = $this->ordersManager->get($idOrder);
 			$view = new View("Order");
 		    $view->generate(array('Order' => $Order));
     }
@@ -37,7 +37,7 @@ class OrderControler {
     }
 
 	public function ValidOrder($orderId){
-        $this->orderManager->ValidOrder($orderId);
+        $this->ordersManager->ValidOrder($orderId);
     }
 }
 ?>

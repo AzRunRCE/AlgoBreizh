@@ -4,7 +4,7 @@ require_once 'Controler/loginControler.php';
 require_once 'Controler/productsControler.php';
 require_once 'Controler/productControler.php';
 require_once 'Controler/cartControler.php';
-require_once 'Controler/orderControler.php';
+require_once 'Controler/ordersControler.php';
 
 require_once 'View/View.php';
 
@@ -14,7 +14,7 @@ class Router {
 	private $productsCtrl;
 	private $productCtrl;
 	private $cartCtrl;
-	private $orderCtrl;
+	private $ordersCtrl;
     public function __construct() {
 		session_start();
         $this->welcomeCtrl = new WelcomeControler();
@@ -22,7 +22,7 @@ class Router {
 		$this->productsCtrl = new ProductsControler();
 		$this->productCtrl = new ProductControler();
 		$this->cartCtrl = new CartControler();
-		$this->orderCtrl = new OrderControler();
+		$this->ordersCtrl = new OrdersControler();
     }
     // Route une requête entrante : exécute l'action associée
     public function routerRequest() {	// Pourquoi pas un switch case à la place ?
@@ -62,7 +62,7 @@ class Router {
 				}
 				// Affiche les informations de la session connectée
 				else if ($_GET['action'] == 'isUserLogged') {
-					if (isset($_SESSION['customer']->Id)) {
+					if (isset($_SESSION['customer'])) {
 						$return['firstname'] = $_SESSION['customer']->FirstName;
 						$return['lastname'] = $_SESSION['customer']->LastName;
 						$return['code'] = 'logged';
@@ -105,19 +105,21 @@ class Router {
 				}
 				// Affiche les commandes du client
 				else if ($_GET['action'] == 'orders' && $isLogged) {
-					$this->orderCtrl->show($_SESSION['customer']->Id);
+					$this->ordersCtrl->show($_SESSION['customer']->id());
 				}
 				else if ($_GET['action'] == 'order' && $isLogged) {
 					if (isset($_GET['order'])) {
 						$orderId = $this->getParameter($_GET,'order');
 						
-						$this->orderCtrl->showOrder($_SESSION['customer']->Id,$orderId);	
+						//$this->ordersCtrl->showOrder($_SESSION['customer']->Id,$orderId);	
 					}
 				} else if ($_GET['action'] == 'generatePdf') {
-					$this->orderCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
+					$this->ordersCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
 				} else if ($_GET['action'] == 'valid') {
-					$this->orderCtrl->ValidOrder($this->getParameter($_GET, 'orderId'));
-					$this->orderCtrl->show($_SESSION['customer']->Id);
+					$order = $this->OrdersManager->get($_GET['action'] );
+					$order.setState(1);
+					$this->ordersManager->update($order);
+					
 				}
 				else {
 					$this->welcomeCtrl->show();

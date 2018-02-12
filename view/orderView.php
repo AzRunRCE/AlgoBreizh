@@ -1,4 +1,4 @@
-<?php $this->title = "Commande N°".str_pad($Order->Id, 8, '0', STR_PAD_LEFT); ?>
+<?php $this->title = "Commande N°".str_pad($Order->id(), 8, '0', STR_PAD_LEFT); ?>
 
   <div class="row">
 	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -13,15 +13,15 @@
 		<tbody>
 			
 			<?php $totalPrice = 0; ?>
-			<?php foreach ($Order->Content as $product): ?>
+			<?php foreach ($Order->content() as $product): ?>
 			<tr>
-				<td class="center"><img id="article_img_<?= $product['reference']; ?>" height="36" width="36" src="thumbnail/<?= $product['reference']; ?>.jpg"></td>
-				<td><?= $product['name']; ?></td>
-				<td><?= $product['price'] ?> €</td>
-				<td><?= $product[0]['quantity'];?></td>
+				<td class="center"><img id="article_img_<?= $product->reference(); ?>" height="36" width="36" src="thumbnail/<?= $product['reference']; ?>.jpg"></td>
+				<td><?= $product->name(); ?></td>
+				<td><?= $product->price(); ?> €</td>
+		//		<td><?= $product[0]['quantity'];?></td>
 				
 			</tr>
-		
+			<?php $totalPrice += $product[0]->price()*$product[1]; ?>
 			<?php endforeach; ?>
 		</tbody>
 		<tr id="actionsBtn" class="center hidden">

@@ -2,16 +2,16 @@
 require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
-require_once 'Factory/ProductsFactory.php';
+require_once 'Manager/ProductsManager.php';
 
 class ProductControler {
-	private $productsFactory;
+	private $productsManager;
 	public function __construct() {
-		$this->productsFactory = new ProductsFactory();    
+		$this->productsManager = new ProductsManager();    
 	}
     // Affiche les détails sur un billet
 	public function show($id) {
-        $product = $this->productsFactory->GetProductById($id);
+        $product = $this->productsManager->get($id);
         $view = new View("product",UserIsLogged());
         $view->generate(array('product' => $product),False);
     }

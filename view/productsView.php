@@ -3,18 +3,18 @@
 <?php foreach ($products as $product):?>
 	<div class="col-md-2">
 		<div class="card center" style="height: 230px;">
-			<a href="thumbnail/<?= $product->Reference ?>.jpg" target="_blank">
+			<a href="thumbnail/<?= $product->reference() ?>.jpg" target="_blank">
 			<div class="card-image" onmouseover="this.style.cursor='zoom-in'">
-				<img id="article_img_<?= $product->Id ?>" class="imageClip" src="thumbnail/<?= $product->Reference ?>.jpg">
+				<img id="article_img_<?= $product->id() ?>" class="imageClip" src="thumbnail/<?= $product->reference() ?>.jpg">
 			</div>
 			</a>
 			<div class="card-content" style="height: 70px;">
-				<p id="article_name_<?= $product->Id ?>" style="font-size: 16px"> <?= $product->Name ?></p>
+				<p id="article_name_<?= $product->id() ?>" style="font-size: 16px"> <?= $product->name() ?></p>
 			</div>   
 			<div class="card-action">
-				<p>Prix: <span id="article_price_<?= $product->Id ?>"><?= $product->Price ?></span> €</p>
+				<p>Prix: <span id="article_price_<?= $product->id() ?>"><?= $product->price() ?></span> €</p>
 				<div class="articleBtn">
-					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->Id ?>)" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Voir l'article</a>
+					<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" onclick="showProduct(<?= $product->id() ?>)" style="width: 100%;"><span class="glyphicon glyphicon-search"></span> Voir l'article</a>
 				</div>
 			</div>
 		</div>
@@ -98,13 +98,7 @@
 
 <script type="text/javascript">
                 <!--
-						$(document).ready(function() {
-							if ($(".glyphicon-log-in")[0]) {	// Si pas authentifié, restriction d'ajout au panier
-								$(".btn-success").addClass("disabled");
-								$(".btn-success").attr("data-target", "#myModal3");
-								$(".articleBtn").attr("title", "Vous devez être authentifié pour pouvoir ajouter un article.");
-							}
-						});
+					
 						function capitalizeFirstLetter(string) {
 							return string.charAt(0).toUpperCase() + string.slice(1);
 						}
