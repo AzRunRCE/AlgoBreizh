@@ -7,9 +7,12 @@ require_once 'Tools/CredentialManager.php';
 
 class OrdersControler {
     private $ordersManager;
+    private $customersManager;
+
 
     public function __construct() {
         $this->ordersManager = new OrdersManager();    
+        $this->customersManager = new CustomersManager();
     }
     // Affiche les détails sur un billet
     public function show($idClient) {
@@ -27,8 +30,9 @@ class OrdersControler {
 
     public function showOrder($OrderId){
             $order = $this->ordersManager->get($OrderId);
-		    $view = new View("Order");
-		    $view->generate(array('Order' => $order));
+            $customer = $this->customersManager->getById($order->clientId());
+            $view = new View("Order");
+		    $view->generate(array('Order' => $order,'customer' => $customer));
     }
 
     public function generatePDF($idOrder){
@@ -40,6 +44,7 @@ class OrdersControler {
         $order = $this->ordersManager->get($orderId);
         $order->setState(1);
         $this->ordersManager->update($order);
+        $this->show(0);
     }
 }
 ?>

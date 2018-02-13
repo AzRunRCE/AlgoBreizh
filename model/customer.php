@@ -49,11 +49,11 @@ class Customer{
 			}
 	  }
 	  
-	  public function setFirstname($firstname)
+	  public function setFirstName($firstname)
 	  {
 			if (is_string($firstname) && strlen($firstname) <= 255)
 			{
-				$this->_firstname = $firstname;
+				$this->_firstName = $firstname;
 			}
 	  }
 	  
@@ -67,7 +67,7 @@ class Customer{
 	  public function setUsername($Username){
 			if (is_string($Username) && strlen($Username) == 3)
 			{
-				$this->_userName = $username;
+				$this->_userName = $Username;
 			}
 	  }
 

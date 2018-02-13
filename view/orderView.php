@@ -1,7 +1,6 @@
-<?php $this->title = "Commande N°".str_pad($Order->id(), 8, '0', STR_PAD_LEFT); ?>
-
+<?php  $this->title = "Commande N°:".str_pad($Order->id(), 8, '0', STR_PAD_LEFT).' Client: '.$customer->firstName().' '.$customer->lastName(); ?>
   <div class="row">
-	<table id="cartTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="orderContentTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th></th>    
@@ -23,7 +22,7 @@
 			<?php $totalPrice += $product->price()*$product->quantity(); ?>
 			<?php endforeach; ?>
 		</tbody>
-		<tr id="actionsBtn" class="center hidden">
+		<tr id="actionsBtn" class="center ">
 			<td colspan="5" id="table-footer">
 				<br />
 				<p style="font-size: 16px;">Prix total: <b style="color: red;"><?= $totalPrice ?> €</b></p>
@@ -56,12 +55,4 @@
 		"processing": true,
 	  	"serverSide": false,
 	});
-	setTimeout(function(){
-	if ($(".dataTables_empty")[0]) {
-	  //$(".dataTables_info").addClass("hidden");
-	  //$(".pagination").addClass("hidden");
-	} else {
-	  $("#actionsBtn").removeClass("hidden");
-	}}, 700);
-  });
 </script>

@@ -2,7 +2,7 @@
 require_once 'Controler/welcomeControler.php';
 require_once 'Controler/loginControler.php';
 require_once 'Controler/productsControler.php';
-require_once 'Controler/productControler.php';
+
 require_once 'Controler/cartControler.php';
 require_once 'Controler/ordersControler.php';
 
@@ -12,7 +12,6 @@ class Router {
     private $welcomeCtrl;
 	private $loginCtrl;
 	private $productsCtrl;
-	private $productCtrl;
 	private $cartCtrl;
 	private $ordersCtrl;
     public function __construct() {
@@ -20,7 +19,6 @@ class Router {
         $this->welcomeCtrl = new WelcomeControler();
 		$this->loginCtrl = new LoginControler();
 		$this->productsCtrl = new ProductsControler();
-		$this->productCtrl = new ProductControler();
 		$this->cartCtrl = new CartControler();
 		$this->ordersCtrl = new OrdersControler();
     }
@@ -79,15 +77,9 @@ class Router {
 				}
 				// Ajoute l'article sélectionné au panier
 				else if ($_GET['action'] == 'addToCart' && $isLogged) {
-					if (isset($_GET['productId']) && isset($_GET['quantity'])) {
-						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'),$this->getParameter($_GET,'quantity'));
-						$return['code'] = 'success';
+					if (isset($_GET['productId']) && isset($_GET['quantity']) && isset($_GET['output'])) {
+						$this->cartCtrl->addToCart($this->getParameter($_GET,'productId'), $this->getParameter($_GET,'quantity'),$this->getParameter($_GET,'output'));
 					}
-					else {
-						$return['code'] = 'error';
-					}
-					echo json_encode($return);
-					exit;
 				}
 				// Retir l'article sélectionné du panier
 				else if ($_GET['action'] == 'removeFromCart' && $isLogged) {

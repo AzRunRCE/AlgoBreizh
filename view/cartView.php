@@ -20,20 +20,24 @@
 				<td><?= $product[0]->price(); ?> €</td>
 				<td>&times;<?= $product[1] ?></td>
 				<td class="center" style="width: 30%;">
-					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->id(); ?>" class="btn btn-sm btn-danger">Supprimer</a>
+					<a href="index.php?action=addToCart&productId=<?= $product[0]->id().'&quantity=1&output=0'; ?>" class="btn btn-sm btn-success">+</a>
+					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->id(); ?>" class="btn btn-sm btn-danger">-</a>
 				</td>
 			</tr>
 			<?php $totalPrice += $product[0]->price()*$product[1]; ?>
 			<?php endforeach; ?>
 		</tbody>
-		<tr id="actionsBtn" class="center hidden">
+		<tr id="actionsBtn" class="center">
 			<td colspan="5" id="table-footer">
-				<br />
-				<p style="font-size: 16px;">Prix total à payer: <b style="color: red;"><?= $totalPrice ?> €</b></p>
+			<?php if (count($cart) >=1){
+				echo '<br />
+				<p style="font-size: 16px;">Prix total à payer: <b style="color: red;">'.$totalPrice.' €</b></p>
 				<br />
 				<a href="index.php?action=checkOut" class="btn btn-sm btn-success">Passer commande</a> &nbsp; 
 				<a href="index.php?action=clearCart" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> Vider le panier</a>
-			</td>
+			</td>';
+			}
+			?>
 		</tr>
 	</table>
   </div>
@@ -61,12 +65,5 @@
 		"processing": true,
 	  	"serverSide": false,
 	});
-	setTimeout(function(){
-	if ($(".dataTables_empty")[0]) {
-	  //$(".dataTables_info").addClass("hidden");
-	  //$(".pagination").addClass("hidden");
-	} else {
-	  $("#actionsBtn").removeClass("hidden");
-	}}, 700);
   });
 </script>

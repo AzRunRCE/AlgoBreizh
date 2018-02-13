@@ -10,6 +10,12 @@ class CustomersManager extends Model {
 		return new Customer($result);
    }
    
+   public function getById($id){
+		$req = 'SELECT * FROM tclients WHERE id=?';
+		$result = $this->executerRequete($req, array($id))->fetch();
+		return new Customer($result);
+	}
+   
 	public function update($Customer){
 		$req = 'UPDATE tclients SET username = ?, firstname = ?, lastname = ?, password = ?, email = ?, enabled = ?, userRights = ? WHERE username=?';
 		$client = $this->executerRequete($req, array(

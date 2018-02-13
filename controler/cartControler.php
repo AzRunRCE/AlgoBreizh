@@ -14,10 +14,19 @@ class CartControler{
     public function show() {
         $view = new View("cart");
 		$view->generate(array('cart' => $this->cartManager->getCart()));
-    }
+    }	
 
-	public function addToCart($producId, $quantity) {
-		$this->cartManager->addToCart($producId, $quantity);
+	public function addToCart($producId, $quantity,$output) {
+		if ($this->cartManager->addToCart($producId, $quantity)){
+			$return['code'] = 'success';
+		}
+		else {
+			$return['code'] = 'error';
+		}
+		if ($output){
+			echo json_encode($return);}
+		else{
+			$this->show();}
     }
 
 	public function removeFromCart($producId) {
