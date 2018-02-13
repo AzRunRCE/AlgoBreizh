@@ -13,7 +13,7 @@ class CartControler{
 	// Affiche la liste de tous les billets du blog
     public function show() {
         $view = new View("cart");
-		$view->generate(array('cart' => $this->cartManager->getCart()));
+		$view->generate(array('cart' => $this->cartManager->get()));
     }	
 
 	public function addToCart($producId, $quantity,$output) {
@@ -30,12 +30,12 @@ class CartControler{
     }
 
 	public function removeFromCart($producId) {
-		$this->cartManager->removeFromCart($producId);
+		$this->cartManager->delete($producId);
 		header('Location: index.php?action=cart');
     }
 
 	public function clearCart() {
-		$this->cartManager->clearCart();
+		$this->cartManager->deleteAll();
 		header('Location: index.php?action=cart');
     }
 

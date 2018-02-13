@@ -19,14 +19,17 @@ class LoginControler {
 	public function login($username,$password) {
 		$password = sha1($password);
 		$customer = $this->CustomersManager->get($username);
-		if ($customer->Password() == $password){
-			$_SESSION['customer'] = $customer;
-			$this->welcomeCtrl->show();
+		if ($customer != null){
+			if ($customer->password() == $password){
+				$_SESSION['customer'] = $customer;
+				$this->welcomeCtrl->show();
+			}
+			else {
+				$this->show("login");
+			}
 		}
-		else {
-			$this->show("login");
-		}
-    }
+	}
+	
 	private function generateRandomString($length = 10) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$charactersLength = strlen($characters);
@@ -37,15 +40,24 @@ class LoginControler {
 		return $randomString;
 	}
 
-	public function sendPassword($username,$email)
+	public function register($username,$email)
 	{
 		$password = $this->generateRandomString(5);
-		$this->CustomersManager->SavePassword($username,$password);
-		$subject = 'AlgoBreizh - Inscription';
-		$message = 'Mot de passe: '.$password;
-		$headers = 'From: client@algobreizh.com' . "\r\n" .
-		'Reply-To: client@algobreizh.com' . "\r\n" .
-		'X-Mailer: PHP/' . phpversion();
-		mail($email, $subject, $message, $headers);
+		$customer = $this->CustomersManager->get($username);
+		if ($customer != null){
+			if ($customer->enabled() == 1){
+				 return;
+			}
+			$customer->setPassword(sha1($password));
+			$customer->setEmail($email);
+			$customer->setEnabled(1);
+			$this->CustomersManager->update($customer);
+			$subject = 'AlgoBreizh - Inscription';
+			$message = 'Mot de passe: '.$password;
+			$headers = 'From: client@algobreizh.com' . "\r\n" .
+			'Reply-To: client@algobreizh.com' . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
+			mail($email, $subject, $message, $headers);
+		}
 	}
 }

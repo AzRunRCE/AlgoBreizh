@@ -44,7 +44,7 @@ class OrdersControler {
         $order = $this->ordersManager->get($orderId);
         $order->setState(1);
         $this->ordersManager->update($order);
-        $this->show(0);
+        header('index.php?action=orders');
     }
 }
 ?>

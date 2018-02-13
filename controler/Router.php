@@ -38,7 +38,7 @@ class Router {
 					else if(isset($_POST['username']) && isset($_POST['email']) ) {
 						$username = $this->getParameter($_POST,'username');
 						$email =	$this->getParameter($_POST,'email');
-						$this->loginCtrl->sendPassword($username,$email);	
+						$this->loginCtrl->register($username,$email);	
 						$this->loginCtrl->show('login');
 					}
 					else {
@@ -48,10 +48,6 @@ class Router {
 				// Affiche la boutique
 				else if ($_GET['action'] == 'products' && $isLogged) {
 					$this->productsCtrl->show();
-				}
-				// Affiche la modal de l'article séléctionné
-				else if ($_GET['action'] == 'product' && $isLogged) {
-					$this->productCtrl->show($this->getParameter($_GET,'id'));
 				}
 				// Déconnecte la session du client
 				else if ($_GET['action'] == 'logout') {
@@ -101,8 +97,7 @@ class Router {
 				}
 				else if ($_GET['action'] == 'order' && $isLogged) {
 					if (isset($_GET['order'])) {
-						$orderId = $this->getParameter($_GET,'order');
-						
+						$orderId = $this->getParameter($_GET,'order');	
 						$this->ordersCtrl->showOrder($orderId);	
 					}
 				} else if ($_GET['action'] == 'generatePdf') {

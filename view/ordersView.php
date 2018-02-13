@@ -47,17 +47,19 @@
 		"bFilter": false,
   		"bLengthChange": false,
 		"responsive": true,
+		"page": true,
+		"pagingType": "scrolling",
 		"language": { 
-			"url": 'style/french.order.json'
+			"url": 'style/french.cart.json'
 		},
 	  	"aoColumns": [
 		   {"bSortable": true},
 		   {"bSortable": true},
-		   {"bSortable": false},
-		   {"bSortable": false}
+		   {"bSortable": true},
+		   {"bSortable": true},
+		   {"bSortable": true}
 	  	],
-		"processing": false,
+		"processing": true,
 	  	"serverSide": false,
 	});
   });
-</script>

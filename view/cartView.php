@@ -15,16 +15,16 @@
 			<?php $totalPrice = 0; ?>
 			<?php foreach ($cart as $product): ?>
 			<tr>
-				<td class="center"><img id="article_img_<?= $product[0]->id() ?>" height="36" width="36" src="thumbnail/<?= $product[0]->reference(); ?>.jpg"></td>
-				<td><?= $product[0]->name(); ?></td>
-				<td><?= $product[0]->price(); ?> €</td>
-				<td>&times;<?= $product[1] ?></td>
+				<td class="center"><img id="article_img_<?= $product->id() ?>" height="36" width="36" src="thumbnail/<?= $product->reference(); ?>.jpg"></td>
+				<td><?= $product->name(); ?></td>
+				<td><?= $product->price(); ?> €</td>
+				<td>&times;<?= $product->quantity(); ?></td>
 				<td class="center" style="width: 30%;">
-					<a href="index.php?action=addToCart&productId=<?= $product[0]->id().'&quantity=1&output=0'; ?>" class="btn btn-sm btn-success">+</a>
-					<a href="index.php?action=removeFromCart&productId=<?= $product[0]->id(); ?>" class="btn btn-sm btn-danger">-</a>
+					<a href="index.php?action=addToCart&productId=<?= $product->id().'&quantity=1&output=0'; ?>" class="btn btn-sm btn-success">+</a>
+					<a href="index.php?action=removeFromCart&productId=<?= $product->id(); ?>" class="btn btn-sm btn-danger">-</a>
 				</td>
 			</tr>
-			<?php $totalPrice += $product[0]->price()*$product[1]; ?>
+			<?php $totalPrice += $product->price()*$product->quantity(); ?>
 			<?php endforeach; ?>
 		</tbody>
 		<tr id="actionsBtn" class="center">
@@ -45,25 +45,5 @@
 <script>
   $(document).ready(function() {
     //Paramètres du DataTable
-	$("#cartTable").DataTable({
-		"stateSave": true,
-		"ordering": false,
-		"deferRender": false,
-		"bFilter": false,
-  		"bLengthChange": false,
-		"responsive": true,
-		"language": { 
-			"url": 'style/french.cart.json'
-		},
-	  	"aoColumns": [
-		   {"bSortable": true},
-		   {"bSortable": true},
-		   {"bSortable": true},
-		   {"bSortable": true},
-		   {"bSortable": true}
-	  	],
-		"processing": true,
-	  	"serverSide": false,
-	});
-  });
+	$("#cartTable").DataTable();
 </script>

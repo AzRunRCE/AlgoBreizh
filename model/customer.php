@@ -3,7 +3,7 @@ class Customer{
 	private $_Id;
 	private $_firstName;
 	private $_lastName;
-	private $_username;
+	private $_userName;
 	private $_password;
 	private $_email;
 	private $_enabled;
@@ -31,7 +31,7 @@ class Customer{
 	public function id() { return $this->_id; }
 	public function firstName() { return $this->_firstName; }
 	public function lastName() { return $this->_lastName; }
-	public function Username() { return $this->_userame; }
+	public function Username() { return $this->_userName; }
 	public function password() { return $this->_password; }
 	public function email()    { return  $this->_email; }
 	public function enabled()  { return $this->_enabled; }
@@ -86,7 +86,7 @@ class Customer{
 	  }
 	  
 	  public function setEnabled($enabled){
-			if (is_bool($enabled))
+			if (is_integer($enabled))
 			{
 				$this->_enabled = $enabled;
 			}

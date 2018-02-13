@@ -19,13 +19,14 @@ class CustomersManager extends Model {
 	public function update($Customer){
 		$req = 'UPDATE tclients SET username = ?, firstname = ?, lastname = ?, password = ?, email = ?, enabled = ?, userRights = ? WHERE username=?';
 		$client = $this->executerRequete($req, array(
-			$Customer->Username,
-			$Customer->FirstName, 
-			$Customer->LastName,
-			$Customer->Paswword,
-			$Customer->email,
-			$Customer->Enabled,
-			$Customer->Right
+			$Customer->username(),
+			$Customer->firstName(), 
+			$Customer->lastName(),
+			$Customer->password(),
+			$Customer->email(),
+			$Customer->enabled(),
+			$Customer->userRights(),
+			$Customer->username()
 		));
 	}
 }

@@ -42,6 +42,8 @@
 		"bFilter": false,
   		"bLengthChange": false,
 		"responsive": true,
+		"bPaginate": true,
+		"iDisplayLength": 5,
 		"language": { 
 			"url": 'style/french.cart.json'
 		},
@@ -55,4 +57,4 @@
 		"processing": true,
 	  	"serverSide": false,
 	});
-</script>
+  });

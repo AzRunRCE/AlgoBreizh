@@ -5,43 +5,45 @@ class CartManager extends Model {
 	// Renvoie la liste des commandes associés à un client
 	private $productsManager;
 	public function __construct() {
-		$this->productsManager = new ProductsManager();    
 		if (!isset($_SESSION['cart'])){
 			$_SESSION['cart']=array();
 		}
     }
 
-	public function GetCart() {
+	public function get() {
 		return $_SESSION['cart'];
 	}
 
-	public function AddToCart($productId, $quantity) {
-		$product = $this->productsManager->get($productId);
-		$find = false;
+	public function addToCart($productId, $quantity) {
+		$productsRow = $this->executerRequete("SELECT * FROM tproducts WHERE id = ?", array($productId))->fetch(PDO::FETCH_ASSOC);
+		$exist = 0;
+		$attProduct = new AttachedProduct($productsRow,array('quantity' => $quantity));
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
-
-			if ($_SESSION['cart'][$i][0]->id() == $productId) {
-				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] + 1;
-				return true;
+			if ($attProduct->id() == $_SESSION['cart'][$i]->id()){
+				$_SESSION['cart'][$i]->setQuantity($_SESSION['cart'][$i]->quantity() + 1);
+				$exist = 1;
 			}
 		}
-		array_push($_SESSION['cart'],array($product, $quantity));
-		return true;
-	}
 
-	public function RemoveFromCart($productId) {
-		for ($i=0; $i < count($_SESSION['cart']);$i++) {
-			if ($_SESSION['cart'][$i][0]->id() == $productId) {
-				$_SESSION['cart'][$i][1] = $_SESSION['cart'][$i][1] - 1;
-				if ($_SESSION['cart'][$i][1] == 0) {
-					array_splice($_SESSION['cart'], $i, 1);
-				}
-			}
+		if (!$exist){
+			array_push($_SESSION['cart'], $attProduct);
 		}
 		return true;
 	}
 
-	public function ClearCart() {
+	public function delete($productId) {
+		for ($i=0; $i < count($_SESSION['cart']);$i++){
+			if ($productId == $_SESSION['cart'][$i]->id()){
+				$_SESSION['cart'][$i]->setQuantity($_SESSION['cart'][$i]->quantity() - 1);
+			}
+			if ($_SESSION['cart'][$i]->quantity() <=0){
+				array_splice($_SESSION['cart'], $i, 1);
+			}
+		}	
+		return true;
+	}
+
+	public function deleteAll() {
 		array_splice($_SESSION['cart'], 0, count($_SESSION['cart']));
 		return true;
 	}
@@ -54,9 +56,9 @@ class CartManager extends Model {
 		$this->executerRequete($req, array($date,$_SESSION['customer']->id()));
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
 			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
-			$this->executerRequete($productReq, array($_SESSION['cart'][$i][1],$_SESSION['cart'][$i][0]->id()));
+			$this->executerRequete($productReq, array($_SESSION['cart'][$i]->quantity(),$_SESSION['cart'][$i]->id()));
 		}
-		$this->clearCart();
+		$this->deleteAll();
 		return true;
 	}
 
