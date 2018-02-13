@@ -119,7 +119,7 @@
 							var Quantity = $("#modal_quantity").val();
 							var Name = $("#modal_article_name").text();
 							$.ajax({
-								url: 'index.php?action=addToCart&productId='+id+'&quantity='+Quantity,
+								url: 'index.php?action=addToCart&productId='+id+'&quantity='+Quantity+'&output=1',
 								type: 'GET',
 								dataType: 'json',
 								success: function(json) {
