@@ -11,6 +11,15 @@ class OrdersManager extends Model {
 		$this->executerRequete($req, array($Order->state(),$Order->creationDate(),$Order->id()));
 	}
 
+	public function add($Order){
+		$req = "INSERT INTO `torders`(`state`, `creationDate`, `clientId`) VALUES (?,?,?)";
+		$this->executerRequete($req, array($Order->state(),$Order->creationDate(),$Order->clientId()));
+		foreach ($Order->content() as $attProduct){
+			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
+			$this->executerRequete($productReq, array($attProduct->quantity(),$attProduct->id()));
+		}
+
+	}
 	// Retourne toutes les commande d'un client donné
 	function getListForClient($clientId){
 		$stack = array();

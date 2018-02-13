@@ -6,9 +6,11 @@ require_once 'Manager/CartManager.php';
 
 class CartControler{
 	private $cartManager;
+	private $ordersManager;
 	private $welcomeCtrl;
     public function __construct() {
 		$this->cartManager = new CartManager();
+		$this->ordersManager = new OrdersManager();
     }
 	// Affiche la liste de tous les billets du blog
     public function show() {
@@ -40,7 +42,13 @@ class CartControler{
     }
 
 	public function checkOut() {
-		$this->cartManager->checkOut();
+		$order = new Order(array('id' => 1, 
+		'creationDate' => date(DATE_W3C),
+		'clientId' => $_SESSION['customer']->id(), 
+		'state' => '0'), $this->cartManager->get());
+
+		$this->ordersManager->add($order);
+		$this->cartManager->deleteAll();
 		header('Location: index.php?action=orders');
     }
 }

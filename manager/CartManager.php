@@ -3,7 +3,6 @@ require_once("Model/model.php");
 
 class CartManager extends Model {
 	// Renvoie la liste des commandes associés à un client
-	private $productsManager;
 	public function __construct() {
 		if (!isset($_SESSION['cart'])){
 			$_SESSION['cart']=array();
@@ -45,20 +44,6 @@ class CartManager extends Model {
 
 	public function deleteAll() {
 		array_splice($_SESSION['cart'], 0, count($_SESSION['cart']));
-		return true;
-	}
-
-		
-	//Enregistre un object cart en tant que commande en base.
-    public function CheckOut() {
-		$req = "INSERT INTO tOrders (creationDate,state,clientId) VALUES (?,0,?)";
-		$date = date(DATE_W3C);
-		$this->executerRequete($req, array($date,$_SESSION['customer']->id()));
-		for ($i=0; $i < count($_SESSION['cart']);$i++){
-			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
-			$this->executerRequete($productReq, array($_SESSION['cart'][$i]->quantity(),$_SESSION['cart'][$i]->id()));
-		}
-		$this->deleteAll();
 		return true;
 	}
 
