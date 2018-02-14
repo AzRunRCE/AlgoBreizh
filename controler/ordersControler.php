@@ -30,7 +30,7 @@ class OrdersControler {
 
     public function showOrder($OrderId){
             $order = $this->ordersManager->get($OrderId);
-            $customer = $this->customersManager->getById($order->clientId());
+            $customer = $this->customersManager->getById($order->customerId());
             $view = new View("Order");
 		    $view->generate(array('Order' => $order,'customer' => $customer));
     }
@@ -42,7 +42,7 @@ class OrdersControler {
 
 	public function ValidOrder($orderId){
         $order = $this->ordersManager->get($orderId);
-        $order->setState(1);
+        $order->setState((int)1);
         $this->ordersManager->update($order);
         header('index.php?action=orders');
     }

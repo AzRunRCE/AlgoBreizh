@@ -5,14 +5,15 @@ require_once 'Model/attachedProduct.php';
 
 class OrdersManager extends Model {
 
-	// Changement d'état en base de données : 0 = En attente / 1 = Validée
+	// Mise a jour d'une commande
 	public function update($Order){
 		$req = "UPDATE torders SET state = ?, creationDate = ? WHERE id = ?";
-		$this->executerRequete($req, array($Order->state(),$Order->creationDate(),$Order->id()));
+		$this->executerRequete($req, array($Order->state(), $Order->creationDate(), $Order->id()));
 	}
 
+	//Ajout d'une commande
 	public function add($Order){
-		$req = "INSERT INTO `torders`(`state`, `creationDate`, `clientId`) VALUES (?,?,?)";
+		$req = "INSERT INTO `torders`(`state`, `creationDate`, `customerId`) VALUES (?,?,?)";
 		$this->executerRequete($req, array($Order->state(),$Order->creationDate(),$Order->clientId()));
 		foreach ($Order->content() as $attProduct){
 			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
@@ -20,10 +21,11 @@ class OrdersManager extends Model {
 		}
 
 	}
+
 	// Retourne toutes les commande d'un client donné
 	function getListForClient($clientId){
 		$stack = array();
-		$req = 'SELECT * FROM torders WHERE clientId = ? ORDER BY creationDate DESC';
+		$req = 'SELECT * FROM torders WHERE customerId = ? ORDER BY creationDate DESC';
 		$result = $this->executerRequete($req,array($clientId))->fetchAll();
 		foreach ($result as $row){
 			$itm = new Order($row, $this->getContent($row['id']));

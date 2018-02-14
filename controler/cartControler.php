@@ -19,7 +19,7 @@ class CartControler{
     }	
 
 	public function addToCart($producId, $quantity,$output) {
-		if ($this->cartManager->addToCart($producId, $quantity)){
+		if ($this->cartManager->add($producId, $quantity)){
 			$return['code'] = 'success';
 		}
 		else {
@@ -46,7 +46,6 @@ class CartControler{
 		'creationDate' => date(DATE_W3C),
 		'clientId' => $_SESSION['customer']->id(), 
 		'state' => '0'), $this->cartManager->get());
-
 		$this->ordersManager->add($order);
 		$this->cartManager->deleteAll();
 		header('Location: index.php?action=orders');

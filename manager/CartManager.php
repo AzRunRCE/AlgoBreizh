@@ -13,7 +13,7 @@ class CartManager extends Model {
 		return $_SESSION['cart'];
 	}
 
-	public function addToCart($productId, $quantity) {
+	public function add($productId, $quantity) {
 		$productsRow = $this->executerRequete("SELECT * FROM tproducts WHERE id = ?", array($productId))->fetch(PDO::FETCH_ASSOC);
 		$exist = 0;
 		$attProduct = new AttachedProduct($productsRow,array('quantity' => $quantity));

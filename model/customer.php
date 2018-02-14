@@ -86,10 +86,7 @@ class Customer{
 	  }
 	  
 	  public function setEnabled($enabled){
-			if (is_integer($enabled))
-			{
-				$this->_enabled = $enabled;
-			}
+				$this->_enabled = (int) $enabled;
 	  }
 
 	  public function setUserRights($rights){

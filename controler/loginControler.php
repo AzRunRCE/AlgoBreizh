@@ -20,12 +20,13 @@ class LoginControler {
 		$password = sha1($password);
 		$customer = $this->CustomersManager->get($username);
 		if ($customer != null){
-			if ($customer->password() == $password){
+			if ($customer->password() == $password && $customer->enabled() == 1){
 				$_SESSION['customer'] = $customer;
 				$this->welcomeCtrl->show();
 			}
 			else {
-				$this->show("login");
+			//	$this->show("login");
+			print_r($customer);
 			}
 		}
 	}

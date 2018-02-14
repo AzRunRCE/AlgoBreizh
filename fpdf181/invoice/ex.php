@@ -1,17 +1,22 @@
 <?php
 require_once 'Manager/OrdersManager.php';
+
 require('invoice.php');
 
 //Informations sur la commande
 $ordersManager = new OrdersManager();
+$customersManager = new CustomersManager();
+
 $tot_prods = array();
 $orderContent = array();
-$orderContent = $ordersManager->get($_GET['orderId'])->content();
+$order = $ordersManager->get($_GET['orderId']);
+$orderContent = $order->content();
+$client = $customersManager->getById($order->customerId());
 $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 
 // Informations sur le client
-$clientFullname = $_SESSION['customer']->firstName().' '.$_SESSION['customer']->lastName();
+$clientFullname = $client->firstName().' '.$client->lastName();
 $clientAddress = "1337 Rue Elon Musk\n75000 PARIS";
 
 // Création PDF + dimensions

@@ -31,7 +31,7 @@ class Order  {
 	public function id() { return $this->_id; }
 	public function creationDate() { return $this->_creationDate; }
 	public function state() { return $this->_state; }
-	public function clientId() { return $this->_clientId; }
+	public function customerId() { return $this->_clientId; }
 	public function content() { return $this->_content; }
 
  	public function setId($id)
@@ -53,7 +53,7 @@ class Order  {
 	
 	public function setState($state){
 		$state = (int) $state;
-		if ($state =+ 0 || $state == 1){
+		if ($state == 0 || $state == 1){
 			$this->_state = $state;
 		}
 	}
@@ -62,7 +62,7 @@ class Order  {
 			$this->_content = $content;
 	}
 
-	public function setClientId($id){
+	public function setCustomerId($id){
 		$id = (int) $id;
 		if ($id > 0)
 		{
