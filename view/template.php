@@ -33,7 +33,6 @@
       <ul class="nav navbar-nav navbar-right">
 		<?php
 			if ($admin == false && $logged){
-				
 				echo '<li><a href="index.php?action=products" style="color: white;"><span class="glyphicon glyphicon-shopping-cart"></span> Boutique</a></li>';
 				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Mes Commandes</a></li>';
 				echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Mon Panier</a></li>';
@@ -86,7 +85,7 @@
 			}, 100);
 		}
 	}
-  })
+  });
 </script>
 </body>
 
