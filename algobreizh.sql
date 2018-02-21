@@ -35,7 +35,7 @@ CREATE TABLE `tclients` (
   `lastname` varchar(255) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `active` tinyint(1) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,7 +43,7 @@ CREATE TABLE `tclients` (
 -- Déchargement des données de la table `tclients`
 --
 
-INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `active`, `admin`) VALUES
+INSERT INTO `tclients` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `enbaled`, `admin`) VALUES
 (1, 'qmz', 'Quentin', 'Martinez', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'qmz@algobreizh.fr', 1, 0),
 (2, 'bst', 'Paul', 'Besret', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'bst@algobreizh.fr', 1, 0),
 (3, 'dpe', 'Dorian', 'Pilorge', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'dpe@algobreizh.fr', 1, 0),
