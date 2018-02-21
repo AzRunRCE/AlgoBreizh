@@ -7,7 +7,13 @@ class CustomersManager extends Model {
 	public function get($username){
 		$req = 'SELECT * FROM tclients WHERE username=?';
 		$result = $this->executerRequete($req, array($username))->fetch();
-		return new Customer($result);
+		if (is_array($result)){
+			return new Customer($result);
+		}
+		else{
+			return NULL;
+		}
+		
    }
    
    public function getById($id){

@@ -23,12 +23,10 @@ class LoginControler {
 			if ($customer->password() == $password && $customer->enabled() == 1){
 				$_SESSION['customer'] = $customer;
 				$this->welcomeCtrl->show();
-			}
-			else {
-			//	$this->show("login");
-			print_r($customer);
+				return;
 			}
 		}
+			$this->show("login");
 	}
 	
 	private function generateRandomString($length = 10) {

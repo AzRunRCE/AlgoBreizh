@@ -9,6 +9,7 @@ class OrdersManager extends Model {
 	public function update($Order){
 		$req = "UPDATE torders SET state = ?, creationDate = ? WHERE id = ?";
 		$this->executerRequete($req, array($Order->state(), $Order->creationDate(), $Order->id()));
+		return true;
 	}
 
 	//Ajout d'une commande
@@ -19,7 +20,7 @@ class OrdersManager extends Model {
 			$productReq = "INSERT INTO torders_products (quantity,id,productId) VALUES (?,LAST_INSERT_ID(),?)";
 			$this->executerRequete($productReq, array($attProduct->quantity(),$attProduct->id()));
 		}
-
+		return true;
 	}
 
 	// Retourne toutes les commande d'un client donné
