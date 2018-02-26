@@ -4,7 +4,7 @@ require_once 'Model/Order.php';
 require_once 'View/View.php';
 require_once 'Manager/OrdersManager.php';
 require_once 'Tools/CredentialManager.php';
-
+include('fpdf181/invoice/ex.php');
 class OrdersControler {
     private $ordersManager;
     private $customersManager;
@@ -35,9 +35,9 @@ class OrdersControler {
 		    $view->generate(array('Order' => $order,'customer' => $customer));
     }
 
-    public function generatePDF($idOrder){
-        define('FPDF_FONTPATH','fpdf181/font');
-        include('fpdf181/invoice/ex.php');
+    public function generatePDF($OrderId){
+       printOrder($OrderId);
+      
     }
 
 	public function ValidOrder($orderId){

@@ -1,17 +1,18 @@
 <?php
 require_once 'Manager/OrdersManager.php';
-
+define('FPDF_FONTPATH','fpdf181/font');
 require('invoice.php');
 
-//Informations sur la commande
+function printOrder($OrderId){
+    //Informations sur la commande
 $ordersManager = new OrdersManager();
 $customersManager = new CustomersManager();
 
 $tot_prods = array();
 $orderContent = array();
-$order = $ordersManager->get($_GET['orderId']);
+$order = $ordersManager->get($OrderId);
 $orderContent = $order->content();
-$client = $customersManager->getById($order->customerId());
+$client = $customersManager->get($order->customerId());
 $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 
@@ -106,4 +107,6 @@ $pdf->addCadreEurosFrancs();
 
 // Sortie du ficher PDF
 $pdf->Output();
+}
+
 ?>
