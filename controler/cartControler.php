@@ -44,7 +44,7 @@ class CartControler{
 	public function checkOut() {
 		$order = new Order(array('id' => 1, 
 		'creationDate' => date(DATE_W3C),
-		'clientId' => $_SESSION['customer']->id(), 
+		'customerId' => $_SESSION['customer']->id(), 
 		'state' => '0'), $this->cartManager->get());
 		$this->ordersManager->add($order);
 		$this->cartManager->deleteAll();

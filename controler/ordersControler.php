@@ -30,7 +30,7 @@ class OrdersControler {
 
     public function showOrder($OrderId){
             $order = $this->ordersManager->get($OrderId);
-            $customer = $this->customersManager->getById($order->customerId());
+            $customer = $this->customersManager->get($order->customerId());
             $view = new View("Order");
 		    $view->generate(array('Order' => $order,'customer' => $customer));
     }

@@ -117,7 +117,8 @@ class Router {
         catch (Exception $e) {
             $this->erreur($e->getMessage());
         }
-    }
+	}
+	
 	// Redirection vers "login.php" si la session n'existe pas
 	private function UserIsLogged() {
 		if(!isset($_SESSION["client"])){

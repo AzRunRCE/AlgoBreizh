@@ -5,7 +5,7 @@ class Order  {
 	private $_id;
 	private $_creationDate;
 	private $_state;
-	private $_clientId;
+	private $_customerId;
 	private $_content;
 
     public function __construct($data,$content) {
@@ -31,7 +31,7 @@ class Order  {
 	public function id() { return $this->_id; }
 	public function creationDate() { return $this->_creationDate; }
 	public function state() { return $this->_state; }
-	public function customerId() { return $this->_clientId; }
+	public function customerId() { return $this->_customerId; }
 	public function content() { return $this->_content; }
 
  	public function setId($id)
@@ -66,7 +66,7 @@ class Order  {
 		$id = (int) $id;
 		if ($id > 0)
 		{
-			$this->_clientId = (int) $id;
+			$this->_customerId = (int) $id;
 		}
 		else {
 			throw new Exception("ownerId property can't be 0");
