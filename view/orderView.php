@@ -1,4 +1,4 @@
-<?php  $this->title = "Commande N°:".str_pad($Order->id(), 8, '0', STR_PAD_LEFT).' Client: '.$customer->firstName().' '.$customer->lastName(); ?>
+<?php  $this->title = "Commande N°:".str_pad($Order->id(), 8, '0', STR_PAD_LEFT).' Client: '.$Order->customer()->firstName().' '.$Order->customer()->lastName(); ?>
   <div class="row">
 	<table id="orderContentTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>

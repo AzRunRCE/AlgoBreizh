@@ -1,6 +1,5 @@
 <?php
 require_once 'View/View.php';
-require_once 'Tools/CredentialManager.php';
 require_once 'Manager/CartManager.php';
 
 
@@ -44,7 +43,7 @@ class CartControler{
 	public function checkOut() {
 		$order = new Order(array('id' => 1, 
 		'creationDate' => date(DATE_W3C),
-		'customerId' => $_SESSION['customer']->id(), 
+		'id_tCustomers' => $_SESSION['customer'], 
 		'state' => '0'), $this->cartManager->get());
 		$this->ordersManager->add($order);
 		$this->cartManager->deleteAll();

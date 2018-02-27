@@ -1,13 +1,13 @@
 <?php
 class Customer{
-	private $_Id;
+	private $_id;
 	private $_firstName;
 	private $_lastName;
 	private $_userName;
 	private $_password;
 	private $_email;
 	private $_enabled;
-	private $_userRights;
+	private $_rights;
 
 	public function __construct($data) {
 		$this->hydrate($data);
@@ -35,18 +35,10 @@ class Customer{
 	public function password() { return $this->_password; }
 	public function email()    { return  $this->_email; }
 	public function enabled()  { return $this->_enabled; }
-	public function UserRights()    { return  $this->_userRights; }
+	public function Rights()    { return  $this->_rights; }
 
 	public function setId($id){
-	  	$id = (int) $id;
-	  	// On vérifie que l'id n'est pas négatif.
-			if ($id > 0)
-			{
-				$this->_id = (int) $id;
-			}
-			else {
-				throw new Exception("Id property can't be 0");
-			}
+		$this->_id = (int) $id;
 	  }
 	  
 	  public function setFirstName($firstname)
@@ -89,9 +81,9 @@ class Customer{
 				$this->_enabled = (int) $enabled;
 	  }
 
-	  public function setUserRights($rights){
+	  public function setRights($rights){
 			$rights = (int) $rights;
-			$this->_userRights = $rights;
+			$this->_rights = $rights;
 	  }
 }
 ?>

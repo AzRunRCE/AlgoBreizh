@@ -5,7 +5,7 @@ require_once('Model/Customer.php');
 class CustomersManager extends Model {
 	// Renvoie la un Customer sur le critére correspondant. Id/Username suivant la provenance de l'appel. Login/OrderInfo (Ex: qmz , 1)
 	public function get($identifier){
-		$req = 'SELECT * FROM tclients WHERE ';
+		$req = 'SELECT * FROM tcustomers WHERE ';
 		if (is_string($identifier))	{
 			$req = $req.'username=?';
 		}
@@ -22,7 +22,7 @@ class CustomersManager extends Model {
 	}
 
 	public function update($Customer){
-		$req = 'UPDATE tclients SET username = ?, firstname = ?, lastname = ?, password = ?, email = ?, enabled = ?, userRights = ? WHERE username=?';
+		$req = 'UPDATE tcustomers SET username = ?, firstname = ?, lastname = ?, password = ?, email = ?, enabled = ?, rights = ? WHERE username=?';
 		$client = $this->executerRequete($req, array(
 			$Customer->username(),
 			$Customer->firstName(), 

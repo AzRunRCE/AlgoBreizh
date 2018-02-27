@@ -12,7 +12,7 @@ $tot_prods = array();
 $orderContent = array();
 $order = $ordersManager->get($OrderId);
 $orderContent = $order->content();
-$client = $customersManager->get($order->customerId());
+$client = $customersManager->get($order->customer()->id());
 $date = date('d/m/Y');
 $endDate = date('d/m/Y', strtotime('+1 month'));
 

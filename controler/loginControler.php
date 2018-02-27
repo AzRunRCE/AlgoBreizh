@@ -1,7 +1,6 @@
 <?php
 require 'manager/CustomersManager.php';
 require_once 'View/View.php';
-require_once 'Tools/CredentialManager.php';
 
 class LoginControler {
 	private $CustomersManager;

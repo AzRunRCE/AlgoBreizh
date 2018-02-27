@@ -3,8 +3,8 @@ require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
 require_once 'Manager/OrdersManager.php';
-require_once 'Tools/CredentialManager.php';
 include('fpdf181/invoice/ex.php');
+
 class OrdersControler {
     private $ordersManager;
     private $customersManager;
@@ -16,7 +16,7 @@ class OrdersControler {
     }
     // Affiche les détails sur un billet
     public function show($idClient) {
-		if (UserIsAdmin()){
+		if ($_SESSION["customer"]->Rights() == 1){
 			$orders = $this->ordersManager->getList();
 			$view = new View("OrdersAdmin");
 			$view->generate(array('orders' => $orders));
@@ -30,9 +30,9 @@ class OrdersControler {
 
     public function showOrder($OrderId){
             $order = $this->ordersManager->get($OrderId);
-            $customer = $this->customersManager->get($order->customerId());
+            
             $view = new View("Order");
-		    $view->generate(array('Order' => $order,'customer' => $customer));
+		    $view->generate(array('Order' => $order));
     }
 
     public function generatePDF($OrderId){

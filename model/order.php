@@ -31,7 +31,7 @@ class Order  {
 	public function id() { return $this->_id; }
 	public function creationDate() { return $this->_creationDate; }
 	public function state() { return $this->_state; }
-	public function customerId() { return $this->_customerId; }
+	public function customer() { return $this->_customer; }
 	public function content() { return $this->_content; }
 
  	public function setId($id)
@@ -62,15 +62,8 @@ class Order  {
 			$this->_content = $content;
 	}
 
-	public function setCustomerId($id){
-		$id = (int) $id;
-		if ($id > 0)
-		{
-			$this->_customerId = (int) $id;
-		}
-		else {
-			throw new Exception("ownerId property can't be 0");
-		}
+	public function setid_tCustomers($customer){
+			$this->_customer = $customer;
 	}
 
 }

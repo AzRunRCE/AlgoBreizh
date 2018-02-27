@@ -8,8 +8,9 @@ class ProductsManager extends Model {
 		$req = 'SELECT * FROM tproducts WHERE id=?';
 		$row = $this->executerRequete($req, array($id))->fetch();
 		return new Product($row);
-    }
-
+	}
+	
+	//Retourne l'ensemble des produits disponible en base
   	public function getList(){
 		$stack = array();
 		$req = 'SELECT * FROM tproducts WHERE 1';

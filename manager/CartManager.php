@@ -29,7 +29,7 @@ class CartManager extends Model {
 		}
 		return true;
 	}
-
+	//Decrémente & ou retire de la liste l'élément correspondant.
 	public function delete($productId) {
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
 			if ($productId == $_SESSION['cart'][$i]->id()){
