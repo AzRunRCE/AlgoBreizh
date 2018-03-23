@@ -5,7 +5,7 @@ require_once 'Controler/productsControler.php';
 
 require_once 'Controler/cartControler.php';
 require_once 'Controler/ordersControler.php';
-
+require_once 'Controler/newProductControler.php';
 require_once 'View/View.php';
 
 class Router {
@@ -14,6 +14,8 @@ class Router {
 	private $productsCtrl;
 	private $cartCtrl;
 	private $ordersCtrl;
+	private $newProductCtrl;
+	
     public function __construct() {
 		session_start();
         $this->welcomeCtrl = new WelcomeControler();
@@ -21,6 +23,7 @@ class Router {
 		$this->productsCtrl = new ProductsControler();
 		$this->cartCtrl = new CartControler();
 		$this->ordersCtrl = new OrdersControler();
+		$this->newProductCtrl = new NewProductControler();
     }
     // Route une requête entrante : exécute l'action associée
     public function routerRequest() {	// Pourquoi pas un switch case à la place ?
@@ -100,6 +103,14 @@ class Router {
 				//Affiche la facture de la commande
 				else if ($_GET['action'] == 'generatePdf') {
 					$this->ordersCtrl->generatePDF($this->getParameter($_GET, 'orderId'));
+				} 
+				//Affiche la facture de la commande
+				else if ($_GET['action'] == 'newProduct') {
+						$this->newProductCtrl->show();
+				} 
+					//Affiche la facture de la commande
+				else if ($_GET['action'] == 'addNewProduct') {
+					$this->newProductCtrl->add($_POST);
 				} 
 				//Affiche la change l'état de la commande
 				else if ($_GET['action'] == 'valid') {

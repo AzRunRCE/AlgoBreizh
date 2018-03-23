@@ -38,6 +38,7 @@
 				echo '<li><a href="index.php?action=cart" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Mon Panier</a></li>';
 			}
 			else if ($admin && $logged){
+				echo '<li><a href="index.php?action=newProduct" style="color: white;"><span class="glyphicon glyphicon-lock"></span> Ajouter un Produit</a></li>';
 				echo '<li><a href="index.php?action=orders" style="color: white;"><span class="glyphicon glyphicon-euro"></span> Voir Commandes</a></li>';
 			}
 			else {

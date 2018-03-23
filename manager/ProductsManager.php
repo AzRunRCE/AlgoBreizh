@@ -21,5 +21,12 @@ class ProductsManager extends Model {
 		}
 		return $stack;
 	}
+
+	// Renvoie la liste des commandes associés à un client
+	public function add($product){
+		$req = 'INSERT INTO `tProducts`(`name`, `price`, `reference`) VALUES (?,?,?)';
+		$this->executerRequete($req, array($product->name(),$product->price(), $product->reference()));
+		return true;
+	}
 }
 ?>
