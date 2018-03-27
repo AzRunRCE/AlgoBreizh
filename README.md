@@ -7,13 +7,13 @@
 ## Invoice
 [Preview](https://i.gyazo.com/aa50d7889abfa27187737c13536d970d.png)
 ## Functional specifications 
-[Preview](https://github.com/AzzRun/AlgoBreizh/blob/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
+[Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
 
 ## Technical specifications 
-[Preview](https://github.com/AzzRun/AlgoBreizh/blob/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
+[Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
 
 ## Tests Case
-[Preview](https://github.com/AzzRun/AlgoBreizh/blob/master/documentation/Analyse/Algobreizh_Tests.xlsx)
+[Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Algobreizh_Tests.xlsx)
 
 ## License
 Except libraries, all Code is under MIT license
