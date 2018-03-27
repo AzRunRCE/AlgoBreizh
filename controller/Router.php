@@ -1,26 +1,21 @@
 ﻿<?php
-require_once 'Controler/welcomeControler.php';
-require_once 'Controler/loginControler.php';
-require_once 'Controler/productsControler.php';
-
-require_once 'Controler/cartControler.php';
-require_once 'Controler/ordersControler.php';
-
+require_once 'Controller/loginController.php';
+require_once 'Controller/productsController.php';
+require_once 'Controller/cartController.php';
+require_once 'Controller/ordersController.php';
 require_once 'View/View.php';
 
 class Router {
-    private $welcomeCtrl;
 	private $loginCtrl;
 	private $productsCtrl;
 	private $cartCtrl;
 	private $ordersCtrl;
     public function __construct() {
 		session_start();
-        $this->welcomeCtrl = new WelcomeControler();
-		$this->loginCtrl = new LoginControler();
-		$this->productsCtrl = new ProductsControler();
-		$this->cartCtrl = new CartControler();
-		$this->ordersCtrl = new OrdersControler();
+		$this->loginCtrl = new LoginController();
+		$this->productsCtrl = new ProductsController();
+		$this->cartCtrl = new CartController();
+		$this->ordersCtrl = new OrdersController();
     }
     // Route une requête entrante : exécute l'action associée
     public function routerRequest() {	// Pourquoi pas un switch case à la place ?
@@ -28,7 +23,7 @@ class Router {
 			// Vérifie si la session du client est connectée
 				$isLogged = isset($_SESSION["customer"]);
 				if (!isset($_GET['action'])) {
-					$this->welcomeCtrl->show();
+					$this->loginCtrl->show("welcome");
 					return;
 				}
 				// Affiche la page d'authentification / d'inscription
@@ -50,7 +45,7 @@ class Router {
 					return;
 				}
 				if (!$isLogged){
-					$this->welcomeCtrl->show();
+					$this->loginCtrl->show("welcome");
 					return;
 				}
 				// Affiche la boutique

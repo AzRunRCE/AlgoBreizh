@@ -1,10 +1,9 @@
 <?php
-require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
 require_once 'Manager/ProductsManager.php';
 
-class ProductsControler   {
+class ProductsController   {
     private $productsManager;
     public function __construct() {
         $this->productsManager = new ProductsManager();    

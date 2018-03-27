@@ -1,11 +1,10 @@
 <?php
-require_once 'Controler/welcomeControler.php';
 require_once 'Model/Order.php';
 require_once 'View/View.php';
 require_once 'Manager/OrdersManager.php';
 include('fpdf181/invoice/ex.php');
 
-class OrdersControler {
+class OrdersController {
     private $ordersManager;
     private $customersManager;
 

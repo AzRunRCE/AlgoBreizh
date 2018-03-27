@@ -3,7 +3,7 @@ require_once 'View/View.php';
 require_once 'Manager/CartManager.php';
 
 
-class CartControler{
+class CartController{
 	private $cartManager;
 	private $ordersManager;
 	private $welcomeCtrl;

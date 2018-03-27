@@ -2,12 +2,11 @@
 require 'manager/CustomersManager.php';
 require_once 'View/View.php';
 
-class LoginControler {
+class LoginController {
 	private $CustomersManager;
 	private $welcomeCtrl;
     public function __construct() {
 		 $this->CustomersManager = new CustomersManager();
-		 $this->welcomeCtrl = new WelcomeControler();
     }
 	// Affiche la liste de tous les billets du blog
     public function Show($action) {
@@ -21,7 +20,7 @@ class LoginControler {
 		if ($customer != null){
 			if ($customer->password() == $password && $customer->enabled() == 1){
 				$_SESSION['customer'] = $customer;
-				$this->welcomeCtrl->show();
+				$this->show("welcome");
 				return;
 			}
 		}
