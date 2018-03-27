@@ -10,7 +10,7 @@
 [Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
 
 ## Technical specifications 
-[Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécifications_fonctionnelles.docx)
+[Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécification%20Technique.docx)
 
 ## Tests Case
 [Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Algobreizh_Tests.xlsx)
