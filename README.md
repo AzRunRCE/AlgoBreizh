@@ -16,7 +16,7 @@
 [Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Algobreizh_Tests.xlsx)
 
 ## License
-Except libraries, all Code is under MIT license
+Except libraries, all code is under GPLv3 license
 
 ### Libraries used and licenses
 - [FPDF](https://github.com/Setasign/FPDF) by Petteri Aimonen <jpa at nanopb.mail.kapsi.fi> under [MIT license](https://github.com/Setasign/FPDF/blob/master/license.txt) 
