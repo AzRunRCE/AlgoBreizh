@@ -12,7 +12,7 @@
 ## Technical specifications 
 [Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Spécification%20Technique.docx)
 
-## Tests Case
+## Tests case
 [Preview](https://github.com/AzzRun/AlgoBreizh/raw/master/documentation/Analyse/Algobreizh_Tests.xlsx)
 
 ## License
