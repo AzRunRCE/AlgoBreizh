@@ -1,7 +1,7 @@
 
 # AlgoBreizh - Online orders
 
-## Screenshot of application
+## Screenshots of the application
 ![screenshot](https://i.gyazo.com/e4ee2ac9ee839dc2a9ef2f6fd0646c1b.gif)
 ![screenshot](https://i.gyazo.com/f12ab3c87d77e826d04f4631216d1585.png)
 ## Invoice
