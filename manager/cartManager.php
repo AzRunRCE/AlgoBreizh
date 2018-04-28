@@ -14,7 +14,7 @@ class CartManager extends Model {
 	}
 
 	public function add($productId, $quantity) {
-		$productsRow = $this->executerRequete("SELECT * FROM tproducts WHERE id = ?", array($productId))->fetch(PDO::FETCH_ASSOC);
+		$productsRow = $this->executerRequete("SELECT * FROM tProducts WHERE id = ?", array($productId))->fetch(PDO::FETCH_ASSOC);
 		$exist = 0;
 		$attProduct = new AttachedProduct($productsRow,array('quantity' => $quantity));
 		for ($i=0; $i < count($_SESSION['cart']);$i++){
