@@ -10,7 +10,7 @@ class View {
 	
     public function __construct($action) {
         // Détermination du nom du fichier vue à partir de l'action
-        $this->file = "View/" . $action . "view.php";
+        $this->file = "view/" . $action . "View.php";
 		$this->logged = isset($_SESSION["customer"]);
         if(isset($_SESSION["customer"])){
 			$this->admin = $_SESSION["customer"]->Rights() == 1;
