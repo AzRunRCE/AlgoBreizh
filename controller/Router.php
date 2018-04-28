@@ -1,9 +1,9 @@
 ﻿<?php
-require_once 'Controller/loginController.php';
-require_once 'Controller/productsController.php';
-require_once 'Controller/cartController.php';
-require_once 'Controller/ordersController.php';
-require_once 'View/View.php';
+require_once 'controller/loginController.php';
+require_once 'controller/productsController.php';
+require_once 'controller/cartController.php';
+require_once 'controller/ordersController.php';
+require_once 'view/View.php';
 
 class Router {
 	private $loginCtrl;

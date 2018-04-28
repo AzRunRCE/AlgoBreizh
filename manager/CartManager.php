@@ -1,5 +1,5 @@
 <?php
-require_once("Model/model.php");
+require_once("model/model.php");
 
 class CartManager extends Model {
 	// Renvoie la liste des commandes associés à un client

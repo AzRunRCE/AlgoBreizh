@@ -1,6 +1,6 @@
 <?php
-require 'manager/CustomersManager.php';
-require_once 'View/View.php';
+require 'manager/customersManager.php';
+require_once 'view/view.php';
 
 class LoginController {
 	private $CustomersManager;

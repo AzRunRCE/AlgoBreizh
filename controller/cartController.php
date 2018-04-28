@@ -1,6 +1,6 @@
 <?php
-require_once 'View/View.php';
-require_once 'Manager/CartManager.php';
+require_once 'view/View.php';
+require_once 'manager/CartManager.php';
 
 
 class CartController{

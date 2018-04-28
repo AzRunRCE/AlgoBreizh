@@ -1,7 +1,7 @@
 <?php
-require_once 'Model/Order.php';
-require_once 'View/View.php';
-require_once 'Manager/ProductsManager.php';
+require_once 'model/order.php';
+require_once 'view/view.php';
+require_once 'manager/productsManager.php';
 
 class ProductsController   {
     private $productsManager;
