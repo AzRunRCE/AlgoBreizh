@@ -23,7 +23,7 @@ class View {
         // Génération du gabarit commun utilisant la partie spécifique
 		$view = $content;
 		if ($template){
-			$view = $this->generateFile('View/template.php',
+			$view = $this->generateFile('view/template.php',
                 array('title' => $this->title, 'content' => $content, 'logged' => $this->logged, 'admin' => $this->admin));
 		}
         // Renvoi de la vue au navigateur
