@@ -1,6 +1,6 @@
 <?php
 require_once("model/model.php");
-require_once 'model/Order.php';
+require_once 'model/order.php';
 require_once 'model/attachedProduct.php';
 
 class OrdersManager extends Model {

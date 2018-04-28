@@ -1,6 +1,6 @@
 <?php
 require_once("model/model.php");
-require_once('model/Product.php');
+require_once('model/product.php');
 
 class ProductsManager extends Model {
 	// Renvoie la liste des commandes associés à un client
