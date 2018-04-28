@@ -1,6 +1,6 @@
 <?php
 require_once("model/model.php");
-require_once('model/Customer.php');
+require_once('model/customer.php');
 
 class CustomersManager extends Model {
 	// Renvoie la un Customer sur le critére correspondant. Id/Username suivant la provenance de l'appel. Login/OrderInfo (Ex: qmz , 1)
