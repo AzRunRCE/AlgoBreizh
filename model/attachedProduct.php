@@ -1,5 +1,5 @@
 <?php
-require_once 'model/Product.php';
+require_once 'model/product.php';
 class AttachedProduct extends Product { 
 	private $_quantity;
 
