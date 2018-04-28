@@ -17,12 +17,12 @@ class OrdersController {
     public function show($idClient) {
 		if ($_SESSION["customer"]->Rights() == 1){
 			$orders = $this->ordersManager->getList();
-			$view = new View("OrdersAdmin");
+			$view = new View("ordersAdmin");
 			$view->generate(array('orders' => $orders));
 		}
 		else {
 			$orders = $this->ordersManager->getListForClient($idClient);
-			$view = new View("Orders");
+			$view = new View("orders");
 			$view->generate(array('orders' => $orders));
 		}
     }
@@ -30,7 +30,7 @@ class OrdersController {
     public function showOrder($OrderId){
             $order = $this->ordersManager->get($OrderId);
             
-            $view = new View("Order");
+            $view = new View("order");
 		    $view->generate(array('Order' => $order));
     }
 
