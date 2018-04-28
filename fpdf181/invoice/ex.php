@@ -1,5 +1,5 @@
 <?php
-require_once 'Manager/OrdersManager.php';
+require_once 'manager/ordersManager.php';
 define('FPDF_FONTPATH','fpdf181/font');
 require('invoice.php');
 
