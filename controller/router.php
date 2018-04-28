@@ -3,7 +3,7 @@ require_once 'controller/loginController.php';
 require_once 'controller/productsController.php';
 require_once 'controller/cartController.php';
 require_once 'controller/ordersController.php';
-require_once 'view/View.php';
+require_once 'view/view.php';
 
 class Router {
 	private $loginCtrl;
